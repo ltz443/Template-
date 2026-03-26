@@ -526,7 +526,7 @@ boxShadow: filtre === cat ? `0 2px 12px ${T.primary}30` : 'none',
           display: 'inline-block', background: o.couleurLight,
           color: o.couleur, borderRadius: 99, padding: '3px 10px',
           fontSize: 13, fontWeight: 800,
-        }}>{o.bonus}</div>
+        }}>{o.prix}</div>
       </button>
     ))}
   </div>
