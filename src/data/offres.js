@@ -1,31 +1,26 @@
-// src/data/offres.js
 export const OFFRES = [
   {
-  id: 'golf-8r',
-  nom: 'Golf 8R',
-  categorie: 'Sportive',
-  // Photo détourée (Lien postimg direct)
-  image: "https://i.postimg.cc/CLc6M242/IMG-2841.png",
-  // Photo de nuit (Lien postimg direct)
-  imageFond: "https://i.postimg.cc/tRtMwJZf/IMG-2840.jpg",
-  couleur: '#111827',
-  couleurLight: '#F3F4F6',
-  description: 'La puissance allemande au service de vos sensations.',
-  prix: '250€/j',
-  puissance: '320 CH',
-  caution: '5 000€',
-  type: 'contact',
-  contact: '@parrain_4p',
-  note: 'Contactez-moi sur Instagram pour réserver ce véhicule.',
-  conditions: [
-    "Permis de conduire (3 ans min)",
-    "Dépôt de caution par CB",
-    "Pièce d'identité + Permis"
-  ]
-},
+    id: 'golf-8r',
+    nom: 'Golf 8R',
+    categorie: 'Sportive',
+    // Photo détourée (Lien postimg direct)
+    image: "https://i.postimg.cc/CLc6M242/IMG-2841.png",
+    // Photo de nuit (Lien postimg direct)
+    imageFond: "https://i.postimg.cc/tRtMwJZf/IMG-2840.jpg",
+    couleur: '#111827',
+    couleurLight: '#F3F4F6',
+    description: 'La puissance allemande au service de vos sensations.',
+    prix: '250€/j',
+    puissance: '320 CH',
+    caution: '5 000€',
     type: 'contact',
     contact: '@parrain_4p',
     note: 'Réservez via Instagram pour une réponse en moins de 2h.',
+    conditions: [
+      "Permis de conduire (3 ans min)",
+      "Dépôt de caution par CB",
+      "Pièce d'identité + Permis"
+    ],
     shareText: 'Loue la Golf 8R chez 4P RENTALS !',
     shareUrl: 'https://4p-rentals.vercel.app'
   },
