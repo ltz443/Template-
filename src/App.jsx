@@ -565,7 +565,7 @@ return (
   <header style={{
     background: T.surface,
     borderBottom: `1px solid ${T.border}`,
-    padding: '18px 20px 16px',
+    padding: '10px 16px 8px',
     textAlign: 'center',
     position: 'sticky', top: 0, zIndex: 50,
     backdropFilter: 'blur(10px)',
