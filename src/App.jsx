@@ -561,7 +561,7 @@ return () => document.head.removeChild(tag);
 }, []);
 
 return (
-<div style={{ minHeight: '100vh', background: T.bg, paddingBottom: 84 }}>
+<div style={{ minHeight: '100dvh', background: T.bg, paddingBottom: 60 }}>
   <header style={{
     background: T.surface,
     borderBottom: `1px solid ${T.border}`,
