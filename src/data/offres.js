@@ -133,4 +133,4 @@ export const OFFRES = [
   }
 ];
 
-export const CATEGORIES = ['Tout', 'Sportive', 'Luxe', 'Citadine'];
+export const CATEGORIES = ['Tout', 'Sportive', 'Luxe', 'Citadine', 'SUV', 'Utilitaire', 'Électrique'];
