@@ -49,6 +49,8 @@ to   { opacity: 1; transform: scale(1); }
 .card-grid > *:nth-child(4) { animation-delay: 0.16s; }
 .card-grid > *:nth-child(5) { animation-delay: 0.20s; }
 .card-grid > *:nth-child(6) { animation-delay: 0.24s; }
+.card-grid > *:nth-child(7) { animation-delay: 0.28s; }
+.card-grid > *:nth-child(8) { animation-delay: 0.32s; }
 
 .offer-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.10) !important; }
 .offer-btn { transition: transform 0.2s ease, box-shadow 0.2s ease; }
@@ -85,11 +87,11 @@ radius:       '16px',
 radiusSm:     '10px',
 };
 
-// ─── DONNÉES FLOTTE (MODIFIÉES UNIQUEMENT) ──────────────────
+// ─── DONNÉES FLOTTE (PARTIE MODIFIÉE) ────────────────────────
 const OFFRES = [
 {
 id: 'golf-8r',
-nom: 'Golf 8R',
+nom: 'Golf 8R (320ch)',
 categorie: 'Sportive',
 emoji: '🏎️',
 couleur: '#111827',
@@ -106,7 +108,7 @@ conditions: [
 ],
 type: 'contact',
 contact: '@parrain_4p',
-note: 'Pour réserver la Golf 8R, envoie un message avec tes dates sur Instagram.',
+note: 'Pour réserver ce véhicule, contactez-nous directement sur Instagram avec vos dates.',
 shareText: 'Loue la Golf 8R chez 4P RENTALS !',
 shareUrl: 'https://4p-rentals.vercel.app',
 },
@@ -120,7 +122,7 @@ couleurLight: '#EDE9FE',
 bonus: '250€/j',
 bonusFilleul: '3500€',
 bonusParrain: '421 CH',
-description: "Le 4 cylindres le plus puissant du monde. Une expérience sonore et dynamique incomparable pour vos sorties.",
+description: "Le 4 cylindres le plus puissant du monde. Une expérience sonore et dynamique incomparable pour vos week-ends.",
 conditions: [
 "Âge minimum : 25 ans",
 'Permis de conduire (3 ans min)',
@@ -129,7 +131,7 @@ conditions: [
 ],
 type: 'contact',
 contact: '@parrain_4p',
-note: 'Vérifie la disponibilité de l\'AMG A45 S sur Instagram.',
+note: 'Vérifiez la disponibilité en envoyant un message sur Instagram.',
 shareText: 'Mercedes A45 S AMG disponible chez 4P RENTALS !',
 shareUrl: 'https://4p-rentals.vercel.app',
 }
@@ -188,7 +190,7 @@ return (
 <div style={{ marginBottom: 20 }}>
 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
 <span style={{ fontSize: 12, fontWeight: 700, color: T.slate, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-Documents & Conditions
+Étapes de location
 </span>
 <span style={{
 fontSize: 12, fontWeight: 700, padding: '2px 10px', borderRadius: 99,
@@ -232,6 +234,17 @@ color: done === total ? T.success : T.muted,
       }}>{c}</span>
     </div>
   ))}
+
+  {done === total && (
+    <div className="scale-in" style={{
+      background: T.successLight, border: `1px solid ${T.success}`,
+      borderRadius: 12, padding: '12px 16px', textAlign: 'center', marginTop: 6,
+    }}>
+      <span style={{ fontSize: 14, color: T.success, fontWeight: 700 }}>
+        🎉 Dossier prêt pour la route !
+      </span>
+    </div>
+  )}
 </div>
 );
 }
@@ -261,17 +274,29 @@ padding: '13px', cursor: 'pointer',
 display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
 marginTop: 10,
 }}>
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
+<line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
+</svg>
 {shared ? 'Lien copié !' : 'Partager ce véhicule'}
 </button>
 );
 }
 
-// ─── PAGE PARRAINAGE (DEVENUE FLOTTE) ────────────────────────
+// ─── PAGE PRINCIPALE (PRÉSERVÉE) ─────────────────────────────
 function PageParrainage() {
 const [filtre, setFiltre]     = useState('Tout');
 const [selected, setSelected] = useState(null);
+const [copied, setCopied]     = useState(false);
 
 const filtrees = filtre === 'Tout' ? OFFRES : OFFRES.filter(o => o.categorie === filtre);
+
+const copier = (texte) => {
+navigator.clipboard.writeText(texte).then(() => {
+setCopied(true);
+setTimeout(() => setCopied(false), 2500);
+});
+};
 
 if (selected) {
 const o = selected;
@@ -281,7 +306,12 @@ return (
 background: 'none', border: 'none', color: T.primary, fontSize: 14,
 fontWeight: 600, cursor: 'pointer', marginBottom: 16,
 display: 'flex', alignItems: 'center', gap: 6, padding: '4px 0',
-}}> ← Retour à la flotte </button>
+}}> 
+<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+<path d="M19 12H5M12 5l-7 7 7 7"/>
+</svg>
+Retour à la flotte 
+</button>
 
     <Card style={{ marginBottom: 16, overflow: 'hidden' }}>
       <div style={{ background: `linear-gradient(135deg, ${o.couleur}18, ${o.couleur}08)`, borderBottom: `1px solid ${o.couleur}22`, padding: '20px 20px 16px' }}>
@@ -298,7 +328,7 @@ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 0',
       <div style={{ padding: '16px 20px 0' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 20 }}>
           <div style={{ background: T.primaryLight, borderRadius: 12, padding: '14px', textAlign: 'center' }}>
-            <div style={{ fontSize: 10, color: T.primary, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>TARIF / JOUR</div>
+            <div style={{ fontSize: 10, color: T.primary, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>PRIX / JOUR</div>
             <div style={{ fontSize: 20, fontWeight: 800, color: T.primary, fontFamily: "'Sora', sans-serif" }}>{o.bonus}</div>
           </div>
           <div style={{ background: T.accentLight, borderRadius: 12, padding: '14px', textAlign: 'center' }}>
@@ -313,7 +343,7 @@ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 0',
         <div style={{ background: T.borderSoft, borderRadius: 14, padding: '16px', border: `1px solid ${T.border}`, textAlign: 'center' }}>
           <p style={{ fontSize: 13, color: T.slate, marginBottom: 14 }}>{o.note}</p>
           <a href={`https://instagram.com/${o.contact.replace('@', '')}`} target="_blank" rel="noreferrer" className="action-btn" style={{ display: 'inline-block', background: 'linear-gradient(135deg, #833AB4, #FD1D1D)', borderRadius: 12, color: '#fff', fontSize: 14, fontWeight: 700, padding: '12px 24px', textDecoration: 'none' }}>
-            Réserver sur Instagram
+            Contacter {o.contact}
           </a>
         </div>
         <ShareButton offre={o} />
@@ -345,6 +375,22 @@ return (
 );
 }
 
+function PageAvis() {
+return (
+<div style={{ maxWidth: 480, margin: '0 auto', padding: '16px' }} className="fade-up">
+  <Card style={{ padding: '20px', textAlign: 'center', color: T.muted }}>
+    <span style={{ fontSize: '32px' }}>⭐</span>
+    <p style={{ marginTop: '10px' }}>Les avis arrivent bientôt !</p>
+  </Card>
+</div>
+);
+}
+
+const NAV_ITEMS = [
+{ id: 'parrainage', label: 'Flotte', emoji: '🚗' },
+{ id: 'avis',       label: 'Avis',   emoji: '⭐' },
+];
+
 // ─── APP ROOT (PRÉSERVÉ) ─────────────────────────────────────
 export default function App() {
 const [onglet, setOnglet] = useState('parrainage');
@@ -357,18 +403,50 @@ return () => document.head.removeChild(tag);
 
 return (
 <div style={{ minHeight: '100vh', background: T.bg, paddingBottom: 84 }}>
-  <header style={{ background: T.surface, borderBottom: `1px solid ${T.border}`, padding: '18px 20px 16px', textAlign: 'center' }}>
+  <header style={{
+    background: T.surface,
+    borderBottom: `1px solid ${T.border}`,
+    padding: '18px 20px 16px',
+    textAlign: 'center',
+    position: 'sticky', top: 0, zIndex: 50,
+    backdropFilter: 'blur(10px)',
+  }}>
+    <div style={{
+      display: 'inline-flex', alignItems: 'center', gap: 8,
+      background: T.primaryLight, borderRadius: 99, padding: '4px 14px',
+      marginBottom: 8,
+    }}>
+      <div style={{ width: 6, height: 6, borderRadius: '50%', background: T.primary, animation: 'pulse 2s infinite' }} />
+      <span style={{ fontSize: 10, fontWeight: 700, color: T.primary, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Agence Premium</span>
+    </div>
     <h1 style={{ fontSize: 24, fontWeight: 800, color: T.navy, fontFamily: "'Sora', sans-serif" }}>4P RENTALS</h1>
     <p style={{ color: T.muted, fontSize: 12 }}>Location de véhicules d'exception</p>
   </header>
-  <main>{onglet === 'parrainage' ? <PageParrainage /> : <div style={{ padding: 40, textAlign: 'center' }}>Les avis arrivent bientôt.</div>}</main>
-  <nav style={{ position: 'fixed', bottom: 0, left: 0, right: 0, background: '#FFF', borderTop: `1px solid ${T.border}`, display: 'flex', padding: '8px', zIndex: 100 }}>
-    <button onClick={() => setOnglet('parrainage')} className="nav-btn" style={{ flex: 1, border: 'none', background: onglet === 'parrainage' ? T.primaryLight : 'transparent', borderRadius: 12, padding: '10px', cursor: 'pointer', display:'flex', flexDirection:'column', alignItems:'center', gap:4 }}>
-      <span style={{fontSize:20}}>🚗</span><span style={{fontSize:10, fontWeight:700}}>FLOTTE</span>
-    </button>
-    <button onClick={() => setOnglet('avis')} className="nav-btn" style={{ flex: 1, border: 'none', background: onglet === 'avis' ? T.primaryLight : 'transparent', borderRadius: 12, padding: '10px', cursor: 'pointer', display:'flex', flexDirection:'column', alignItems:'center', gap:4 }}>
-      <span style={{fontSize:20}}>⭐</span><span style={{fontSize:10, fontWeight:700}}>AVIS</span>
-    </button>
+  <main>
+    {onglet === 'parrainage' ? <PageParrainage /> : <PageAvis />}
+  </main>
+  <nav style={{
+    position: 'fixed', bottom: 0, left: 0, right: 0,
+    background: 'rgba(255,255,255,0.95)',
+    borderTop: `1px solid ${T.border}`,
+    backdropFilter: 'blur(16px)',
+    display: 'flex', zIndex: 100,
+    padding: '8px 8px 12px',
+    gap: 4,
+  }}>
+    {NAV_ITEMS.map(item => {
+      const active = onglet === item.id;
+      return (
+        <button key={item.id} onClick={() => setOnglet(item.id)} className="nav-btn" style={{
+            flex: 1, background: active ? T.primaryLight : 'transparent',
+            border: 'none', borderRadius: 12, padding: '10px 4px 8px',
+            cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
+          }}>
+          <span style={{ fontSize: 20 }}>{item.emoji}</span>
+          <span style={{ fontSize: 10, fontWeight: 700, color: active ? T.primary : T.muted }}>{item.label}</span>
+        </button>
+      );
+    })}
   </nav>
 </div>
 );
