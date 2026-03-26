@@ -9,32 +9,29 @@ import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { OFFRES, CATEGORIES } from './data/offres';
 import GlobalStyles from './components/GlobalStyles';
-import { FONT_LINK } from './utils/tokens'; // optionnel si tu utilises FONT_LINK ailleurs
-
-// ─── INJECT GOOGLE FONTS ──────────────────────────────────────
-const FONT_LINK = `@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');`;
+import { FONT_LINK } from './utils/tokens';
 
 // ─── DESIGN TOKENS ───────────────────────────────────────────
 const T = {
-bg:           '#F7F5F0',
-surface:      '#FFFFFF',
-border:       '#E5E7EB',
-borderSoft:   '#F3F4F6',
-primary:      '#7C3AED',
-primaryLight: '#EDE9FE',
-primaryDark:  '#5B21B6',
-accent:       '#F59E0B',
-accentLight:  '#FEF3C7',
-navy:         '#111827',
-slate:        '#374151',
-muted:        '#6B7280',
-faint:        '#9CA3AF',
-success:      '#059669',
-successLight: '#D1FAE5',
-warn:         '#D97706',
-shadow:       '0 2px 12px rgba(0,0,0,0.06)',
-radius:       '16px',
-radiusSm:     '10px',
+  bg:           '#F7F5F0',
+  surface:      '#FFFFFF',
+  border:       '#E5E7EB',
+  borderSoft:   '#F3F4F6',
+  primary:      '#7C3AED',
+  primaryLight: '#EDE9FE',
+  primaryDark:  '#5B21B6',
+  accent:       '#F59E0B',
+  accentLight:  '#FEF3C7',
+  navy:         '#111827',
+  slate:        '#374151',
+  muted:        '#6B7280',
+  faint:        '#9CA3AF',
+  success:      '#059669',
+  successLight: '#D1FAE5',
+  warn:         '#D97706',
+  shadow:       '0 2px 12px rgba(0,0,0,0.06)',
+  radius:       '16px',
+  radiusSm:     '10px',
 };
 
 // ─── UI ATOMS ────────────────────────────────────────────────
@@ -376,7 +373,13 @@ return () => document.head.removeChild(tag);
 }, []);
 
 return (
-<div style={{ minHeight: '100vh', background: T.bg, paddingBottom: 84 }}>
+  <>
+    <GlobalStyles />
+    <div style={{ maxWidth: 1100, margin: '18px auto', padding: '0 12px' }}>
+      {/* le reste de ton UI */}
+    </div>
+  </>
+);
 
   {/* ─── HEADER PREMIUM ─────────────────────────────────── */}
   <header style={{
