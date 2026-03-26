@@ -47,6 +47,8 @@ to   { opacity: 1; transform: scale(1); }
 .card-grid > *:nth-child(2) { animation-delay: 0.08s; }
 .card-grid > *:nth-child(3) { animation-delay: 0.12s; }
 .card-grid > *:nth-child(4) { animation-delay: 0.16s; }
+.card-grid > *:nth-child(5) { animation-delay: 0.20s; }
+.card-grid > *:nth-child(6) { animation-delay: 0.24s; }
 
 .offer-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.10) !important; }
 .offer-btn { transition: transform 0.2s ease, box-shadow 0.2s ease; }
@@ -83,18 +85,18 @@ radius:       '16px',
 radiusSm:     '10px',
 };
 
-// ─── DONNÉES DE LA FLOTTE (PARTIE MODIFIÉE UNIQUEMENT) ──────
+// ─── DONNÉES FLOTTE (MODIFIÉES UNIQUEMENT) ──────────────────
 const OFFRES = [
 {
 id: 'golf-8r',
-nom: 'Golf 8R (320ch)',
+nom: 'Golf 8R',
 categorie: 'Sportive',
 emoji: '🏎️',
 couleur: '#111827',
 couleurLight: '#F3F4F6',
 bonus: '150€/j',
-bonusFilleul: 'Dépôt 2000€',
-bonusParrain: 'Pack Luxe',
+bonusFilleul: '2000€',
+bonusParrain: '320 CH',
 description: "La polyvalence par excellence. Un look sobre, une puissance redoutable et quatre roues motrices pour une sécurité totale.",
 conditions: [
 "Âge minimum : 21 ans",
@@ -104,9 +106,9 @@ conditions: [
 ],
 type: 'contact',
 contact: '@parrain_4p',
-note: 'Pour réserver ce véhicule, contactez-nous directement sur Instagram avec vos dates.',
+note: 'Pour réserver la Golf 8R, envoie un message avec tes dates sur Instagram.',
 shareText: 'Loue la Golf 8R chez 4P RENTALS !',
-shareUrl: 'https://parrain-4p.vercel.app',
+shareUrl: 'https://4p-rentals.vercel.app',
 },
 {
 id: 'a45s',
@@ -116,9 +118,9 @@ emoji: '🏁',
 couleur: '#7C3AED',
 couleurLight: '#EDE9FE',
 bonus: '250€/j',
-bonusFilleul: 'Dépôt 3500€',
-bonusParrain: 'Full Options',
-description: "Le 4 cylindres le plus puissant du monde. Une expérience sonore et dynamique incomparable pour vos week-ends.",
+bonusFilleul: '3500€',
+bonusParrain: '421 CH',
+description: "Le 4 cylindres le plus puissant du monde. Une expérience sonore et dynamique incomparable pour vos sorties.",
 conditions: [
 "Âge minimum : 25 ans",
 'Permis de conduire (3 ans min)',
@@ -127,9 +129,9 @@ conditions: [
 ],
 type: 'contact',
 contact: '@parrain_4p',
-note: 'Vérifiez la disponibilité en envoyant un message sur Instagram.',
+note: 'Vérifie la disponibilité de l\'AMG A45 S sur Instagram.',
 shareText: 'Mercedes A45 S AMG disponible chez 4P RENTALS !',
-shareUrl: 'https://parrain-4p.vercel.app',
+shareUrl: 'https://4p-rentals.vercel.app',
 }
 ];
 
@@ -186,7 +188,7 @@ return (
 <div style={{ marginBottom: 20 }}>
 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
 <span style={{ fontSize: 12, fontWeight: 700, color: T.slate, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-Étapes à compléter
+Documents & Conditions
 </span>
 <span style={{
 fontSize: 12, fontWeight: 700, padding: '2px 10px', borderRadius: 99,
@@ -239,7 +241,7 @@ function ShareButton({ offre }) {
 const [shared, setShared] = useState(false);
 const handleShare = async () => {
 if (navigator.share) {
-try { await navigator.share({ title: `${offre.nom} - ${offre.bonus}`, text: offre.shareText, url: offre.shareUrl }); }
+try { await navigator.share({ title: `${offre.nom}`, text: offre.shareText, url: offre.shareUrl }); }
 catch {}
 } else {
 try {
@@ -264,20 +266,12 @@ marginTop: 10,
 );
 }
 
-// ─── PAGE PRINCIPALE (PRÉSERVÉE) ─────────────────────────────
+// ─── PAGE PARRAINAGE (DEVENUE FLOTTE) ────────────────────────
 function PageParrainage() {
 const [filtre, setFiltre]     = useState('Tout');
 const [selected, setSelected] = useState(null);
-const [copied, setCopied]     = useState(false);
 
 const filtrees = filtre === 'Tout' ? OFFRES : OFFRES.filter(o => o.categorie === filtre);
-
-const copier = (texte) => {
-navigator.clipboard.writeText(texte).then(() => {
-setCopied(true);
-setTimeout(() => setCopied(false), 2500);
-});
-};
 
 if (selected) {
 const o = selected;
@@ -287,7 +281,7 @@ return (
 background: 'none', border: 'none', color: T.primary, fontSize: 14,
 fontWeight: 600, cursor: 'pointer', marginBottom: 16,
 display: 'flex', alignItems: 'center', gap: 6, padding: '4px 0',
-}}> ← Retour aux véhicules </button>
+}}> ← Retour à la flotte </button>
 
     <Card style={{ marginBottom: 16, overflow: 'hidden' }}>
       <div style={{ background: `linear-gradient(135deg, ${o.couleur}18, ${o.couleur}08)`, borderBottom: `1px solid ${o.couleur}22`, padding: '20px 20px 16px' }}>
@@ -304,12 +298,12 @@ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 0',
       <div style={{ padding: '16px 20px 0' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 20 }}>
           <div style={{ background: T.primaryLight, borderRadius: 12, padding: '14px', textAlign: 'center' }}>
-            <div style={{ fontSize: 10, color: T.primary, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>TARIF JOUR</div>
+            <div style={{ fontSize: 10, color: T.primary, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>TARIF / JOUR</div>
             <div style={{ fontSize: 20, fontWeight: 800, color: T.primary, fontFamily: "'Sora', sans-serif" }}>{o.bonus}</div>
           </div>
           <div style={{ background: T.accentLight, borderRadius: 12, padding: '14px', textAlign: 'center' }}>
             <div style={{ fontSize: 10, color: T.warn, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>CAUTION</div>
-            <div style={{ fontSize: 16, fontWeight: 800, color: T.warn, fontFamily: "'Sora', sans-serif" }}>{o.bonusFilleul}</div>
+            <div style={{ fontSize: 20, fontWeight: 800, color: T.warn, fontFamily: "'Sora', sans-serif" }}>{o.bonusFilleul}</div>
           </div>
         </div>
         <Checklist offreId={o.id} conditions={o.conditions} />
@@ -319,7 +313,7 @@ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 0',
         <div style={{ background: T.borderSoft, borderRadius: 14, padding: '16px', border: `1px solid ${T.border}`, textAlign: 'center' }}>
           <p style={{ fontSize: 13, color: T.slate, marginBottom: 14 }}>{o.note}</p>
           <a href={`https://instagram.com/${o.contact.replace('@', '')}`} target="_blank" rel="noreferrer" className="action-btn" style={{ display: 'inline-block', background: 'linear-gradient(135deg, #833AB4, #FD1D1D)', borderRadius: 12, color: '#fff', fontSize: 14, fontWeight: 700, padding: '12px 24px', textDecoration: 'none' }}>
-            Contacter {o.contact}
+            Réserver sur Instagram
           </a>
         </div>
         <ShareButton offre={o} />
@@ -367,10 +361,14 @@ return (
     <h1 style={{ fontSize: 24, fontWeight: 800, color: T.navy, fontFamily: "'Sora', sans-serif" }}>4P RENTALS</h1>
     <p style={{ color: T.muted, fontSize: 12 }}>Location de véhicules d'exception</p>
   </header>
-  <main>{onglet === 'parrainage' ? <PageParrainage /> : <div style={{ padding: 40, textAlign: 'center' }}>Avis clients bientôt.</div>}</main>
+  <main>{onglet === 'parrainage' ? <PageParrainage /> : <div style={{ padding: 40, textAlign: 'center' }}>Les avis arrivent bientôt.</div>}</main>
   <nav style={{ position: 'fixed', bottom: 0, left: 0, right: 0, background: '#FFF', borderTop: `1px solid ${T.border}`, display: 'flex', padding: '8px', zIndex: 100 }}>
-    <button onClick={() => setOnglet('parrainage')} className="nav-btn" style={{ flex: 1, border: 'none', background: onglet === 'parrainage' ? T.primaryLight : 'transparent', borderRadius: 12, padding: '10px', cursor: 'pointer' }}>🚗 FLOTTE</button>
-    <button onClick={() => setOnglet('avis')} className="nav-btn" style={{ flex: 1, border: 'none', background: onglet === 'avis' ? T.primaryLight : 'transparent', borderRadius: 12, padding: '10px', cursor: 'pointer' }}>⭐ AVIS</button>
+    <button onClick={() => setOnglet('parrainage')} className="nav-btn" style={{ flex: 1, border: 'none', background: onglet === 'parrainage' ? T.primaryLight : 'transparent', borderRadius: 12, padding: '10px', cursor: 'pointer', display:'flex', flexDirection:'column', alignItems:'center', gap:4 }}>
+      <span style={{fontSize:20}}>🚗</span><span style={{fontSize:10, fontWeight:700}}>FLOTTE</span>
+    </button>
+    <button onClick={() => setOnglet('avis')} className="nav-btn" style={{ flex: 1, border: 'none', background: onglet === 'avis' ? T.primaryLight : 'transparent', borderRadius: 12, padding: '10px', cursor: 'pointer', display:'flex', flexDirection:'column', alignItems:'center', gap:4 }}>
+      <span style={{fontSize:20}}>⭐</span><span style={{fontSize:10, fontWeight:700}}>AVIS</span>
+    </button>
   </nav>
 </div>
 );
