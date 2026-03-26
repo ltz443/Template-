@@ -228,47 +228,64 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
           </div>
         </div>
       ) : (
-        /* Grille normale */
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          {filtrees.map(o => (
-            <button key={o.id} onClick={() => setSelected(o)} className="offer-btn fade-up" style={{
-              background: T.surface, border: `1px solid ${T.border}`,
-              borderRadius: T.radius, padding: 0, textAlign: 'left',
-              cursor: 'pointer', boxShadow: T.shadow,
-              position: 'relative', overflow: 'hidden',
-            }}>
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: o.couleur, zIndex: 2 }} />
-              
-              {/* Zone Image ou Emoji */}
-              <div style={{
-                height: 110,
-                background: o.couleurLight,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                overflow: 'hidden',
-                position: 'relative'
-              }}>
-                {o.image ? (
-                  /* AJOUT DU OBJECT-FIT COVER POUR LE RENDU PRO */
-                  <img src={o.image} alt={o.nom} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                ) : (
-                  <div style={{ fontSize: 32 }}>{o.emoji}</div>
-                )}
-              </div>
+  /* Grille normale */
+<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+  {filtrees.map(o => (
+    <button key={o.id} onClick={() => setSelected(o)} className="offer-btn fade-up" style={{
+      background: T.surface, 
+      border: `1px solid ${T.border}`,
+      borderRadius: T.radius, 
+      padding: 0, 
+      textAlign: 'left',
+      cursor: 'pointer', 
+      boxShadow: T.shadow,
+      position: 'relative', 
+      overflow: 'hidden', // Important pour que l'image respecte l'arrondi
+    }}>
+      {/* Barre de couleur supérieure - on la passe en z-index 3 pour qu'elle reste visible sur l'image */}
+      <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: o.couleur, zIndex: 3 }} />
+      
+      {/* Zone Image */}
+      <div style={{
+        height: 110,
+        background: o.couleurLight,
+        overflow: 'hidden',
+        position: 'relative',
+        margin: '-1px -1px 0 -1px', // On "sort" légèrement des bordures pour supprimer le liseré blanc
+      }}>
+        {o.image ? (
+          <img 
+            src={o.image} 
+            alt={o.nom} 
+            style={{ 
+              width: 'calc(100% + 2px)', // On compense le margin négatif
+              height: '100%', 
+              objectFit: 'cover',
+              display: 'block' 
+            }} 
+          />
+        ) : (
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', fontSize: 32 }}>
+            {o.emoji}
+          </div>
+        )}
+      </div>
 
-              <div style={{ padding: '12px 16px 16px' }}>
-                <div style={{ fontSize: 10, color: T.faint, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 3 }}>{o.categorie}</div>
-                <div style={{ fontSize: 15, fontWeight: 800, color: T.navy, marginBottom: 6, fontFamily: "'Sora', sans-serif" }}>{o.nom}</div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 4 }}>
-                  <span style={{
-                    display: 'inline-block', background: o.couleurLight,
-                    color: o.couleur, borderRadius: 99, padding: '3px 10px',
-                    fontSize: 13, fontWeight: 800,
-                  }}>{o.prix}</span>
-                  <span style={{ fontSize: 11, color: T.muted, fontWeight: 600 }}>{o.puissance}</span>
-                </div>
-              </div>
-            </button>
-          ))}
+      <div style={{ padding: '12px 16px 16px' }}>
+        <div style={{ fontSize: 10, color: T.faint, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 3 }}>{o.categorie}</div>
+        <div style={{ fontSize: 15, fontWeight: 800, color: T.navy, marginBottom: 6, fontFamily: "'Sora', sans-serif" }}>{o.nom}</div>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 4 }}>
+          <span style={{
+            display: 'inline-block', background: o.couleurLight,
+            color: o.couleur, borderRadius: 99, padding: '3px 10px',
+            fontSize: 13, fontWeight: 800,
+          }}>{o.prix}</span>
+          <span style={{ fontSize: 11, color: T.muted, fontWeight: 600 }}>{o.puissance}</span>
+        </div>
+      </div>
+    </button>
+  ))}
+</div>
         </div>
       )}
     </div>
