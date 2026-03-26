@@ -7,6 +7,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
+import { OFFRES, CATEGORIES } from './data/offres';
 
 // ─── INJECT GOOGLE FONTS ──────────────────────────────────────
 const FONT_LINK = `@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');`;
