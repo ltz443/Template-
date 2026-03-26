@@ -66,15 +66,13 @@ to   { opacity: 1; transform: scale(1); }
 
 // ─── DESIGN TOKENS ───────────────────────────────────────────
 const T = {
-bg:           '#F7F5F0',
+bg:           '#6B21A8',
 surface:      '#FFFFFF',
 border:       '#E5E7EB',
 borderSoft:   '#F3F4F6',
 primary:      '#7C3AED',
 primaryLight: '#EDE9FE',
 primaryDark:  '#5B21B6',
-background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 50%, #6d28d9 100%);
-color: #ffffff;
 accent:       '#F59E0B',
 accentLight:  '#FEF3C7',
 navy:         '#111827',
