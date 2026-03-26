@@ -592,10 +592,10 @@ return (
       fontSize: 24, fontWeight: 800, color: T.navy,
       fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em',
     }}>
-      Parrain 4P
+      Axis Drive
     </h1>
     <p style={{ color: T.muted, fontSize: 12, marginTop: 3, fontWeight: 500 }}>
-      Parrainages · Bons Plans Exclusifs
+      location de véhicule de luxe 
     </p>
   </header>
 
