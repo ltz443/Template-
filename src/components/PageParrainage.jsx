@@ -33,12 +33,8 @@ function CategoryBadge({ label, color }) {
 
 function Checklist({ offreId, conditions }) {
   const [checked, setChecked] = useState(() => {
-    try { 
-      const s = localStorage.getItem('ck_' + offreId); 
-      return s ? JSON.parse(s) : {}; 
-    } catch { 
-      return {}; 
-    }
+    try { const s = localStorage.getItem('ck_' + offreId); return s ? JSON.parse(s) : {}; }
+    catch { return {}; }
   });
 
   const toggle = (i) => {
@@ -48,7 +44,7 @@ function Checklist({ offreId, conditions }) {
   };
 
   const done = Object.values(checked).filter(Boolean).length;
-  const pct = conditions.length > 0 ? (done / conditions.length) * 100 : 0;
+  const pct = (done / conditions.length) * 100;
 
   return (
     <div style={{ marginBottom: 20 }}>
@@ -69,7 +65,7 @@ function Checklist({ offreId, conditions }) {
           }}>
             {checked[i] && (
               <svg width="10" height="8" viewBox="0 0 10 8" fill="none">
-                <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                <path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
               </svg>
             )}
           </div>
@@ -80,11 +76,54 @@ function Checklist({ offreId, conditions }) {
   );
 }
 
+// — CARTE “BIENTÔT DISPONIBLE” —
+function ComingSoonCard() {
+  return (
+    <div style={{
+      background: T.surface,
+      border: `1.5px dashed ${T.border}`,
+      borderRadius: T.radius,
+      padding: 16,
+      textAlign: 'left',
+      boxShadow: 'none',
+      position: 'relative',
+      overflow: 'hidden',
+      opacity: 0.75,
+    }}>
+      <div style={{
+        position: 'absolute', top: 0, left: 0, right: 0, height: 3,
+        background: `linear-gradient(90deg, ${T.primary}44, ${T.accent}44)`,
+        borderRadius: `${T.radius} ${T.radius} 0 0`,
+      }} />
+
+      <div style={{
+        width: 44, height: 44, borderRadius: 12,
+        background: T.borderSoft,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        fontSize: 22, marginBottom: 10, marginTop: 4,
+      }}>🔒</div>
+
+      <div style={{
+        display: 'inline-flex', alignItems: 'center', gap: 5,
+        background: T.primaryLight, borderRadius: 99,
+        padding: '3px 10px', fontSize: 10, fontWeight: 700,
+        color: T.primary, marginBottom: 8,
+      }}>
+        <span style={{ width: 5, height: 5, borderRadius: '50%', background: T.primary }} />
+        Bientôt disponible
+      </div>
+
+      <div style={{ height: 14, borderRadius: 6, background: T.borderSoft, marginBottom: 8, width: '80%' }} />
+      <div style={{ height: 10, borderRadius: 6, background: T.borderSoft, width: '50%' }} />
+    </div>
+  );
+}
+
 // — COMPOSANT PRINCIPAL —
 export default function PageParrainage({ selected, setSelected, filtre, setFiltre }) {
   const filtrees = filtre === 'Tout' ? OFFRES : OFFRES.filter(o => o.categorie === filtre);
+  const isCategoryEmpty = filtre !== 'Tout' && filtrees.length === 0;
 
-  // ── Vue détail ──
   if (selected) {
     const o = selected;
     return (
@@ -111,7 +150,7 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
               }}>{o.emoji}</div>
               <div>
                 <CategoryBadge label={o.categorie} color={o.couleur} />
-                <h2 style={{ fontSize: 22, fontWeight: 800, color: T.navy, marginTop: 4, fontFamily: "'Sora', sans-serif" }}>{o.nom}</h2>
+                <h2 style={{ fontSize: 22, fontWeight: 800, color: T.navy, marginTop: 4 }}>{o.nom}</h2>
               </div>
             </div>
             <p style={{ fontSize: 14, color: T.slate, lineHeight: 1.6 }}>{o.description}</p>
@@ -120,16 +159,16 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
           <div style={{ padding: '16px 20px 20px' }}>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, marginBottom: 20 }}>
               <div style={{ background: T.primaryLight, borderRadius: 12, padding: '12px 8px', textAlign: 'center' }}>
-                <div style={{ fontSize: 9, color: T.primary, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.06em' }}>Prix / jour</div>
-                <div style={{ fontSize: 16, fontWeight: 800, color: T.primary, fontFamily: "'Sora', sans-serif" }}>{o.prix}</div>
+                <div style={{ fontSize: 9, color: T.primary, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>Prix / jour</div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: T.primary }}>{o.prix}</div>
               </div>
               <div style={{ background: T.accentLight, borderRadius: 12, padding: '12px 8px', textAlign: 'center' }}>
-                <div style={{ fontSize: 9, color: T.warn, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.06em' }}>Puissance</div>
-                <div style={{ fontSize: 16, fontWeight: 800, color: T.warn, fontFamily: "'Sora', sans-serif" }}>{o.puissance}</div>
+                <div style={{ fontSize: 9, color: T.warn, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>Puissance</div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: T.warn }}>{o.puissance}</div>
               </div>
               <div style={{ background: '#FEE2E2', borderRadius: 12, padding: '12px 8px', textAlign: 'center' }}>
-                <div style={{ fontSize: 9, color: '#DC2626', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.06em' }}>Caution</div>
-                <div style={{ fontSize: 16, fontWeight: 800, color: '#DC2626', fontFamily: "'Sora', sans-serif" }}>{o.caution}</div>
+                <div style={{ fontSize: 9, color: '#DC2626', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>Caution</div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: '#DC2626' }}>{o.caution}</div>
               </div>
             </div>
 
@@ -137,35 +176,18 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
 
             {o.type === 'contact' && (
               <div style={{ background: T.borderSoft, borderRadius: 14, padding: '16px', border: `1px solid ${T.border}`, textAlign: 'center' }}>
-                <p style={{ fontSize: 13, color: T.slate, marginBottom: 14, lineHeight: 1.5 }}>{o.note}</p>
+                <p style={{ fontSize: 13, color: T.slate, marginBottom: 14 }}>{o.note}</p>
                 <a
                   href={`https://instagram.com/${o.contact.replace('@', '')}`}
                   target="_blank" rel="noreferrer"
                   style={{
-                    display: 'inline-block',
-                    background: 'linear-gradient(135deg, #833AB4, #FD1D1D)',
-                    borderRadius: 12, color: '#fff',
-                    fontSize: 14, fontWeight: 700, padding: '12px 24px', textDecoration: 'none',
+                    display: 'inline-block', background: 'linear-gradient(135deg, #833AB4, #FD1D1D)',
+                    borderRadius: 12, color: '#fff', fontSize: 14, fontWeight: 700, padding: '12px 24px', textDecoration: 'none',
                   }}
                 >
                   Réserver via Instagram {o.contact}
                 </a>
               </div>
-            )}
-
-            {o.type === 'lien' && o.lien !== '#' && (
-              <a
-                href={o.lien} target="_blank" rel="noreferrer"
-                style={{
-                  display: 'block', textAlign: 'center',
-                  background: `linear-gradient(135deg, ${T.primary}, ${T.primaryDark})`,
-                  borderRadius: 14, color: '#fff',
-                  fontSize: 15, fontWeight: 700, padding: '15px', textDecoration: 'none',
-                  boxShadow: `0 4px 20px ${T.primary}40`,
-                }}
-              >
-                S'inscrire via mon lien →
-              </a>
             )}
           </div>
         </Card>
@@ -173,7 +195,6 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
     );
   }
 
-  // ── Vue liste ──
   return (
     <div style={{ maxWidth: 480, margin: '0 auto' }}>
       <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 15, scrollbarWidth: 'none' }}>
@@ -184,40 +205,44 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
             border: `1px solid ${filtre === cat ? T.primary : T.border}`,
             borderRadius: 99, padding: '7px 16px',
             fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap',
-            boxShadow: filtre === cat ? `0 2px 12px ${T.primary}30` : 'none',
-            transition: 'all 0.2s',
           }}>{cat}</button>
         ))}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-        {filtrees.map(o => (
-          <button key={o.id} onClick={() => setSelected(o)} className="offer-btn fade-up" style={{
-            background: T.surface, border: `1px solid ${T.border}`,
-            borderRadius: T.radius, padding: 16, textAlign: 'left',
-            cursor: 'pointer', boxShadow: T.shadow,
-            position: 'relative', overflow: 'hidden',
-          }}>
-            <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: o.couleur, borderRadius: `${T.radius} ${T.radius} 0 0` }} />
-            <div style={{
-              width: 44, height: 44, borderRadius: 12,
-              background: o.couleurLight, border: `1.5px solid ${o.couleur}40`,
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 22, marginBottom: 10, marginTop: 4,
-            }}>{o.emoji}</div>
-            <div style={{ fontSize: 10, color: T.faint, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 3 }}>{o.categorie}</div>
-            <div style={{ fontSize: 15, fontWeight: 800, color: T.navy, marginBottom: 6, fontFamily: "'Sora', sans-serif" }}>{o.nom}</div>
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 4 }}>
-              <span style={{
-                display: 'inline-block', background: o.couleurLight,
-                color: o.couleur, borderRadius: 99, padding: '3px 10px',
-                fontSize: 13, fontWeight: 800,
-              }}>{o.prix}</span>
-              <span style={{ fontSize: 11, color: T.muted, fontWeight: 600 }}>{o.puissance}</span>
+      {isCategoryEmpty ? (
+        <div className="fade-up">
+          <div style={{ textAlign: 'center', padding: '20px 16px 24px' }}>
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, background: T.primaryLight, borderRadius: 99, padding: '6px 16px', marginBottom: 10 }}>
+              <span style={{ width: 7, height: 7, borderRadius: '50%', background: T.primary }} />
+              <span style={{ fontSize: 12, fontWeight: 700, color: T.primary }}>Nouveautés en préparation</span>
             </div>
-          </button>
-        ))}
-      </div>
+            <p style={{ fontSize: 13, color: T.muted }}>Des véhicules arrivent bientôt dans cette catégorie.</p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+            <ComingSoonCard />
+            <ComingSoonCard />
+          </div>
+        </div>
+      ) : (
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          {filtrees.map(o => (
+            <button key={o.id} onClick={() => setSelected(o)} className="offer-btn fade-up" style={{
+              background: T.surface, border: `1px solid ${T.border}`,
+              borderRadius: T.radius, padding: 16, textAlign: 'left',
+              cursor: 'pointer', boxShadow: T.shadow, position: 'relative', overflow: 'hidden',
+            }}>
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: o.couleur, borderRadius: `${T.radius} ${T.radius} 0 0` }} />
+              <div style={{ width: 44, height: 44, borderRadius: 12, background: o.couleurLight, border: `1.5px solid ${o.couleur}40`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, marginBottom: 10, marginTop: 4 }}>{o.emoji}</div>
+              <div style={{ fontSize: 10, color: T.faint, fontWeight: 700, textTransform: 'uppercase', marginBottom: 3 }}>{o.categorie}</div>
+              <div style={{ fontSize: 15, fontWeight: 800, color: T.navy, marginBottom: 6 }}>{o.nom}</div>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 4 }}>
+                <span style={{ background: o.couleurLight, color: o.couleur, borderRadius: 99, padding: '3px 10px', fontSize: 13, fontWeight: 800 }}>{o.prix}</span>
+                <span style={{ fontSize: 11, color: T.muted, fontWeight: 600 }}>{o.puissance}</span>
+              </div>
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
