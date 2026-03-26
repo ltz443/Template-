@@ -1,21 +1,28 @@
 // src/data/offres.js
 export const OFFRES = [
   {
-    id: 'golf-8r',
-    nom: 'Golf 8R',
-    categorie: 'Sportive',
-    emoji: '🏎️',
-    couleur: '#111827',
-    couleurLight: '#F3F4F6',
-    prix: '250€/j',
-    puissance: '320 CH',
-    caution: '5 000€',
-    description: "La polyvalence par excellence. Un look sobre, une puissance redoutable et quatre roues motrices pour une sécurité totale.",
-    conditions: [
-      "Permis de conduire (3 ans min)",
-      "Dépôt de caution par CB",
-      "Pièce d'identité + Permis"
-    ],
+  id: 'golf-8r',
+  nom: 'Golf 8R',
+  categorie: 'Sportive',
+  // Photo détourée pour la liste
+  image: "https://i.ibb.co/Y7T9P3S3/IMG-2839.png", 
+  // Photo de nuit pour le fond du détail
+  imageFond: "https://i.ibb.co/XfXvXp7D/IMG-2840.jpg", 
+  couleur: '#111827',
+  couleurLight: '#F3F4F6',
+  description: 'La puissance allemande au service de vos sensations.',
+  prix: '250€/j',
+  puissance: '320 CH',
+  caution: '5 000€',
+  type: 'contact',
+  contact: '@parrain_4p',
+  note: 'Contactez-moi sur Instagram pour réserver ce véhicule.',
+  conditions: [
+    "Permis de conduire (3 ans min)",
+    "Dépôt de caution par CB",
+    "Pièce d'identité + Permis"
+  ]
+},
     type: 'contact',
     contact: '@parrain_4p',
     note: 'Réservez via Instagram pour une réponse en moins de 2h.',
