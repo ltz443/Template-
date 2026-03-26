@@ -1,104 +1,262 @@
-import React, { useState } from 'react';
-import { OFFRES, CATEGORIES } from '../data/offres';
-import { T } from '../utils/tokens';
+import React, { useState } from ‘react’;
+import { OFFRES, CATEGORIES } from ‘../data/offres’;
+import { T } from ‘../utils/tokens’;
 
-// --- SOUS-COMPOSANTS INTERNES ---
+// — SOUS-COMPOSANTS INTERNES —
+
 function Card({ children, style }) {
-  return (
-    <div style={{ background: T.surface, borderRadius: T.radius, border: `1px solid ${T.border}`, boxShadow: T.shadow, ...style }}>
-      {children}
-    </div>
-  );
+return (
+<div style={{
+background: T.surface,
+borderRadius: T.radius,
+border: `1px solid ${T.border}`,
+boxShadow: T.shadow,
+…style,
+}}>
+{children}
+</div>
+);
 }
 
 function CategoryBadge({ label, color }) {
-  return (
-    <span style={{ display: 'inline-flex', alignItems: 'center', gap: 5, background: T.borderSoft, borderRadius: 99, padding: '3px 10px', fontSize: 11, fontWeight: 600, color: T.muted }}>
-      <span style={{ width: 6, height: 6, borderRadius: '50%', background: color || T.primary }} />
-      {label}
-    </span>
-  );
+return (
+<span style={{
+display: ‘inline-flex’, alignItems: ‘center’, gap: 5,
+background: T.borderSoft, borderRadius: 99,
+padding: ‘3px 10px’, fontSize: 11, fontWeight: 600, color: T.muted,
+}}>
+<span style={{ width: 6, height: 6, borderRadius: ‘50%’, background: color || T.primary }} />
+{label}
+</span>
+);
 }
 
 function Checklist({ offreId, conditions }) {
-  const [checked, setChecked] = useState(() => {
-    try { const s = localStorage.getItem('ck_' + offreId); return s ? JSON.parse(s) : {}; }
-    catch { return {}; }
-  });
+const [checked, setChecked] = useState(() => {
+try { const s = localStorage.getItem(‘ck_’ + offreId); return s ? JSON.parse(s) : {}; }
+catch { return {}; }
+});
 
-  const toggle = (i) => {
-    const next = { ...checked, [i]: !checked[i] };
-    setChecked(next);
-    localStorage.setItem('ck_' + offreId, JSON.stringify(next));
-  };
+const toggle = (i) => {
+const next = { …checked, [i]: !checked[i] };
+setChecked(next);
+localStorage.setItem(‘ck_’ + offreId, JSON.stringify(next));
+};
 
-  const done = Object.values(checked).filter(Boolean).length;
-  const pct = (done / conditions.length) * 100;
+const done = Object.values(checked).filter(Boolean).length;
+const pct  = (done / conditions.length) * 100;
 
-  return (
-    <div style={{ marginBottom: 20 }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 10 }}>
-        <span style={{ fontSize: 12, fontWeight: 700, color: T.slate, textTransform: 'uppercase' }}>Étapes</span>
-        <span style={{ fontSize: 12, fontWeight: 700, color: T.muted }}>{done}/{conditions.length}</span>
-      </div>
-      <div style={{ background: T.borderSoft, borderRadius: 99, height: 6, marginBottom: 16, overflow: 'hidden' }}>
-        <div style={{ background: `linear-gradient(90deg, ${T.primary}, ${T.accent})`, height: '100%', width: pct + '%', transition: 'width 0.4s' }} />
-      </div>
-      {conditions.map((c, i) => (
-        <div key={i} onClick={() => toggle(i)} style={{ display: 'flex', gap: 12, padding: '8px 0', cursor: 'pointer', opacity: checked[i] ? 0.5 : 1 }}>
-          <div style={{ width: 20, height: 20, borderRadius: 6, border: `2px solid ${checked[i] ? T.primary : T.border}`, background: checked[i] ? T.primary : 'transparent', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-            {checked[i] && <svg width="10" height="8" viewBox="0 0 10 8" fill="none"><path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/></svg>}
-          </div>
-          <span style={{ fontSize: 14, textDecoration: checked[i] ? 'line-through' : 'none' }}>{c}</span>
-        </div>
-      ))}
-    </div>
-  );
+return (
+<div style={{ marginBottom: 20 }}>
+<div style={{ display: ‘flex’, justifyContent: ‘space-between’, marginBottom: 10 }}>
+<span style={{ fontSize: 12, fontWeight: 700, color: T.slate, textTransform: ‘uppercase’ }}>Étapes</span>
+<span style={{ fontSize: 12, fontWeight: 700, color: T.muted }}>{done}/{conditions.length}</span>
+</div>
+<div style={{ background: T.borderSoft, borderRadius: 99, height: 6, marginBottom: 16, overflow: ‘hidden’ }}>
+<div style={{ background: `linear-gradient(90deg, ${T.primary}, ${T.accent})`, height: ‘100%’, width: pct + ‘%’, transition: ‘width 0.4s’ }} />
+</div>
+{conditions.map((c, i) => (
+<div key={i} onClick={() => toggle(i)} style={{ display: ‘flex’, gap: 12, padding: ‘8px 0’, cursor: ‘pointer’, opacity: checked[i] ? 0.5 : 1 }}>
+<div style={{
+width: 20, height: 20, borderRadius: 6,
+border: `2px solid ${checked[i] ? T.primary : T.border}`,
+background: checked[i] ? T.primary : ‘transparent’,
+display: ‘flex’, alignItems: ‘center’, justifyContent: ‘center’, flexShrink: 0,
+}}>
+{checked[i] && (
+<svg width="10" height="8" viewBox="0 0 10 8" fill="none">
+<path d="M1 4L3.5 6.5L9 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+</svg>
+)}
+</div>
+<span style={{ fontSize: 14, textDecoration: checked[i] ? ‘line-through’ : ‘none’, color: T.slate }}>{c}</span>
+</div>
+))}
+</div>
+);
 }
 
-// --- COMPOSANT PRINCIPAL ---
+// — COMPOSANT PRINCIPAL —
 export default function PageParrainage({ selected, setSelected, filtre, setFiltre }) {
-  const filtrees = filtre === 'Tout' ? OFFRES : OFFRES.filter(o => o.categorie === filtre);
+const filtrees = filtre === ‘Tout’ ? OFFRES : OFFRES.filter(o => o.categorie === filtre);
 
-  if (selected) {
-    const o = selected;
-    return (
-      <div className="fade-up" style={{ maxWidth: 480, margin: '0 auto' }}>
-        <button onClick={() => setSelected(null)} style={{ background: 'none', border: 'none', color: T.primary, fontWeight: 600, marginBottom: 16, cursor: 'pointer' }}>← Retour</button>
-        <Card style={{ padding: 20 }}>
-          <div style={{ display: 'flex', gap: 14, marginBottom: 14 }}>
-            <div style={{ width: 56, height: 56, borderRadius: 16, background: o.couleurLight, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26 }}>{o.emoji}</div>
-            <div>
-              <CategoryBadge label={o.categorie} color={o.couleur} />
-              <h2 style={{ fontSize: 22, fontWeight: 800, color: T.navy, marginTop: 4 }}>{o.nom}</h2>
+// ── Vue détail ──
+if (selected) {
+const o = selected;
+return (
+<div className=“fade-up” style={{ maxWidth: 480, margin: ‘0 auto’ }}>
+
+```
+    {/* Bouton retour */}
+    <button
+      onClick={() => setSelected(null)}
+      style={{ background: 'none', border: 'none', color: T.primary, fontWeight: 600, marginBottom: 16, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 6, fontSize: 14 }}
+    >
+      ← Retour
+    </button>
+
+    <Card style={{ overflow: 'hidden' }}>
+
+      {/* Header coloré */}
+      <div style={{
+        background: `linear-gradient(135deg, ${o.couleur}18, ${o.couleur}08)`,
+        borderBottom: `1px solid ${o.couleur}22`,
+        padding: '20px 20px 16px',
+      }}>
+        <div style={{ display: 'flex', gap: 14, marginBottom: 14, alignItems: 'center' }}>
+          <div style={{
+            width: 56, height: 56, borderRadius: 16,
+            background: o.couleurLight, border: `2px solid ${o.couleur}44`,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 26, flexShrink: 0,
+          }}>{o.emoji}</div>
+          <div>
+            <CategoryBadge label={o.categorie} color={o.couleur} />
+            <h2 style={{ fontSize: 22, fontWeight: 800, color: T.navy, marginTop: 4, fontFamily: "'Sora', sans-serif" }}>{o.nom}</h2>
+          </div>
+        </div>
+        <p style={{ fontSize: 14, color: T.slate, lineHeight: 1.6 }}>{o.description}</p>
+      </div>
+
+      <div style={{ padding: '16px 20px 20px' }}>
+
+        {/* ── 3 tuiles : Prix · Puissance · Caution ── */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, marginBottom: 20 }}>
+
+          {/* Prix / jour */}
+          <div style={{ background: T.primaryLight, borderRadius: 12, padding: '12px 8px', textAlign: 'center' }}>
+            <div style={{ fontSize: 9, color: T.primary, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.06em' }}>
+              Prix / jour
+            </div>
+            <div style={{ fontSize: 16, fontWeight: 800, color: T.primary, fontFamily: "'Sora', sans-serif" }}>
+              {o.prix}
             </div>
           </div>
-          <Checklist offreId={o.id} conditions={o.conditions} />
-          {o.type === 'lien' && (
-             <a href={o.lien} target="_blank" rel="noreferrer" style={{ display: 'block', textAlign: 'center', background: T.primary, borderRadius: 14, color: '#fff', padding: '15px', textDecoration: 'none', fontWeight: 700 }}>S'inscrire via mon lien</a>
-          )}
-        </Card>
-      </div>
-    );
-  }
 
-  return (
-    <div style={{ maxWidth: 480, margin: '0 auto' }}>
-      <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 15, scrollbarWidth: 'none' }}>
-        {CATEGORIES.map(cat => (
-          <button key={cat} onClick={() => setFiltre(cat)} style={{ background: filtre === cat ? T.primary : T.surface, color: filtre === cat ? '#fff' : T.muted, border: `1px solid ${T.border}`, borderRadius: 99, padding: '7px 16px', fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>{cat}</button>
-        ))}
+          {/* Puissance */}
+          <div style={{ background: T.accentLight, borderRadius: 12, padding: '12px 8px', textAlign: 'center' }}>
+            <div style={{ fontSize: 9, color: T.warn, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.06em' }}>
+              Puissance
+            </div>
+            <div style={{ fontSize: 16, fontWeight: 800, color: T.warn, fontFamily: "'Sora', sans-serif" }}>
+              {o.puissance}
+            </div>
+          </div>
+
+          {/* Caution */}
+          <div style={{ background: '#FEE2E2', borderRadius: 12, padding: '12px 8px', textAlign: 'center' }}>
+            <div style={{ fontSize: 9, color: '#DC2626', textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.06em' }}>
+              Caution
+            </div>
+            <div style={{ fontSize: 16, fontWeight: 800, color: '#DC2626', fontFamily: "'Sora', sans-serif" }}>
+              {o.caution}
+            </div>
+          </div>
+
+        </div>
+
+        {/* Checklist des conditions */}
+        <Checklist offreId={o.id} conditions={o.conditions} />
+
+        {/* CTA contact Instagram */}
+        {o.type === 'contact' && (
+          <div style={{ background: T.borderSoft, borderRadius: 14, padding: '16px', border: `1px solid ${T.border}`, textAlign: 'center' }}>
+            <p style={{ fontSize: 13, color: T.slate, marginBottom: 14, lineHeight: 1.5 }}>{o.note}</p>
+            <a
+              href={`https://instagram.com/${o.contact.replace('@', '')}`}
+              target="_blank" rel="noreferrer"
+              style={{
+                display: 'inline-block',
+                background: 'linear-gradient(135deg, #833AB4, #FD1D1D)',
+                borderRadius: 12, color: '#fff',
+                fontSize: 14, fontWeight: 700, padding: '12px 24px', textDecoration: 'none',
+              }}
+            >
+              Réserver via Instagram {o.contact}
+            </a>
+          </div>
+        )}
+
+        {/* CTA lien direct */}
+        {o.type === 'lien' && o.lien !== '#' && (
+          <a
+            href={o.lien} target="_blank" rel="noreferrer"
+            style={{
+              display: 'block', textAlign: 'center',
+              background: `linear-gradient(135deg, ${T.primary}, ${T.primaryDark})`,
+              borderRadius: 14, color: '#fff',
+              fontSize: 15, fontWeight: 700, padding: '15px', textDecoration: 'none',
+              boxShadow: `0 4px 20px ${T.primary}40`,
+            }}
+          >
+            S'inscrire via mon lien →
+          </a>
+        )}
+
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-        {filtrees.map(o => (
-          <button key={o.id} onClick={() => setSelected(o)} className="fade-up" style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: 16, textAlign: 'left', cursor: 'pointer', boxShadow: T.shadow }}>
-             <div style={{ fontSize: 22, marginBottom: 8 }}>{o.emoji}</div>
-             <div style={{ fontSize: 10, color: T.faint, fontWeight: 700 }}>{o.categorie}</div>
-             <div style={{ fontSize: 15, fontWeight: 800, color: T.navy }}>{o.nom}</div>
-             <div style={{ color: o.couleur, fontWeight: 800, fontSize: 13, marginTop: 5 }}>{o.prix}</div>
-          </button>
-        ))}
-      </div>
-    </div>
-  );
+    </Card>
+  </div>
+);
+```
+
+}
+
+// ── Vue liste ──
+return (
+<div style={{ maxWidth: 480, margin: ‘0 auto’ }}>
+
+```
+  {/* Filtres catégories */}
+  <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 15, scrollbarWidth: 'none' }}>
+    {CATEGORIES.map(cat => (
+      <button key={cat} onClick={() => setFiltre(cat)} style={{
+        background: filtre === cat ? T.primary : T.surface,
+        color: filtre === cat ? '#fff' : T.muted,
+        border: `1px solid ${filtre === cat ? T.primary : T.border}`,
+        borderRadius: 99, padding: '7px 16px',
+        fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap',
+        boxShadow: filtre === cat ? `0 2px 12px ${T.primary}30` : 'none',
+        transition: 'all 0.2s',
+      }}>{cat}</button>
+    ))}
+  </div>
+
+  {/* Grille des véhicules */}
+  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+    {filtrees.map(o => (
+      <button key={o.id} onClick={() => setSelected(o)} className="offer-btn fade-up" style={{
+        background: T.surface, border: `1px solid ${T.border}`,
+        borderRadius: T.radius, padding: 16, textAlign: 'left',
+        cursor: 'pointer', boxShadow: T.shadow,
+        position: 'relative', overflow: 'hidden',
+      }}>
+        {/* Bande couleur en haut */}
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: o.couleur, borderRadius: `${T.radius} ${T.radius} 0 0` }} />
+
+        <div style={{
+          width: 44, height: 44, borderRadius: 12,
+          background: o.couleurLight, border: `1.5px solid ${o.couleur}40`,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: 22, marginBottom: 10, marginTop: 4,
+        }}>{o.emoji}</div>
+
+        <div style={{ fontSize: 10, color: T.faint, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 3 }}>{o.categorie}</div>
+        <div style={{ fontSize: 15, fontWeight: 800, color: T.navy, marginBottom: 6, fontFamily: "'Sora', sans-serif" }}>{o.nom}</div>
+
+        {/* Prix + Puissance en bas de carte */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 4 }}>
+          <span style={{
+            display: 'inline-block', background: o.couleurLight,
+            color: o.couleur, borderRadius: 99, padding: '3px 10px',
+            fontSize: 13, fontWeight: 800,
+          }}>{o.prix}</span>
+          <span style={{ fontSize: 11, color: T.muted, fontWeight: 600 }}>{o.puissance}</span>
+        </div>
+      </button>
+    ))}
+  </div>
+</div>
+```
+
+);
 }
