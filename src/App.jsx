@@ -586,7 +586,7 @@ return (
       marginBottom: 8,
     }}>
       <div style={{ width: 6, height: 6, borderRadius: '50%', background: T.primary, animation: 'pulse 2s infinite' }} />
-      <span style={{ fontSize: 10, fontWeight: 700, color: T.primary, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Hub Financier</span>
+      <span style={{ fontSize: 10, fontWeight: 700, color: T.primary, letterSpacing: '0.15em', textTransform: 'uppercase' }}>SÉLECTION EXCLUSIVE</span>
     </div>
     <h1 style={{
       fontSize: 24, fontWeight: 800, color: T.navy,
