@@ -2,7 +2,7 @@
 export const OFFRES = [
   {
     id: 'golf-8r',
-    nom: 'Golf 8R (320ch)',
+    nom: 'Golf 8R',
     categorie: 'Sportive',
     emoji: '🏎️',
     couleur: '#111827',
