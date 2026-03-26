@@ -66,7 +66,7 @@ to   { opacity: 1; transform: scale(1); }
 
 // ─── DESIGN TOKENS ───────────────────────────────────────────
 const T = {
-bg:           '#6B21A8',
+bg:           '#F7F5F0',
 surface:      '#FFFFFF',
 border:       '#E5E7EB',
 borderSoft:   '#F3F4F6',
