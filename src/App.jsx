@@ -13,6 +13,7 @@ import { FONT_LINK } from './utils/tokens'; // optionnel si tu utilises FONT_LIN
 
 // ─── INJECT GOOGLE FONTS ──────────────────────────────────────
 const FONT_LINK = `@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');`;
+
 // ─── DESIGN TOKENS ───────────────────────────────────────────
 const T = {
 bg:           '#F7F5F0',
