@@ -230,7 +230,6 @@ const OFFRES = [
 ];
 
 const CATEGORIES = ['Tout', 'Sportive', 'Luxe', 'SUV', 'Citadine'];
-
 // ─── UI ATOMS ────────────────────────────────────────────────
 
 function Card({ children, style, className }) {
