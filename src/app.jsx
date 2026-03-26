@@ -5,8 +5,8 @@
 //  Style     : Cartes blanches, ombres douces, pill-nav flottante
 // ═══════════════════════════════════════════════════════════════
 
-import React, { useState, useEffect, useCallback } from ‘react’;
-import { createRoot } from ‘react-dom/client’;
+import React, { useState, useEffect, useCallback } from 'react';
+import { createRoot } from 'react-dom/client';
 
 // ─── INJECT GOOGLE FONTS ──────────────────────────────────────
 const FONT_LINK = `@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');`;
@@ -19,7 +19,7 @@ html { -webkit-tap-highlight-color: transparent; }
 body {
 background: #F7F5F0;
 color: #111827;
-font-family: ‘Plus Jakarta Sans’, sans-serif;
+font-family: 'Plus Jakarta Sans', sans-serif;
 -webkit-font-smoothing: antialiased;
 }
 input[type=number]::-webkit-inner-spin-button,
@@ -28,8 +28,8 @@ select { -webkit-appearance: none; appearance: none; }
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: #F7F5F0; }
 ::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 99px; }
-button { font-family: ‘Plus Jakarta Sans’, sans-serif; }
-input, select { font-family: ‘Plus Jakarta Sans’, sans-serif; }
+button { font-family: 'Plus Jakarta Sans', sans-serif; }
+input, select { font-family: 'Plus Jakarta Sans', sans-serif; }
 
 @keyframes fadeUp {
 from { opacity: 0; transform: translateY(16px); }
@@ -70,227 +70,227 @@ to   { opacity: 1; transform: scale(1); }
 
 // ─── DESIGN TOKENS ───────────────────────────────────────────
 const T = {
-bg:       ‘#F7F5F0’,
-surface:  ‘#FFFFFF’,
-border:   ‘#E5E7EB’,
-borderSoft: ‘#F3F4F6’,
-primary:  ‘#7C3AED’,
-primaryLight: ‘#EDE9FE’,
-primaryDark: ‘#5B21B6’,
-accent:   ‘#F59E0B’,
-accentLight: ‘#FEF3C7’,
-navy:     ‘#111827’,
-slate:    ‘#374151’,
-muted:    ‘#6B7280’,
-faint:    ‘#9CA3AF’,
-success:  ‘#059669’,
-successLight: ‘#D1FAE5’,
-danger:   ‘#DC2626’,
-dangerLight: ‘#FEE2E2’,
-warn:     ‘#D97706’,
-warnLight: ‘#FEF3C7’,
-shadow:   ‘0 2px 12px rgba(0,0,0,0.06)’,
-shadowMd: ‘0 4px 24px rgba(0,0,0,0.09)’,
-shadowLg: ‘0 8px 40px rgba(0,0,0,0.12)’,
-radius:   ‘16px’,
-radiusSm: ‘10px’,
-radiusLg: ‘24px’,
+bg:       '#F7F5F0',
+surface:  '#FFFFFF',
+border:   '#E5E7EB',
+borderSoft: '#F3F4F6',
+primary:  '#7C3AED',
+primaryLight: '#EDE9FE',
+primaryDark: '#5B21B6',
+accent:   '#F59E0B',
+accentLight: '#FEF3C7',
+navy:     '#111827',
+slate:    '#374151',
+muted:    '#6B7280',
+faint:    '#9CA3AF',
+success:  '#059669',
+successLight: '#D1FAE5',
+danger:   '#DC2626',
+dangerLight: '#FEE2E2',
+warn:     '#D97706',
+warnLight: '#FEF3C7',
+shadow:   '0 2px 12px rgba(0,0,0,0.06)',
+shadowMd: '0 4px 24px rgba(0,0,0,0.09)',
+shadowLg: '0 8px 40px rgba(0,0,0,0.12)',
+radius:   '16px',
+radiusSm: '10px',
+radiusLg: '24px',
 };
 
 // ─── DONNÉES PARRAINAGE ──────────────────────────────────────
 const OFFRES = [
 {
-id: ‘hellobank’,
-nom: ‘Hello Bank’,
-categorie: ‘Banque’,
-emoji: ‘🏦’,
-couleur: ‘#2563EB’,
-couleurLight: ‘#DBEAFE’,
-bonus: ‘80€’,
-bonusFilleul: ‘40€ + 40€’,
-bonusParrain: ‘80€’,
-description: ‘Ouvre un compte Hello One et reçois 40€ sans dépôt, puis 40€ de plus dès le 10e achat carte.’,
+id: 'hellobank',
+nom: 'Hello Bank',
+categorie: 'Banque',
+emoji: '🏦',
+couleur: '#2563EB',
+couleurLight: '#DBEAFE',
+bonus: '80€',
+bonusFilleul: '40€ + 40€',
+bonusParrain: '80€',
+description: 'Ouvre un compte Hello One et reçois 40€ sans dépôt, puis 40€ de plus dès le 10e achat carte.',
 conditions: [
-“1ère ouverture d’un compte de dépôt Hello One”,
-‘40€ offerts sans dépôt minimum’,
-‘40€ supplémentaires au 10e achat carte bancaire’,
-‘Délai : 72 heures’,
+"1ère ouverture d'un compte de dépôt Hello One",
+'40€ offerts sans dépôt minimum',
+'40€ supplémentaires au 10e achat carte bancaire',
+'Délai : 72 heures',
 ],
-type: ‘contact’,
-contact: ‘@parrain_4p’,
-note: ‘Pour recevoir ton invitation, envoie ton prénom + adresse email sur Instagram’,
-shareText: ‘Ouvre un compte Hello Bank et reçois 80€ ! Contacte @parrain_4p sur Instagram.’,
-shareUrl: ‘https://parrain-4p.vercel.app’,
+type: 'contact',
+contact: '@parrain_4p',
+note: 'Pour recevoir ton invitation, envoie ton prénom + adresse email sur Instagram',
+shareText: 'Ouvre un compte Hello Bank et reçois 80€ ! Contacte @parrain_4p sur Instagram.',
+shareUrl: 'https://parrain-4p.vercel.app',
 },
 {
-id: ‘joko’,
-nom: ‘Joko’,
-categorie: ‘Cashback’,
-emoji: ‘💸’,
-couleur: ‘#EA580C’,
-couleurLight: ‘#FFEDD5’,
-bonus: ‘1€ + cashback’,
-bonusFilleul: ‘1€ à l'inscription’,
-bonusParrain: ‘3€ + 10% cashback filleul’,
-description: ‘Joko transforme tes achats quotidiens en micro-économies automatiques en connectant ton compte bancaire.’,
+id: 'joko',
+nom: 'Joko',
+categorie: 'Cashback',
+emoji: '💸',
+couleur: '#EA580C',
+couleurLight: '#FFEDD5',
+bonus: '1€ + cashback',
+bonusFilleul: '1€ à l\'inscription',
+bonusParrain: '3€ + 10% cashback filleul',
+description: 'Joko transforme tes achats quotidiens en micro-économies automatiques en connectant ton compte bancaire.',
 conditions: [
-‘Télécharger l'app Joko’,
-‘Connecter son compte bancaire’,
-‘1€ offert à l'inscription avec le code’,
-‘Délai : instantané’,
+'Télécharger l\'app Joko',
+'Connecter son compte bancaire',
+'1€ offert à l\'inscription avec le code',
+'Délai : instantané',
 ],
-type: ‘code’,
-code: ‘skevdw’,
-shareText: ‘Rejoins Joko avec mon code skevdw et gagne 1€ + du cashback automatique !’,
-shareUrl: ‘https://parrain-4p.vercel.app’,
+type: 'code',
+code: 'skevdw',
+shareText: 'Rejoins Joko avec mon code skevdw et gagne 1€ + du cashback automatique !',
+shareUrl: 'https://parrain-4p.vercel.app',
 },
 {
-id: ‘coinbase’,
-nom: ‘Coinbase’,
-categorie: ‘Crypto’,
-emoji: ‘₿’,
-couleur: ‘#0052FF’,
-couleurLight: ‘#DBEAFE’,
-bonus: ‘20€’,
-bonusFilleul: ‘20€ en Bitcoin’,
-bonusParrain: ‘20€’,
-description: ‘Coinbase est la plateforme de référence pour acheter, vendre et stocker des cryptomonnaies en toute sécurité.’,
+id: 'coinbase',
+nom: 'Coinbase',
+categorie: 'Crypto',
+emoji: '₿',
+couleur: '#0052FF',
+couleurLight: '#DBEAFE',
+bonus: '20€',
+bonusFilleul: '20€ en Bitcoin',
+bonusParrain: '20€',
+description: 'Coinbase est la plateforme de référence pour acheter, vendre et stocker des cryptomonnaies en toute sécurité.',
 conditions: [
-‘S'inscrire via le lien de parrainage’,
-‘Valider son identité (KYC)’,
-‘Déposer 20€’,
-‘Acheter 20€ de Bitcoin (BTC)’,
-‘Reçois 20€ de Bitcoin après 24h — retirable intégralement’,
+'S\'inscrire via le lien de parrainage',
+'Valider son identité (KYC)',
+'Déposer 20€',
+'Acheter 20€ de Bitcoin (BTC)',
+'Reçois 20€ de Bitcoin après 24h — retirable intégralement',
 ],
-type: ‘lien’,
-lien: ‘https://coinbase.com/join/954EBFS?src=ios-link’,
-shareText: ‘Inscris-toi sur Coinbase via mon lien et reçois 20€ en Bitcoin !’,
-shareUrl: ‘https://coinbase.com/join/954EBFS?src=ios-link’,
+type: 'lien',
+lien: 'https://coinbase.com/join/954EBFS?src=ios-link',
+shareText: 'Inscris-toi sur Coinbase via mon lien et reçois 20€ en Bitcoin !',
+shareUrl: 'https://coinbase.com/join/954EBFS?src=ios-link',
 },
 {
-id: ‘veracash’,
-nom: ‘VeraCash’,
-categorie: ‘Or & Épargne’,
-emoji: ‘🥇’,
-couleur: ‘#B45309’,
-couleurLight: ‘#FEF3C7’,
-bonus: ‘10€ parrain’,
-bonusFilleul: ‘Frais réduits’,
-bonusParrain: ‘10€’,
-description: ‘VeraCash permet d'épargner et payer avec de l'or et de l'argent physique. Une alternative solide aux banques classiques.’,
+id: 'veracash',
+nom: 'VeraCash',
+categorie: 'Or & Épargne',
+emoji: '🥇',
+couleur: '#B45309',
+couleurLight: '#FEF3C7',
+bonus: '10€ parrain',
+bonusFilleul: 'Frais réduits',
+bonusParrain: '10€',
+description: 'VeraCash permet d\'épargner et payer avec de l\'or et de l\'argent physique. Une alternative solide aux banques classiques.',
 conditions: [
-‘S'inscrire via le lien de parrainage’,
-‘Vérifier son identité’,
-‘Déposer 10€ (retirable immédiatement)’,
-‘Frais de gestion réduits à vie’,
+'S\'inscrire via le lien de parrainage',
+'Vérifier son identité',
+'Déposer 10€ (retirable immédiatement)',
+'Frais de gestion réduits à vie',
 ],
-type: ‘lien’,
-lien: ‘https://www.veracash.com/fr/inscription?sponsorMemberPseudo=DEVOMIZO’,
-shareText: ‘Épargne en or avec VeraCash ! Inscris-toi via mon lien pour des frais réduits à vie.’,
-shareUrl: ‘https://www.veracash.com/fr/inscription?sponsorMemberPseudo=DEVOMIZO’,
+type: 'lien',
+lien: 'https://www.veracash.com/fr/inscription?sponsorMemberPseudo=DEVOMIZO',
+shareText: 'Épargne en or avec VeraCash ! Inscris-toi via mon lien pour des frais réduits à vie.',
+shareUrl: 'https://www.veracash.com/fr/inscription?sponsorMemberPseudo=DEVOMIZO',
 },
 {
-id: ‘robinhood’,
-nom: ‘Robinhood’,
-categorie: ‘Crypto Exchange’,
-emoji: ‘🏹’,
-couleur: ‘#16A34A’,
-couleurLight: ‘#D1FAE5’,
-bonus: ‘10€’,
-bonusFilleul: ‘10€’,
-bonusParrain: ‘10€’,
-description: ‘Robinhood est un exchange crypto simple et intuitif pour acheter et vendre des cryptomonnaies sans frais cachés.’,
+id: 'robinhood',
+nom: 'Robinhood',
+categorie: 'Crypto Exchange',
+emoji: '🏹',
+couleur: '#16A34A',
+couleurLight: '#D1FAE5',
+bonus: '10€',
+bonusFilleul: '10€',
+bonusParrain: '10€',
+description: 'Robinhood est un exchange crypto simple et intuitif pour acheter et vendre des cryptomonnaies sans frais cachés.',
 conditions: [
-‘S'inscrire via le lien de parrainage’,
-‘Valider son identité’,
-‘Déposer 10€ (retirable immédiatement)’,
-‘Délai : immédiat’,
+'S\'inscrire via le lien de parrainage',
+'Valider son identité',
+'Déposer 10€ (retirable immédiatement)',
+'Délai : immédiat',
 ],
-type: ‘lien’,
-lien: ‘https://join.robinhood.com/eu_crypto/leot-ad308a260/’,
-shareText: ‘Rejoins Robinhood et reçois 10€ ! Dépôt retirable immédiatement.’,
-shareUrl: ‘https://join.robinhood.com/eu_crypto/leot-ad308a260/’,
+type: 'lien',
+lien: 'https://join.robinhood.com/eu_crypto/leot-ad308a260/',
+shareText: 'Rejoins Robinhood et reçois 10€ ! Dépôt retirable immédiatement.',
+shareUrl: 'https://join.robinhood.com/eu_crypto/leot-ad308a260/',
 },
 {
-id: ‘winamax’,
-nom: ‘Winamax’,
-categorie: ‘Paris Sportifs’,
-emoji: ‘⚽’,
-couleur: ‘#DC2626’,
-couleurLight: ‘#FEE2E2’,
-bonus: ‘40€’,
-bonusFilleul: ‘40€’,
-bonusParrain: ‘40€’,
-description: ‘Winamax est la référence des paris sportifs en France. Inscris-toi avec le code parrainage et reçois 40€.’,
+id: 'winamax',
+nom: 'Winamax',
+categorie: 'Paris Sportifs',
+emoji: '⚽',
+couleur: '#DC2626',
+couleurLight: '#FEE2E2',
+bonus: '40€',
+bonusFilleul: '40€',
+bonusParrain: '40€',
+description: 'Winamax est la référence des paris sportifs en France. Inscris-toi avec le code parrainage et reçois 40€.',
 conditions: [
-‘S'inscrire avec le code parrainage’,
-‘Valider son inscription’,
-‘Déposer 10€’,
-‘Prime filleul : 40€ — Prime parrain : 40€’,
+'S\'inscrire avec le code parrainage',
+'Valider son inscription',
+'Déposer 10€',
+'Prime filleul : 40€ — Prime parrain : 40€',
 ],
-type: ‘code’,
-code: ‘LTZXVU’,
-shareText: ‘Inscris-toi sur Winamax avec le code LTZXVU et reçois 40€ !’,
-shareUrl: ‘https://parrain-4p.vercel.app’,
+type: 'code',
+code: 'LTZXVU',
+shareText: 'Inscris-toi sur Winamax avec le code LTZXVU et reçois 40€ !',
+shareUrl: 'https://parrain-4p.vercel.app',
 },
 {
-id: ‘betsson’,
-nom: ‘Betsson’,
-categorie: ‘Paris Sportifs’,
-emoji: ‘🎯’,
-couleur: ‘#7C3AED’,
-couleurLight: ‘#EDE9FE’,
-bonus: ‘10€ Betboost’,
-bonusFilleul: ‘10€ Betboost’,
-bonusParrain: ‘10€ Betboost’,
-description: ‘Betsson est une plateforme de paris sportifs internationale. Reçois 10€ Betboost en parrainant.’,
+id: 'betsson',
+nom: 'Betsson',
+categorie: 'Paris Sportifs',
+emoji: '🎯',
+couleur: '#7C3AED',
+couleurLight: '#EDE9FE',
+bonus: '10€ Betboost',
+bonusFilleul: '10€ Betboost',
+bonusParrain: '10€ Betboost',
+description: 'Betsson est une plateforme de paris sportifs internationale. Reçois 10€ Betboost en parrainant.',
 conditions: [
-‘S'inscrire via le lien’,
-‘Vérifier son compte’,
-‘Déposer 10€’,
-‘Prime filleul : 10€ Betboost — Prime parrain : 10€ Betboost’,
+'S\'inscrire via le lien',
+'Vérifier son compte',
+'Déposer 10€',
+'Prime filleul : 10€ Betboost — Prime parrain : 10€ Betboost',
 ],
-type: ‘lien’,
-lien: ‘https://betsson.fr/fr/%23register?language=fr&referralCode=8LAFsK’,
-shareText: ‘Inscris-toi sur Betsson via mon lien et reçois 10€ Betboost !’,
-shareUrl: ‘https://betsson.fr/fr/%23register?language=fr&referralCode=8LAFsK’,
+type: 'lien',
+lien: 'https://betsson.fr/fr/%23register?language=fr&referralCode=8LAFsK',
+shareText: 'Inscris-toi sur Betsson via mon lien et reçois 10€ Betboost !',
+shareUrl: 'https://betsson.fr/fr/%23register?language=fr&referralCode=8LAFsK',
 },
 {
-id: ‘unibet’,
-nom: ‘Unibet’,
-categorie: ‘Paris Sportifs’,
-emoji: ‘💰’,
-couleur: ‘#0891B2’,
-couleurLight: ‘#CFFAFE’,
-bonus: ‘30€’,
-bonusFilleul: ‘30€ Freebets’,
-bonusParrain: ‘30€ Freebets’,
-description: ‘Unibet est une plateforme de paris sportifs internationale. Reçois 30€.’,
+id: 'unibet',
+nom: 'Unibet',
+categorie: 'Paris Sportifs',
+emoji: '💰',
+couleur: '#0891B2',
+couleurLight: '#CFFAFE',
+bonus: '30€',
+bonusFilleul: '30€ Freebets',
+bonusParrain: '30€ Freebets',
+description: 'Unibet est une plateforme de paris sportifs internationale. Reçois 30€.',
 conditions: [
-‘S'inscrire via le lien’,
-‘Vérifier son compte’,
-‘Déposer 10€’,
-‘Prime filleul : 30€ Freebets — Prime parrain : 30€ Freebets’,
+'S\'inscrire via le lien',
+'Vérifier son compte',
+'Déposer 10€',
+'Prime filleul : 30€ Freebets — Prime parrain : 30€ Freebets',
 ],
-type: ‘lien’,
-lien: ‘https://www.unibet.fr/inscription/?campaign=240326&parrain=AC1330D7A4D09111’,
-shareText: ‘Inscris-toi sur Unibet via mon lien et reçois 30€ en Freebets !’,
-shareUrl: ‘https://www.unibet.fr/inscription/?campaign=240326&parrain=AC1330D7A4D09111’,
+type: 'lien',
+lien: 'https://www.unibet.fr/inscription/?campaign=240326&parrain=AC1330D7A4D09111',
+shareText: 'Inscris-toi sur Unibet via mon lien et reçois 30€ en Freebets !',
+shareUrl: 'https://www.unibet.fr/inscription/?campaign=240326&parrain=AC1330D7A4D09111',
 },
 ];
 
-const CATEGORIES = [‘Tout’, ‘Banque’, ‘Cashback’, ‘Crypto’, ‘Or & Épargne’, ‘Crypto Exchange’, ‘Paris Sportifs’];
+const CATEGORIES = ['Tout', 'Banque', 'Cashback', 'Crypto', 'Or & Épargne', 'Crypto Exchange', 'Paris Sportifs'];
 
-const STRIPE_LINK = ‘https://buy.stripe.com/14A8wPadZ2MmbRF0A4a3u00’;
+const STRIPE_LINK = 'https://buy.stripe.com/14A8wPadZ2MmbRF0A4a3u00';
 const TAUX_OPTIONS = [
-{ label: ‘Auto-entrepreneur — Prestation de services (21.2%)’, value: 21.2 },
-{ label: ‘Auto-entrepreneur — Vente de marchandises (12.8%)’, value: 12.8 },
-{ label: ‘EIRL / EI au réel (estimation 45%)’, value: 45 },
-{ label: ‘Personnalisé’, value: null },
+{ label: 'Auto-entrepreneur — Prestation de services (21.2%)', value: 21.2 },
+{ label: 'Auto-entrepreneur — Vente de marchandises (12.8%)', value: 12.8 },
+{ label: 'EIRL / EI au réel (estimation 45%)', value: 45 },
+{ label: 'Personnalisé', value: null },
 ];
 
 // ─── HELPERS ─────────────────────────────────────────────────
-const fmt = (n) => new Intl.NumberFormat(‘fr-FR’, { style: ‘currency’, currency: ‘EUR’ }).format(n || 0);
+const fmt = (n) => new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR' }).format(n || 0);
 const pct = (n) => `${(n || 0).toFixed(1)}%`;
 
 function calcul(f) {
@@ -307,15 +307,14 @@ const cotisations= (prixVente * taux) / 100;
 const totalCharges = matieres + transport + outillage + autresFrais + coutMain + cotisations;
 const beneficeNet  = prixVente - totalCharges;
 const marge        = prixVente > 0 ? (beneficeNet / prixVente) * 100 : 0;
-let sante = ‘Déficitaire’;
-if (marge >= 20)     sante = ‘Rentable’;
-else if (marge >= 0) sante = ‘À risque’;
+let sante = 'Déficitaire';
+if (marge >= 20)     sante = 'Rentable';
+else if (marge >= 0) sante = 'À risque';
 return { prixVente, matieres, transport, outillage, autresFrais, coutMain, cotisations, totalCharges, beneficeNet, marge, sante };
 }
 
 // ─── UI ATOMS ────────────────────────────────────────────────
 
-/** Carte de base avec ombre douce */
 function Card({ children, style, className }) {
 return (
 <div className={className} style={{
@@ -323,55 +322,53 @@ background: T.surface,
 borderRadius: T.radius,
 border: `1px solid ${T.border}`,
 boxShadow: T.shadow,
-…style,
+...style,
 }}>
 {children}
 </div>
 );
 }
 
-/** Badge de catégorie */
 function CategoryBadge({ label, color }) {
 return (
 <span style={{
-display: ‘inline-flex’, alignItems: ‘center’, gap: 5,
+display: 'inline-flex', alignItems: 'center', gap: 5,
 background: T.borderSoft, borderRadius: 99,
-padding: ‘3px 10px’, fontSize: 11, fontWeight: 600, color: T.muted,
+padding: '3px 10px', fontSize: 11, fontWeight: 600, color: T.muted,
 }}>
-<span style={{ width: 6, height: 6, borderRadius: ‘50%’, background: color || T.primary, flexShrink: 0 }} />
+<span style={{ width: 6, height: 6, borderRadius: '50%', background: color || T.primary, flexShrink: 0 }} />
 {label}
 </span>
 );
 }
 
-/** Champ de saisie stylisé */
 function InputField({ label, value, onChange, placeholder, prefix, hint }) {
 const [focused, setFocused] = useState(false);
 return (
 <div style={{ marginBottom: 14 }}>
 <label style={{
-display: ‘block’, fontSize: 12, fontWeight: 600, color: T.slate,
-marginBottom: 6, letterSpacing: ‘0.01em’,
+display: 'block', fontSize: 12, fontWeight: 600, color: T.slate,
+marginBottom: 6, letterSpacing: '0.01em',
 }}>{label}</label>
-<div style={{ position: ‘relative’ }}>
+<div style={{ position: 'relative' }}>
 <span style={{
-position: ‘absolute’, left: 13, top: ‘50%’, transform: ‘translateY(-50%)’,
+position: 'absolute', left: 13, top: '50%', transform: 'translateY(-50%)',
 color: focused ? T.primary : T.faint, fontSize: 13, fontWeight: 700,
-transition: ‘color 0.2s’, userSelect: ‘none’,
-}}>{prefix || ‘€’}</span>
+transition: 'color 0.2s', userSelect: 'none',
+}}>{prefix || '€'}</span>
 <input
-type=“number” min=“0” step=“0.01” value={value}
+type="number" min="0" step="0.01" value={value}
 onChange={(e) => onChange(e.target.value)}
 onFocus={() => setFocused(true)}
 onBlur={() => setFocused(false)}
-placeholder={placeholder || ‘0’}
-inputMode=“decimal”
+placeholder={placeholder || '0'}
+inputMode="decimal"
 style={{
-width: ‘100%’, background: focused ? ‘#FAFBFF’ : T.borderSoft,
+width: '100%', background: focused ? '#FAFBFF' : T.borderSoft,
 border: `1.5px solid ${focused ? T.primary : T.border}`,
 borderRadius: T.radiusSm, color: T.navy, fontSize: 15, fontWeight: 600,
-padding: ‘11px 13px 11px 32px’, outline: ‘none’, boxSizing: ‘border-box’,
-transition: ‘border-color 0.2s, background 0.2s’,
+padding: '11px 13px 11px 32px', outline: 'none', boxSizing: 'border-box',
+transition: 'border-color 0.2s, background 0.2s',
 }}
 />
 </div>
@@ -380,32 +377,30 @@ transition: ‘border-color 0.2s, background 0.2s’,
 );
 }
 
-/** Section de formulaire avec titre */
 function FormSection({ title, icon, children }) {
 return (
-<Card style={{ padding: ‘20px’, marginBottom: 12 }}>
-<div style={{ display: ‘flex’, alignItems: ‘center’, gap: 10, marginBottom: 18 }}>
+<Card style={{ padding: '20px', marginBottom: 12 }}>
+<div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 18 }}>
 <div style={{
 width: 32, height: 32, borderRadius: 9, background: T.primaryLight,
-display: ‘flex’, alignItems: ‘center’, justifyContent: ‘center’, fontSize: 15,
+display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 15,
 }}>{icon}</div>
-<h3 style={{ fontSize: 13, fontWeight: 700, color: T.navy, letterSpacing: ‘0.03em’, textTransform: ‘uppercase’ }}>{title}</h3>
+<h3 style={{ fontSize: 13, fontWeight: 700, color: T.navy, letterSpacing: '0.03em', textTransform: 'uppercase' }}>{title}</h3>
 </div>
 {children}
 </Card>
 );
 }
 
-/** Checklist interactive avec persistance localStorage */
 function Checklist({ offreId, conditions }) {
-const storageKey = ‘checklist_v2_’ + offreId;
+const storageKey = 'checklist_v2_' + offreId;
 const [checked, setChecked] = useState(() => {
 try { const s = localStorage.getItem(storageKey); return s ? JSON.parse(s) : {}; }
 catch { return {}; }
 });
 
 const toggle = (i) => {
-const next = { …checked, [i]: !checked[i] };
+const next = { ...checked, [i]: !checked[i] };
 setChecked(next);
 try { localStorage.setItem(storageKey, JSON.stringify(next)); } catch {}
 };
@@ -416,20 +411,17 @@ const pctDone = (done / total) * 100;
 
 return (
 <div style={{ marginBottom: 20 }}>
-{/* Header progress */}
-<div style={{ display: ‘flex’, justifyContent: ‘space-between’, alignItems: ‘center’, marginBottom: 10 }}>
-<span style={{ fontSize: 12, fontWeight: 700, color: T.slate, textTransform: ‘uppercase’, letterSpacing: ‘0.04em’ }}>
+<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
+<span style={{ fontSize: 12, fontWeight: 700, color: T.slate, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
 Étapes à compléter
 </span>
 <span style={{
-fontSize: 12, fontWeight: 700, padding: ‘2px 10px’, borderRadius: 99,
+fontSize: 12, fontWeight: 700, padding: '2px 10px', borderRadius: 99,
 background: done === total ? T.successLight : T.borderSoft,
 color: done === total ? T.success : T.muted,
 }}>{done}/{total}</span>
 </div>
 
-```
-  {/* Progress bar */}
   <div style={{ background: T.borderSoft, borderRadius: 99, height: 6, marginBottom: 16, overflow: 'hidden' }}>
     <div style={{
       background: `linear-gradient(90deg, ${T.primary}, ${T.accent})`,
@@ -438,7 +430,6 @@ color: done === total ? T.success : T.muted,
     }} />
   </div>
 
-  {/* Items */}
   {conditions.map((c, i) => (
     <div key={i} className="check-item" onClick={() => toggle(i)} style={{
       display: 'flex', gap: 12, alignItems: 'flex-start', marginBottom: 10,
@@ -478,12 +469,9 @@ color: done === total ? T.success : T.muted,
     </div>
   )}
 </div>
-```
-
 );
 }
 
-/** Bouton de partage */
 function ShareButton({ offre }) {
 const [shared, setShared] = useState(false);
 
@@ -502,32 +490,29 @@ setTimeout(() => setShared(false), 2000);
 };
 
 return (
-<button onClick={handleShare} className=“action-btn” style={{
-width: ‘100%’, background: T.borderSoft,
+<button onClick={handleShare} className="action-btn" style={{
+width: '100%', background: T.borderSoft,
 border: `1.5px solid ${T.border}`, borderRadius: 12,
 color: T.slate, fontSize: 14, fontWeight: 600,
-padding: ‘13px’, cursor: ‘pointer’,
-display: ‘flex’, alignItems: ‘center’, justifyContent: ‘center’, gap: 8,
+padding: '13px', cursor: 'pointer',
+display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
 marginTop: 10,
 }}>
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
 <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
 </svg>
-{shared ? ‘Lien copié !’ : ‘Partager cette offre’}
+{shared ? 'Lien copié !' : 'Partager cette offre'}
 </button>
 );
 }
 
-// ─── PAGES ───────────────────────────────────────────────────
-
-/** Page Parrainage */
 function PageParrainage() {
-const [filtre, setFiltre]   = useState(‘Tout’);
+const [filtre, setFiltre]   = useState('Tout');
 const [selected, setSelected] = useState(null);
 const [copied, setCopied]   = useState(false);
 
-const filtrees = filtre === ‘Tout’ ? OFFRES : OFFRES.filter(o => o.categorie === filtre);
+const filtrees = filtre === 'Tout' ? OFFRES : OFFRES.filter(o => o.categorie === filtre);
 
 const copier = (texte) => {
 navigator.clipboard.writeText(texte).then(() => {
@@ -536,16 +521,14 @@ setTimeout(() => setCopied(false), 2500);
 });
 };
 
-// ── Détail d’une offre ──
 if (selected) {
 const o = selected;
 return (
-<div style={{ maxWidth: 480, margin: ‘0 auto’, padding: ‘16px’ }} className=“fade-up”>
-{/* Back */}
+<div style={{ maxWidth: 480, margin: '0 auto', padding: '16px' }} className="fade-up">
 <button onClick={() => setSelected(null)} style={{
-background: ‘none’, border: ‘none’, color: T.primary, fontSize: 14,
-fontWeight: 600, cursor: ‘pointer’, marginBottom: 16,
-display: ‘flex’, alignItems: ‘center’, gap: 6, padding: ‘4px 0’,
+background: 'none', border: 'none', color: T.primary, fontSize: 14,
+fontWeight: 600, cursor: 'pointer', marginBottom: 16,
+display: 'flex', alignItems: 'center', gap: 6, padding: '4px 0',
 }}>
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
 <path d="M19 12H5M12 5l-7 7 7 7"/>
@@ -553,10 +536,7 @@ display: ‘flex’, alignItems: ‘center’, gap: 6, padding: ‘4px 0’,
 Retour aux offres
 </button>
 
-```
-    {/* Hero card */}
     <Card style={{ marginBottom: 16, overflow: 'hidden' }}>
-      {/* Coloured header strip */}
       <div style={{
         background: `linear-gradient(135deg, ${o.couleur}18, ${o.couleur}08)`,
         borderBottom: `1px solid ${o.couleur}22`,
@@ -581,7 +561,6 @@ Retour aux offres
         <p style={{ fontSize: 14, color: T.slate, lineHeight: 1.6 }}>{o.description}</p>
       </div>
 
-      {/* Bonus grid */}
       <div style={{ padding: '16px 20px 0' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 20 }}>
           <div style={{
@@ -599,11 +578,9 @@ Retour aux offres
             <div style={{ fontSize: 20, fontWeight: 800, color: T.warn, fontFamily: "'Sora', sans-serif" }}>{o.bonusFilleul}</div>
           </div>
         </div>
-
         <Checklist offreId={o.id} conditions={o.conditions} />
       </div>
 
-      {/* CTA */}
       <div style={{ padding: '0 20px 20px' }}>
         {o.type === 'code' && (
           <div style={{
@@ -656,35 +633,28 @@ Retour aux offres
             </a>
           </div>
         )}
-
         <ShareButton offre={o} />
       </div>
     </Card>
   </div>
 );
-```
-
 }
 
-// ── Liste des offres ──
 return (
-<div style={{ maxWidth: 480, margin: ‘0 auto’, padding: ‘16px’ }}>
-{/* Filtres catégories */}
-<div style={{ overflowX: ‘auto’, display: ‘flex’, gap: 8, paddingBottom: 4, marginBottom: 20, scrollbarWidth: ‘none’ }}>
+<div style={{ maxWidth: 480, margin: '0 auto', padding: '16px' }}>
+<div style={{ overflowX: 'auto', display: 'flex', gap: 8, paddingBottom: 4, marginBottom: 20, scrollbarWidth: 'none' }}>
 {CATEGORIES.map(cat => (
-<button key={cat} onClick={() => setFiltre(cat)} className=“pill-btn” style={{
+<button key={cat} onClick={() => setFiltre(cat)} className="pill-btn" style={{
 background: filtre === cat ? T.primary : T.surface,
 border: `1.5px solid ${filtre === cat ? T.primary : T.border}`,
-borderRadius: 99, color: filtre === cat ? ‘#fff’ : T.muted,
-fontSize: 12, fontWeight: 700, padding: ‘7px 16px’,
-cursor: ‘pointer’, whiteSpace: ‘nowrap’,
-boxShadow: filtre === cat ? `0 2px 12px ${T.primary}30` : ‘none’,
+borderRadius: 99, color: filtre === cat ? '#fff' : T.muted,
+fontSize: 12, fontWeight: 700, padding: '7px 16px',
+cursor: 'pointer', whiteSpace: 'nowrap',
+boxShadow: filtre === cat ? `0 2px 12px ${T.primary}30` : 'none',
 }}>{cat}</button>
 ))}
 </div>
 
-```
-  {/* Grille d'offres */}
   <div className="card-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 24 }}>
     {filtrees.map(o => (
       <button key={o.id} onClick={() => setSelected(o)} className="offer-btn fade-up" style={{
@@ -692,16 +662,13 @@ boxShadow: filtre === cat ? `0 2px 12px ${T.primary}30` : ‘none’,
         borderRadius: T.radius, padding: '16px 14px', cursor: 'pointer', textAlign: 'left',
         boxShadow: T.shadow, position: 'relative', overflow: 'hidden',
       }}>
-        {/* Accent top border */}
         <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: o.couleur, borderRadius: '16px 16px 0 0' }} />
-
         <div style={{
           width: 44, height: 44, borderRadius: 12,
           background: o.couleurLight, border: `1.5px solid ${o.couleur}40`,
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           fontSize: 22, marginBottom: 10, marginTop: 4,
         }}>{o.emoji}</div>
-
         <div style={{ fontSize: 10, color: T.faint, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 3, fontWeight: 600 }}>{o.categorie}</div>
         <div style={{ fontSize: 15, fontWeight: 800, color: T.navy, marginBottom: 6, fontFamily: "'Sora', sans-serif" }}>{o.nom}</div>
         <div style={{
@@ -713,7 +680,6 @@ boxShadow: filtre === cat ? `0 2px 12px ${T.primary}30` : ‘none’,
     ))}
   </div>
 
-  {/* Newsletter */}
   <Card style={{ padding: '22px', textAlign: 'center' }}>
     <div style={{
       width: 40, height: 40, borderRadius: 12, background: T.accentLight,
@@ -744,33 +710,26 @@ boxShadow: filtre === cat ? `0 2px 12px ${T.primary}30` : ‘none’,
     </div>
   </Card>
 </div>
-```
-
 );
 }
 
-/** Page Avis */
 function PageAvis() {
 const avis = [
-{ nom: ‘Lucas’, date: ‘Il y a 2 jours’, texte: “Super rapide pour Hello Bank, j’ai reçu mes 80€ comme prévu !”, note: 5 },
-{ nom: ‘Sarah’, date: ‘La semaine dernière’, texte: ‘Le calculateur ProfitMaster est bluffant de précision.’, note: 5 },
-{ nom: ‘Tom’, date: ‘Il y a 1 mois’, texte: ‘Déjà 120€ de gains cumulés grâce aux offres crypto. Top !’, note: 5 },
+{ nom: 'Lucas', date: 'Il y a 2 jours', texte: "Super rapide pour Hello Bank, j’ai reçu mes 80€ comme prévu !", note: 5 },
+{ nom: 'Sarah', date: 'La semaine dernière', texte: 'Le calculateur ProfitMaster est bluffant de précision.', note: 5 },
+{ nom: 'Tom', date: 'Il y a 1 mois', texte: 'Déjà 120€ de gains cumulés grâce aux offres crypto. Top !', note: 5 },
 ];
 
 return (
-<div style={{ maxWidth: 480, margin: ‘0 auto’, padding: ‘16px’ }} className=“fade-up”>
-{/* Stats banner */}
-<Card style={{ padding: ‘20px’, marginBottom: 20, textAlign: ‘center’, background: `linear-gradient(135deg, ${T.primaryLight}, ${T.accentLight})` }}>
-<div style={{ fontSize: 36, fontWeight: 800, color: T.navy, fontFamily: “‘Sora’, sans-serif”, lineHeight: 1 }}>4.9</div>
-<div style={{ color: T.accent, fontSize: 20, margin: ‘6px 0’ }}>★★★★★</div>
+<div style={{ maxWidth: 480, margin: '0 auto', padding: '16px' }} className="fade-up">
+<Card style={{ padding: '20px', marginBottom: 20, textAlign: 'center', background: `linear-gradient(135deg, ${T.primaryLight}, ${T.accentLight})` }}>
+<div style={{ fontSize: 36, fontWeight: 800, color: T.navy, fontFamily: "'Sora', sans-serif", lineHeight: 1 }}>4.9</div>
+<div style={{ color: T.accent, fontSize: 20, margin: '6px 0' }}>★★★★★</div>
 <div style={{ fontSize: 13, color: T.muted, fontWeight: 500 }}>Note moyenne · 3 avis vérifiés</div>
 </Card>
-
-```
   <h2 style={{ fontSize: 18, fontWeight: 800, color: T.navy, marginBottom: 16, fontFamily: "'Sora', sans-serif" }}>
     Avis de la Communauté
   </h2>
-
   {avis.map((a, i) => (
     <Card key={i} style={{ padding: '18px', marginBottom: 12 }}>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 }}>
@@ -791,57 +750,53 @@ return (
     </Card>
   ))}
 </div>
-```
-
 );
 }
 
-/** Page Calculateur de Rentabilité (ProfitMaster) */
 function PageCalculateur() {
 const [fields, setFields] = useState({
-prixVente: ‘’, matieres: ‘’, transport: ‘’, outillage: ‘’, autresFrais: ‘’,
-heures: ‘’, tauxHoraire: ‘’, tauxCotisations: ‘21.2’, tauxPersonnalise: ‘’, tauxOption: ‘21.2’,
+prixVente: '', matieres: '', transport: '', outillage: '', autresFrais: '',
+heures: '', tauxHoraire: '', tauxCotisations: '21.2', tauxPersonnalise: '', tauxOption: '21.2',
 });
 const [showPaywall, setShowPaywall] = useState(false);
 const [pdfPaid, setPdfPaid] = useState(false);
 
-const setField = (key) => (val) => setFields(prev => ({ …prev, [key]: val }));
+const setField = (key) => (val) => setFields(prev => ({ ...prev, [key]: val }));
 const res = calcul(fields);
 
 useEffect(() => {
 const params = new URLSearchParams(window.location.search);
-if (params.get(‘paid’) === ‘true’) setPdfPaid(true);
+if (params.get('paid') === 'true') setPdfPaid(true);
 }, []);
 
 const handlePDFClick = useCallback(() => {
-if (pdfPaid) alert(‘Fonctionnalité PDF disponible’);
+if (pdfPaid) alert('Fonctionnalité PDF disponible');
 else setShowPaywall(true);
 }, [pdfPaid]);
 
-const tauxActuel = fields.tauxOption === ‘custom’
+const tauxActuel = fields.tauxOption === 'custom'
 ? (parseFloat(fields.tauxPersonnalise) || 0)
 : parseFloat(fields.tauxOption);
 
 useEffect(() => {
-setFields(prev => ({ …prev, tauxCotisations: String(tauxActuel) }));
+setFields(prev => ({ ...prev, tauxCotisations: String(tauxActuel) }));
 }, [tauxActuel]);
 
-const santeColor  = res.sante === ‘Rentable’ ? T.success : res.sante === ‘À risque’ ? T.warn : T.danger;
-const santeBg     = res.sante === ‘Rentable’ ? T.successLight : res.sante === ‘À risque’ ? T.warnLight : T.dangerLight;
-const santeEmoji  = res.sante === ‘Rentable’ ? ‘✅’ : res.sante === ‘À risque’ ? ‘⚠️’ : ‘🔴’;
+const santeColor  = res.sante === 'Rentable' ? T.success : res.sante === 'À risque' ? T.warn : T.danger;
+const santeBg     = res.sante === 'Rentable' ? T.successLight : res.sante === 'À risque' ? T.warnLight : T.dangerLight;
+const santeEmoji  = res.sante === 'Rentable' ? '✅' : res.sante === 'À risque' ? '⚠️' : '🔴';
 
 return (
-<div style={{ maxWidth: 480, margin: ‘0 auto’, padding: ‘16px’ }} className=“fade-up”>
+<div style={{ maxWidth: 480, margin: '0 auto', padding: '16px' }} className="fade-up">
 <FormSection title="Revenus" icon="💰">
 <InputField
-label=“Prix de vente estimé”
+label="Prix de vente estimé"
 value={fields.prixVente}
-onChange={setField(‘prixVente’)}
-hint=“Le montant facturé au client”
+onChange={setField('prixVente')}
+hint="Le montant facturé au client"
 />
 </FormSection>
 
-```
   <FormSection title="Coûts directs" icon="📦">
     <InputField label="Matières premières" value={fields.matieres} onChange={setField('matieres')} />
     <InputField label="Transport / Essence" value={fields.transport} onChange={setField('transport')} />
@@ -884,14 +839,11 @@ hint=“Le montant facturé au client”
     </div>
   </FormSection>
 
-  {/* Résultats */}
   {res.prixVente > 0 ? (
     <div>
       <div style={{ fontSize: 11, fontWeight: 700, color: T.muted, textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 12 }}>
         Résultats en temps réel
       </div>
-
-      {/* Health badge */}
       <div style={{
         background: santeBg, border: `1.5px solid ${santeColor}44`,
         borderRadius: 14, padding: '14px 16px',
@@ -907,8 +859,6 @@ hint=“Le montant facturé au client”
           <div style={{ fontSize: 20, fontWeight: 800, color: santeColor, fontFamily: "'Sora', sans-serif" }}>{pct(res.marge)}</div>
         </div>
       </div>
-
-      {/* Metrics grid */}
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 14 }}>
         {[
           { label: 'Bénéfice Net', value: fmt(res.beneficeNet), highlight: true },
@@ -926,8 +876,6 @@ hint=“Le montant facturé au client”
           </Card>
         ))}
       </div>
-
-      {/* Simulation mensuelle */}
       <Card style={{ padding: '18px', marginBottom: 14 }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
           <div style={{ width: 30, height: 30, borderRadius: 8, background: T.accentLight, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14 }}>🚀</div>
@@ -950,8 +898,6 @@ hint=“Le montant facturé au client”
           </div>
         ))}
       </Card>
-
-      {/* PDF button */}
       <button onClick={handlePDFClick} className="action-btn" style={{
         width: '100%',
         background: pdfPaid ? `linear-gradient(135deg, ${T.success}, #047857)` : `linear-gradient(135deg, ${T.primary}, ${T.primaryDark})`,
@@ -973,7 +919,6 @@ hint=“Le montant facturé au client”
     </Card>
   )}
 
-  {/* Paywall modal */}
   {showPaywall && (
     <div className="scale-in" style={{
       position: 'fixed', inset: 0, zIndex: 999,
@@ -989,7 +934,6 @@ hint=“Le montant facturé au client”
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           fontSize: 16,
         }}>✕</button>
-
         <div style={{ fontSize: 36, marginBottom: 14 }}>🔒</div>
         <h2 style={{ color: T.navy, fontSize: 20, fontWeight: 800, marginBottom: 6, fontFamily: "'Sora', sans-serif" }}>
           Sécurisez votre projet
@@ -997,7 +941,6 @@ hint=“Le montant facturé au client”
         <p style={{ fontSize: 13, color: T.muted, marginBottom: 20, lineHeight: 1.5 }}>
           Exportez votre bilan en PDF professionnel, prêt à partager avec un comptable ou un client.
         </p>
-
         <div style={{
           background: T.primaryLight, borderRadius: 14,
           padding: '18px', marginBottom: 20, textAlign: 'center',
@@ -1005,7 +948,6 @@ hint=“Le montant facturé au client”
           <div style={{ fontSize: 38, fontWeight: 800, color: T.primary, fontFamily: "'Sora', sans-serif" }}>2,00 €</div>
           <div style={{ fontSize: 12, color: T.muted, marginTop: 4 }}>Paiement sécurisé via Stripe</div>
         </div>
-
         <button
           onClick={() => { window.open(STRIPE_LINK, '_blank'); setShowPaywall(false); }}
           className="action-btn"
@@ -1022,35 +964,29 @@ hint=“Le montant facturé au client”
     </div>
   )}
 </div>
-```
-
 );
 }
 
 // ─── APP ROOT ────────────────────────────────────────────────
 
 const NAV_ITEMS = [
-{ id: ‘parrainage’, label: ‘Parrainages’, emoji: ‘🎁’ },
-{ id: ‘avis’,       label: ‘Avis’,        emoji: ‘⭐’ },
-{ id: ‘calculateur’,label: ‘Calculateur’, emoji: ‘📊’ },
+{ id: 'parrainage', label: 'Parrainages', emoji: '🎁' },
+{ id: 'avis',       label: 'Avis',        emoji: '⭐' },
+{ id: 'calculateur',label: 'Calculateur', emoji: '📊' },
 ];
 
 export default function App() {
-const [onglet, setOnglet] = useState(‘parrainage’);
+const [onglet, setOnglet] = useState('parrainage');
 
-// Inject global styles once
 useEffect(() => {
-const tag = document.createElement(‘style’);
+const tag = document.createElement('style');
 tag.textContent = GLOBAL_CSS;
 document.head.appendChild(tag);
 return () => document.head.removeChild(tag);
 }, []);
 
 return (
-<div style={{ minHeight: ‘100vh’, background: T.bg, paddingBottom: 84 }}>
-
-```
-  {/* ── HEADER ── */}
+<div style={{ minHeight: '100vh', background: T.bg, paddingBottom: 84 }}>
   <header style={{
     background: T.surface,
     borderBottom: `1px solid ${T.border}`,
@@ -1078,14 +1014,12 @@ return (
     </p>
   </header>
 
-  {/* ── PAGES ── */}
   <main>
     {onglet === 'parrainage'  && <PageParrainage />}
     {onglet === 'avis'        && <PageAvis />}
     {onglet === 'calculateur' && <PageCalculateur />}
   </main>
 
-  {/* ── BOTTOM NAV ── */}
   <nav style={{
     position: 'fixed', bottom: 0, left: 0, right: 0,
     background: 'rgba(255,255,255,0.95)',
@@ -1121,13 +1055,11 @@ return (
     })}
   </nav>
 </div>
-```
-
 );
 }
 
 // ─── MOUNT ───────────────────────────────────────────────────
-const container = document.getElementById(‘root’);
+const container = document.getElementById('root');
 if (container) {
 const root = createRoot(container);
 root.render(<App />);
