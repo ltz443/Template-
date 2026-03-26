@@ -17,7 +17,7 @@ ${FONT_LINK}
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 html { -webkit-tap-highlight-color: transparent; }
 body {
-background: #F7F5F0 !important;
+background: #F7F5F0;
 color: #111827;
 font-family: 'Plus Jakarta Sans', sans-serif;
 -webkit-font-smoothing: antialiased;
@@ -111,7 +111,7 @@ conditions: [
 "Âge minimum : 21 ans",
 "Permis de conduire (2 ans min)",
 "Dépôt de garantie par CB",
-"Pièce d'identité + Permis"
+"Pièce d’identité + Permis"
 ],
 type: 'contact',
 contact: '@parrain_4p',
@@ -133,7 +133,7 @@ conditions: [
 "Âge minimum : 21 ans",
 "Permis de conduire (2 ans min)",
 "Dépôt de garantie par CB",
-"Pièce d'identité + Permis"
+"Pièce d’identité + Permis"
 ],
 type: 'contact',
 contact: '@parrain_4p',
@@ -155,7 +155,7 @@ conditions: [
 "Âge minimum : 21 ans",
 "Permis de conduire (2 ans min)",
 "Dépôt de garantie par CB",
-"Pièce d'identité + Permis"
+"Pièce d’identité + Permis"
 ],
 type: 'contact',
 contact: '@parrain_4p',
@@ -176,7 +176,7 @@ description: "Le SUV le plus sportif de sa catégorie. Confort absolu pour la ro
 conditions: [
 "Âge minimum : 21 ans",
 "Dépôt de garantie par CB",
-"Pièce d'identité + Permis"
+"Pièce d’identité + Permis"
 ],
 type: 'contact',
 contact: '@parrain_4p',
@@ -197,7 +197,7 @@ description: "La bête de circuit homologuée pour la route. Propulsion, carbone
 conditions: [
 "Âge minimum : 21 ans",
 "Dépôt de garantie par CB",
-"Pièce d'identité + Permis"
+"Pièce d’identité + Permis"
 ],
 type: 'contact',
 contact: '@parrain_4p',
@@ -565,13 +565,11 @@ useEffect(() => {
 const tag = document.createElement('style');
 tag.textContent = GLOBAL_CSS;
 document.head.appendChild(tag);
-// FORÇAGE DIRECT DU BODY POUR VERCEL
-document.body.style.backgroundColor = T.bg;
 return () => document.head.removeChild(tag);
 }, []);
 
 return (
-<div style={{ minHeight: '100vh', backgroundColor: T.bg, paddingBottom: 84 }}>
+<div style={{ minHeight: '100vh', background: T.bg, paddingBottom: 84 }}>
 
   {/* ─── HEADER PREMIUM ─────────────────────────────────── */}
   <header style={{
