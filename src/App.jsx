@@ -40,6 +40,14 @@ to   { opacity: 1; transform: scale(1); }
 0%, 100% { opacity: 1; }
 50%       { opacity: 0.6; }
 }
+@keyframes shimmer {
+0%   { background-position: -200% center; }
+100% { background-position:  200% center; }
+}
+@keyframes floatY {
+0%, 100% { transform: translateY(0px); }
+50%       { transform: translateY(-6px); }
+}
 .fade-up  { animation: fadeUp  0.35s ease both; }
 .scale-in { animation: scaleIn 0.25s ease both; }
 
