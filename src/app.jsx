@@ -100,7 +100,7 @@ radiusLg: '24px',
 // ─── DONNÉES PARRAINAGE ──────────────────────────────────────
 const OFFRES = [
 {
-id: 'hellobank',
+id: "hellobank",
 nom: 'Hello Bank',
 categorie: 'Banque',
 emoji: '🏦',
