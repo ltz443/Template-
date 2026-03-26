@@ -248,7 +248,8 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
                 position: 'relative'
               }}>
                 {o.image ? (
-                  <img src={o.image} alt={o.nom} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '10px' }} />
+                  /* AJOUT DU OBJECT-FIT COVER POUR LE RENDU PRO */
+                  <img src={o.image} alt={o.nom} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 ) : (
                   <div style={{ fontSize: 32 }}>{o.emoji}</div>
                 )}
