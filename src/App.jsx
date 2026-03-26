@@ -561,11 +561,11 @@ return () => document.head.removeChild(tag);
 }, []);
 
 return (
-<div style={{ minHeight: '100dvh', background: T.bg, paddingBottom: 60 }}>
+<div style={{ minHeight: '100vh', background: T.bg, paddingBottom: 84 }}>
   <header style={{
     background: T.surface,
     borderBottom: `1px solid ${T.border}`,
-    padding: '10px 16px 8px',
+    padding: '18px 20px 16px',
     textAlign: 'center',
     position: 'sticky', top: 0, zIndex: 50,
     backdropFilter: 'blur(10px)',
@@ -590,7 +590,7 @@ return (
   </header>
 
   <main>
-    {onglet === 'parrainage,' && <Pageparrainage />}
+    {onglet === 'parrainage' && <PageParrainage />}
     {onglet === 'avis'       && <PageAvis />}
   </main>
 
