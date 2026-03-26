@@ -89,28 +89,48 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
         </button>
 
         <Card style={{ overflow: 'hidden' }}>
-          {/* Header coloré */}
+          {/* Header avec Image de Fond ou dégradé */}
           <div style={{
-            background: `linear-gradient(135deg, ${o.couleur}18, ${o.couleur}08)`,
+            height: o.imageFond ? 220 : 'auto',
+            backgroundImage: o.imageFond ? `url(${o.imageFond})` : `linear-gradient(135deg, ${o.couleur}18, ${o.couleur}08)`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            position: 'relative',
             borderBottom: `1px solid ${o.couleur}22`,
-            padding: '20px 20px 16px',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'flex-end',
+            padding: '20px',
           }}>
-            <div style={{ display: 'flex', gap: 14, marginBottom: 14, alignItems: 'center' }}>
-              <div style={{
-                width: 56, height: 56, borderRadius: 16,
-                background: o.couleurLight, border: `2px solid ${o.couleur}44`,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 26, flexShrink: 0,
-              }}>{o.emoji}</div>
+            {/* Overlay sombre si image de fond pour la lisibilité */}
+            {o.imageFond && <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(0deg, rgba(0,0,0,0.7) 0%, transparent 60%)' }} />}
+            
+            <div style={{ position: 'relative', zIndex: 1, display: 'flex', gap: 14, alignItems: 'center' }}>
+              {!o.imageFond && (
+                <div style={{
+                  width: 56, height: 56, borderRadius: 16,
+                  background: o.couleurLight, border: `2px solid ${o.couleur}44`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  fontSize: 26, flexShrink: 0,
+                }}>{o.emoji}</div>
+              )}
               <div>
                 <CategoryBadge label={o.categorie} color={o.couleur} />
-                <h2 style={{ fontSize: 22, fontWeight: 800, color: T.navy, marginTop: 4, fontFamily: "'Sora', sans-serif" }}>{o.nom}</h2>
+                <h2 style={{ 
+                  fontSize: 22, 
+                  fontWeight: 800, 
+                  color: o.imageFond ? '#fff' : T.navy, 
+                  marginTop: 4, 
+                  fontFamily: "'Sora', sans-serif",
+                  textShadow: o.imageFond ? '0 2px 4px rgba(0,0,0,0.3)' : 'none'
+                }}>{o.nom}</h2>
               </div>
             </div>
-            <p style={{ fontSize: 14, color: T.slate, lineHeight: 1.6 }}>{o.description}</p>
           </div>
 
           <div style={{ padding: '16px 20px 20px' }}>
+            <p style={{ fontSize: 14, color: T.slate, lineHeight: 1.6, marginBottom: 20 }}>{o.description}</p>
+            
             {/* 3 tuiles : Prix · Puissance · Caution */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, marginBottom: 20 }}>
               <div style={{ background: T.primaryLight, borderRadius: 12, padding: '12px 8px', textAlign: 'center' }}>
@@ -213,26 +233,38 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
           {filtrees.map(o => (
             <button key={o.id} onClick={() => setSelected(o)} className="offer-btn fade-up" style={{
               background: T.surface, border: `1px solid ${T.border}`,
-              borderRadius: T.radius, padding: 16, textAlign: 'left',
+              borderRadius: T.radius, padding: 0, textAlign: 'left',
               cursor: 'pointer', boxShadow: T.shadow,
               position: 'relative', overflow: 'hidden',
             }}>
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: o.couleur, borderRadius: `${T.radius} ${T.radius} 0 0` }} />
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: o.couleur, zIndex: 2 }} />
+              
+              {/* Zone Image ou Emoji */}
               <div style={{
-                width: 44, height: 44, borderRadius: 12,
-                background: o.couleurLight, border: `1.5px solid ${o.couleur}40`,
+                height: 110,
+                background: o.couleurLight,
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                fontSize: 22, marginBottom: 10, marginTop: 4,
-              }}>{o.emoji}</div>
-              <div style={{ fontSize: 10, color: T.faint, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 3 }}>{o.categorie}</div>
-              <div style={{ fontSize: 15, fontWeight: 800, color: T.navy, marginBottom: 6, fontFamily: "'Sora', sans-serif" }}>{o.nom}</div>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 4 }}>
-                <span style={{
-                  display: 'inline-block', background: o.couleurLight,
-                  color: o.couleur, borderRadius: 99, padding: '3px 10px',
-                  fontSize: 13, fontWeight: 800,
-                }}>{o.prix}</span>
-                <span style={{ fontSize: 11, color: T.muted, fontWeight: 600 }}>{o.puissance}</span>
+                overflow: 'hidden',
+                position: 'relative'
+              }}>
+                {o.image ? (
+                  <img src={o.image} alt={o.nom} style={{ width: '100%', height: '100%', objectFit: 'contain', padding: '10px' }} />
+                ) : (
+                  <div style={{ fontSize: 32 }}>{o.emoji}</div>
+                )}
+              </div>
+
+              <div style={{ padding: '12px 16px 16px' }}>
+                <div style={{ fontSize: 10, color: T.faint, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 3 }}>{o.categorie}</div>
+                <div style={{ fontSize: 15, fontWeight: 800, color: T.navy, marginBottom: 6, fontFamily: "'Sora', sans-serif" }}>{o.nom}</div>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 4 }}>
+                  <span style={{
+                    display: 'inline-block', background: o.couleurLight,
+                    color: o.couleur, borderRadius: 99, padding: '3px 10px',
+                    fontSize: 13, fontWeight: 800,
+                  }}>{o.prix}</span>
+                  <span style={{ fontSize: 11, color: T.muted, fontWeight: 600 }}>{o.puissance}</span>
+                </div>
               </div>
             </button>
           ))}
