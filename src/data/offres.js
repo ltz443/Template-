@@ -4,10 +4,10 @@ export const OFFRES = [
   id: 'golf-8r',
   nom: 'Golf 8R',
   categorie: 'Sportive',
-  // Photo détourée pour la liste
-  image: "https://i.ibb.co/Y7T9P3S3/IMG-2839.png", 
-  // Photo de nuit pour le fond du détail
-  imageFond: "https://i.ibb.co/XfXvXp7D/IMG-2840.jpg", 
+  // Photo détourée (Lien postimg direct)
+  image: "https://i.postimg.cc/CLc6M242/IMG-2841.png",
+  // Photo de nuit (Lien postimg direct)
+  imageFond: "https://i.postimg.cc/tRtMwJZf/IMG-2840.jpg",
   couleur: '#111827',
   couleurLight: '#F3F4F6',
   description: 'La puissance allemande au service de vos sensations.',
