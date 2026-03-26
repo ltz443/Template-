@@ -421,16 +421,6 @@ Retour aux offres
       </div>
 
       <div style={{ padding: '16px 20px 0' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 20 }}>
-          <div style={{ background: T.primaryLight, borderRadius: 12, padding: '14px', textAlign: 'center' }}>
-            <div style={{ fontSize: 10, color: T.primary, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.08em' }}>Prime parrain</div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: T.primary, fontFamily: "'Sora', sans-serif" }}>{o.bonusParrain}</div>
-          </div>
-          <div style={{ background: T.accentLight, borderRadius: 12, padding: '14px', textAlign: 'center' }}>
-            <div style={{ fontSize: 10, color: T.warn, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.08em' }}>Filleul reçoit</div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: T.warn, fontFamily: "'Sora', sans-serif" }}>{o.bonusFilleul}</div>
-          </div>
-        </div>
         <Checklist offreId={o.id} conditions={o.conditions} />
       </div>
 
