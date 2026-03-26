@@ -29,7 +29,7 @@ export default function App() {
 
       {/* NAVIGATION FLOTTANTE */}
       <nav style={{ position: 'fixed', bottom: 20, left: '50%', transform: 'translateX(-50%)', width: '90%', maxWidth: 400, background: 'rgba(255,255,255,0.9)', border: `1px solid ${T.border}`, backdropFilter: 'blur(10px)', borderRadius: 24, display: 'flex', padding: '8px', gap: 8, boxShadow: T.shadow }}>
-        <button onClick={() => {setOnglet('parrainage'); setSelected(null);}} style={{ flex: 1, background: onglet === 'parrainage' ? T.primary : 'transparent', color: onglet === 'parrainage' ? '#fff' : T.muted, border: 'none', borderRadius: 18, padding: '12px', fontWeight: 700, cursor: 'pointer' }}>🎁 Offres</button>
+        <button onClick={() => {setOnglet('parrainage'); setSelected(null);}} style={{ flex: 1, background: onglet === 'parrainage' ? T.primary : 'transparent', color: onglet === 'parrainage' ? '#fff' : T.muted, border: 'none', borderRadius: 18, padding: '12px', fontWeight: 700, cursor: 'pointer' }}>🚗 Véhicules</button>
         <button onClick={() => {setOnglet('avis'); setSelected(null);}} style={{ flex: 1, background: onglet === 'avis' ? T.primary : 'transparent', color: onglet === 'avis' ? '#fff' : T.muted, border: 'none', borderRadius: 18, padding: '12px', fontWeight: 700, cursor: 'pointer' }}>⭐ Avis</button>
       </nav>
     </div>
