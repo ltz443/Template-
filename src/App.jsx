@@ -1,5 +1,5 @@
 // ═══════════════════════════════════════════════════════════════
-//  4P RENTALS — Redesign "Luxury Fintech Light"
+//  PARRAIN 4P — Redesign "Luxury Fintech Light"
 //  Palette   : Crème #F7F5F0 · Navy #111827 · Violet #7C3AED · Ambre #F59E0B
 //  Typo      : Sora (titres) + Plus Jakarta Sans (corps)
 //  Style     : Cartes blanches, ombres douces, pill-nav flottante
@@ -87,59 +87,191 @@ radius:       '16px',
 radiusSm:     '10px',
 };
 
-// ─── DONNÉES FLOTTE (PARTIE MODIFIÉE) ────────────────────────
+// ─── DONNÉES PARRAINAGE ──────────────────────────────────────
 const OFFRES = [
 {
-id: 'golf-8r',
-nom: 'Golf 8R (320ch)',
-categorie: 'Sportive',
-emoji: '🏎️',
-couleur: '#111827',
-couleurLight: '#F3F4F6',
-bonus: '150€/j',
-bonusFilleul: '2000€',
-bonusParrain: '320 CH',
-description: "La polyvalence par excellence. Un look sobre, une puissance redoutable et quatre roues motrices pour une sécurité totale.",
+id: 'hellobank',
+nom: 'Hello Bank',
+categorie: 'Banque',
+emoji: '🏦',
+couleur: '#2563EB',
+couleurLight: '#DBEAFE',
+bonus: '80€',
+bonusFilleul: '40€ + 40€',
+bonusParrain: '80€',
+description: "Ouvre un compte Hello One et reçois 40€ sans dépôt, puis 40€ de plus dès le 10e achat carte.",
 conditions: [
-"Âge minimum : 21 ans",
-'Permis de conduire (2 ans min)',
-'Dépôt de garantie par CB',
-'Justificatif de domicile -3 mois',
+"1ère ouverture d'un compte de dépôt Hello One",
+'40€ offerts sans dépôt minimum',
+'40€ supplémentaires au 10e achat carte bancaire',
+'Délai : 72 heures',
 ],
 type: 'contact',
 contact: '@parrain_4p',
-note: 'Pour réserver ce véhicule, contactez-nous directement sur Instagram avec vos dates.',
-shareText: 'Loue la Golf 8R chez 4P RENTALS !',
-shareUrl: 'https://4p-rentals.vercel.app',
+note: 'Pour recevoir ton invitation, envoie ton prénom + adresse email sur Instagram',
+shareText: 'Ouvre un compte Hello Bank et reçois 80€ ! Contacte @parrain_4p sur Instagram.',
+shareUrl: 'https://parrain-4p.vercel.app',
 },
 {
-id: 'a45s',
-nom: 'Mercedes A45 S',
-categorie: 'Luxe',
-emoji: '🏁',
+id: 'joko',
+nom: 'Joko',
+categorie: 'Cashback',
+emoji: '💸',
+couleur: '#EA580C',
+couleurLight: '#FFEDD5',
+bonus: '1€ + cashback',
+bonusFilleul: "1€ à l'inscription",
+bonusParrain: '3€ + 10% cashback filleul',
+description: 'Joko transforme tes achats quotidiens en micro-économies automatiques en connectant ton compte bancaire.',
+conditions: [
+"Télécharger l'app Joko",
+'Connecter son compte bancaire',
+"1€ offert à l'inscription avec le code",
+'Délai : instantané',
+],
+type: 'code',
+code: 'skevdw',
+shareText: 'Rejoins Joko avec mon code skevdw et gagne 1€ + du cashback automatique !',
+shareUrl: 'https://parrain-4p.vercel.app',
+},
+{
+id: 'coinbase',
+nom: 'Coinbase',
+categorie: 'Crypto',
+emoji: '₿',
+couleur: '#0052FF',
+couleurLight: '#DBEAFE',
+bonus: '20€',
+bonusFilleul: '20€ en Bitcoin',
+bonusParrain: '20€',
+description: "Coinbase est la plateforme de référence pour acheter, vendre et stocker des cryptomonnaies en toute sécurité.",
+conditions: [
+"S'inscrire via le lien de parrainage",
+"Valider son identité (KYC)",
+'Déposer 20€',
+'Acheter 20€ de Bitcoin (BTC)',
+'Reçois 20€ de Bitcoin après 24h - retirable intégralement',
+],
+type: 'lien',
+lien: 'https://coinbase.com/join/954EBFS?src=ios-link',
+shareText: 'Inscris-toi sur Coinbase via mon lien et reçois 20€ en Bitcoin !',
+shareUrl: 'https://coinbase.com/join/954EBFS?src=ios-link',
+},
+{
+id: 'veracash',
+nom: 'VeraCash',
+categorie: 'Or & Épargne',
+emoji: '🥇',
+couleur: '#B45309',
+couleurLight: '#FEF3C7',
+bonus: '10€ parrain',
+bonusFilleul: 'Frais réduits',
+bonusParrain: '10€',
+description: "VeraCash permet d'épargner et payer avec de l'or et de l'argent physique. Une alternative solide aux banques classiques.",
+conditions: [
+"S'inscrire via le lien de parrainage",
+'Vérifier son identité',
+'Déposer 10€ (retirable immédiatement)',
+'Frais de gestion réduits à vie',
+],
+type: 'lien',
+lien: 'https://www.veracash.com/fr/inscription?sponsorMemberPseudo=DEVOMIZO',
+shareText: "Épargne en or avec VeraCash ! Inscris-toi via mon lien pour des frais réduits à vie.",
+shareUrl: 'https://www.veracash.com/fr/inscription?sponsorMemberPseudo=DEVOMIZO',
+},
+{
+id: 'robinhood',
+nom: 'Robinhood',
+categorie: 'Crypto Exchange',
+emoji: '🏹',
+couleur: '#16A34A',
+couleurLight: '#D1FAE5',
+bonus: '10€',
+bonusFilleul: '10€',
+bonusParrain: '10€',
+description: "Robinhood est un exchange crypto simple et intuitif pour acheter et vendre des cryptomonnaies sans frais cachés.",
+conditions: [
+"S'inscrire via le lien de parrainage",
+'Valider son identité',
+'Déposer 10€ (retirable immédiatement)',
+'Délai : immédiat',
+],
+type: 'lien',
+lien: 'https://join.robinhood.com/eu_crypto/leot-ad308a260/',
+shareText: 'Rejoins Robinhood et reçois 10€ ! Dépôt retirable immédiatement.',
+shareUrl: 'https://join.robinhood.com/eu_crypto/leot-ad308a260/',
+},
+{
+id: 'winamax',
+nom: 'Winamax',
+categorie: 'Paris Sportifs',
+emoji: '⚽',
+couleur: '#DC2626',
+couleurLight: '#FEE2E2',
+bonus: '40€',
+bonusFilleul: '40€',
+bonusParrain: '40€',
+description: "Winamax est la référence des paris sportifs en France. Inscris-toi avec le code parrainage et reçois 40€.",
+conditions: [
+"S'inscrire avec le code parrainage",
+"Valider son inscription",
+'Déposer 10€',
+'Prime filleul : 40€ - Prime parrain : 40€',
+],
+type: 'code',
+code: 'LTZXVU',
+shareText: 'Inscris-toi sur Winamax avec le code LTZXVU et reçois 40€ !',
+shareUrl: 'https://parrain-4p.vercel.app',
+},
+{
+id: 'betsson',
+nom: 'Betsson',
+categorie: 'Paris Sportifs',
+emoji: '🎯',
 couleur: '#7C3AED',
 couleurLight: '#EDE9FE',
-bonus: '250€/j',
-bonusFilleul: '3500€',
-bonusParrain: '421 CH',
-description: "Le 4 cylindres le plus puissant du monde. Une expérience sonore et dynamique incomparable pour vos week-ends.",
+bonus: '10€ Betboost',
+bonusFilleul: '10€ Betboost',
+bonusParrain: '10€ Betboost',
+description: 'Betsson est une plateforme de paris sportifs internationale. Reçois 10€ Betboost en parrainant.',
 conditions: [
-"Âge minimum : 25 ans",
-'Permis de conduire (3 ans min)',
-'Dépôt de garantie par CB',
-'Pièce d\'identité + Permis',
+"S'inscrire via le lien",
+'Vérifier son compte',
+'Déposer 10€',
+'Prime filleul : 10€ Betboost - Prime parrain : 10€ Betboost',
 ],
-type: 'contact',
-contact: '@parrain_4p',
-note: 'Vérifiez la disponibilité en envoyant un message sur Instagram.',
-shareText: 'Mercedes A45 S AMG disponible chez 4P RENTALS !',
-shareUrl: 'https://4p-rentals.vercel.app',
-}
+type: 'lien',
+lien: 'https://betsson.fr/fr/%23register?language=fr&referralCode=8LAFsK',
+shareText: 'Inscris-toi sur Betsson via mon lien et reçois 10€ Betboost !',
+shareUrl: 'https://betsson.fr/fr/%23register?language=fr&referralCode=8LAFsK',
+},
+{
+id: 'unibet',
+nom: 'Unibet',
+categorie: 'Paris Sportifs',
+emoji: '💰',
+couleur: '#0891B2',
+couleurLight: '#CFFAFE',
+bonus: '30€',
+bonusFilleul: '30€ Freebets',
+bonusParrain: '30€ Freebets',
+description: 'Unibet est une plateforme de paris sportifs internationale. Reçois 30€.',
+conditions: [
+"S'inscrire via le lien",
+'Vérifier son compte',
+'Déposer 10€',
+'Prime filleul : 30€ Freebets - Prime parrain : 30€ Freebets',
+],
+type: 'lien',
+lien: 'https://www.unibet.fr/inscription/?campaign=240326&parrain=AC1330D7A4D09111',
+shareText: 'Inscris-toi sur Unibet via mon lien et reçois 30€ en Freebets !',
+shareUrl: 'https://www.unibet.fr/inscription/?campaign=240326&parrain=AC1330D7A4D09111',
+},
 ];
 
-const CATEGORIES = ['Tout', 'Sportive', 'Luxe', 'SUV', 'Citadine'];
+const CATEGORIES = ['Tout', 'Banque', 'Cashback', 'Crypto', 'Or & Épargne', 'Crypto Exchange', 'Paris Sportifs'];
 
-// ─── UI ATOMS (PRÉSERVÉS) ────────────────────────────────────
+// ─── UI ATOMS ────────────────────────────────────────────────
 
 function Card({ children, style, className }) {
 return (
@@ -168,7 +300,7 @@ padding: '3px 10px', fontSize: 11, fontWeight: 600, color: T.muted,
 );
 }
 
-// ─── CHECKLIST (PRÉSERVÉE) ───────────────────────────────────
+// ─── CHECKLIST ───────────────────────────────────────────────
 function Checklist({ offreId, conditions }) {
 const storageKey = 'checklist_v2_' + offreId;
 const [checked, setChecked] = useState(() => {
@@ -190,7 +322,7 @@ return (
 <div style={{ marginBottom: 20 }}>
 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
 <span style={{ fontSize: 12, fontWeight: 700, color: T.slate, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
-Étapes de location
+Étapes à compléter
 </span>
 <span style={{
 fontSize: 12, fontWeight: 700, padding: '2px 10px', borderRadius: 99,
@@ -241,7 +373,7 @@ color: done === total ? T.success : T.muted,
       borderRadius: 12, padding: '12px 16px', textAlign: 'center', marginTop: 6,
     }}>
       <span style={{ fontSize: 14, color: T.success, fontWeight: 700 }}>
-        🎉 Dossier prêt pour la route !
+        🎉 Toutes les étapes complétées !
       </span>
     </div>
   )}
@@ -249,12 +381,13 @@ color: done === total ? T.success : T.muted,
 );
 }
 
-// ─── SHARE BUTTON (PRÉSERVÉ) ──────────────────────────────────
+// ─── SHARE BUTTON ────────────────────────────────────────────
 function ShareButton({ offre }) {
 const [shared, setShared] = useState(false);
+
 const handleShare = async () => {
 if (navigator.share) {
-try { await navigator.share({ title: `${offre.nom}`, text: offre.shareText, url: offre.shareUrl }); }
+try { await navigator.share({ title: `${offre.nom} - ${offre.bonus}`, text: offre.shareText, url: offre.shareUrl }); }
 catch {}
 } else {
 try {
@@ -278,12 +411,12 @@ marginTop: 10,
 <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
 </svg>
-{shared ? 'Lien copié !' : 'Partager ce véhicule'}
+{shared ? 'Lien copié !' : 'Partager cette offre'}
 </button>
 );
 }
 
-// ─── PAGE PRINCIPALE (PRÉSERVÉE) ─────────────────────────────
+// ─── PAGE PARRAINAGE ─────────────────────────────────────────
 function PageParrainage() {
 const [filtre, setFiltre]     = useState('Tout');
 const [selected, setSelected] = useState(null);
@@ -306,20 +439,32 @@ return (
 background: 'none', border: 'none', color: T.primary, fontSize: 14,
 fontWeight: 600, cursor: 'pointer', marginBottom: 16,
 display: 'flex', alignItems: 'center', gap: 6, padding: '4px 0',
-}}> 
+}}>
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
 <path d="M19 12H5M12 5l-7 7 7 7"/>
 </svg>
-Retour à la flotte 
+Retour aux offres
 </button>
 
     <Card style={{ marginBottom: 16, overflow: 'hidden' }}>
-      <div style={{ background: `linear-gradient(135deg, ${o.couleur}18, ${o.couleur}08)`, borderBottom: `1px solid ${o.couleur}22`, padding: '20px 20px 16px' }}>
+      <div style={{
+        background: `linear-gradient(135deg, ${o.couleur}18, ${o.couleur}08)`,
+        borderBottom: `1px solid ${o.couleur}22`,
+        padding: '20px 20px 16px',
+      }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
-          <div style={{ width: 56, height: 56, borderRadius: 16, background: o.couleurLight, border: `2px solid ${o.couleur}44`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, flexShrink: 0 }}>{o.emoji}</div>
+          <div style={{
+            width: 56, height: 56, borderRadius: 16,
+            background: o.couleurLight, border: `2px solid ${o.couleur}44`,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontSize: 26, flexShrink: 0,
+          }}>{o.emoji}</div>
           <div>
             <CategoryBadge label={o.categorie} color={o.couleur} />
-            <h2 style={{ fontSize: 22, fontWeight: 800, color: T.navy, marginTop: 4, fontFamily: "'Sora', sans-serif" }}>{o.nom}</h2>
+            <h2 style={{
+              fontSize: 22, fontWeight: 800, color: T.navy, marginTop: 4,
+              fontFamily: "'Sora', sans-serif",
+            }}>{o.nom}</h2>
           </div>
         </div>
         <p style={{ fontSize: 14, color: T.slate, lineHeight: 1.6 }}>{o.description}</p>
@@ -328,11 +473,11 @@ Retour à la flotte
       <div style={{ padding: '16px 20px 0' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 20 }}>
           <div style={{ background: T.primaryLight, borderRadius: 12, padding: '14px', textAlign: 'center' }}>
-            <div style={{ fontSize: 10, color: T.primary, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>PRIX / JOUR</div>
-            <div style={{ fontSize: 20, fontWeight: 800, color: T.primary, fontFamily: "'Sora', sans-serif" }}>{o.bonus}</div>
+            <div style={{ fontSize: 10, color: T.primary, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.08em' }}>Prime parrain</div>
+            <div style={{ fontSize: 20, fontWeight: 800, color: T.primary, fontFamily: "'Sora', sans-serif" }}>{o.bonusParrain}</div>
           </div>
           <div style={{ background: T.accentLight, borderRadius: 12, padding: '14px', textAlign: 'center' }}>
-            <div style={{ fontSize: 10, color: T.warn, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4 }}>CAUTION</div>
+            <div style={{ fontSize: 10, color: T.warn, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.08em' }}>Filleul reçoit</div>
             <div style={{ fontSize: 20, fontWeight: 800, color: T.warn, fontFamily: "'Sora', sans-serif" }}>{o.bonusFilleul}</div>
           </div>
         </div>
@@ -340,12 +485,56 @@ Retour à la flotte
       </div>
 
       <div style={{ padding: '0 20px 20px' }}>
-        <div style={{ background: T.borderSoft, borderRadius: 14, padding: '16px', border: `1px solid ${T.border}`, textAlign: 'center' }}>
-          <p style={{ fontSize: 13, color: T.slate, marginBottom: 14 }}>{o.note}</p>
-          <a href={`https://instagram.com/${o.contact.replace('@', '')}`} target="_blank" rel="noreferrer" className="action-btn" style={{ display: 'inline-block', background: 'linear-gradient(135deg, #833AB4, #FD1D1D)', borderRadius: 12, color: '#fff', fontSize: 14, fontWeight: 700, padding: '12px 24px', textDecoration: 'none' }}>
-            Contacter {o.contact}
+        {o.type === 'code' && (
+          <div style={{
+            background: T.borderSoft, borderRadius: 14, padding: '18px',
+            border: `1.5px dashed ${T.primary}`, textAlign: 'center', marginBottom: 12,
+          }}>
+            <div style={{ fontSize: 11, color: T.muted, marginBottom: 8, textTransform: 'uppercase', letterSpacing: '0.06em', fontWeight: 600 }}>Code parrainage</div>
+            <div style={{
+              fontSize: 30, fontWeight: 800, color: T.primary, letterSpacing: '0.12em',
+              fontFamily: 'monospace', marginBottom: 12,
+            }}>{o.code}</div>
+            <button onClick={() => copier(o.code)} className="action-btn" style={{
+              background: copied ? T.successLight : T.primary,
+              border: 'none', borderRadius: 99,
+              color: copied ? T.success : '#fff',
+              fontSize: 13, fontWeight: 700, padding: '9px 22px', cursor: 'pointer',
+            }}>
+              {copied ? '✓ Copié !' : 'Copier le code'}
+            </button>
+          </div>
+        )}
+
+        {o.type === 'lien' && o.lien !== '#' && (
+          <a href={o.lien} target="_blank" rel="noreferrer" className="action-btn" style={{
+            display: 'block', textAlign: 'center',
+            background: `linear-gradient(135deg, ${T.primary}, ${T.primaryDark})`,
+            borderRadius: 14, color: '#fff',
+            fontSize: 15, fontWeight: 700, padding: '15px', textDecoration: 'none',
+            boxShadow: `0 4px 20px ${T.primary}40`,
+          }}>
+            S'inscrire avec mon lien <span style={{ marginLeft: 8 }}>→</span>
           </a>
-        </div>
+        )}
+
+        {o.type === 'contact' && (
+          <div style={{ background: T.borderSoft, borderRadius: 14, padding: '16px', border: `1px solid ${T.border}`, textAlign: 'center' }}>
+            <p style={{ fontSize: 13, color: T.slate, marginBottom: 14, lineHeight: 1.5 }}>{o.note}</p>
+            <a
+              href={`https://instagram.com/${o.contact.replace('@', '')}`}
+              target="_blank" rel="noreferrer" className="action-btn"
+              style={{
+                display: 'inline-block',
+                background: 'linear-gradient(135deg, #833AB4, #FD1D1D)',
+                borderRadius: 12, color: '#fff',
+                fontSize: 14, fontWeight: 700, padding: '12px 24px', textDecoration: 'none',
+              }}>
+              Contacter {o.contact}
+            </a>
+          </div>
+        )}
+
         <ShareButton offre={o} />
       </div>
     </Card>
@@ -357,20 +546,41 @@ return (
 <div style={{ maxWidth: 480, margin: '0 auto', padding: '16px' }}>
 <div style={{ overflowX: 'auto', display: 'flex', gap: 8, paddingBottom: 4, marginBottom: 20, scrollbarWidth: 'none' }}>
 {CATEGORIES.map(cat => (
-<button key={cat} onClick={() => setFiltre(cat)} className="pill-btn" style={{ background: filtre === cat ? T.primary : T.surface, border: `1.5px solid ${filtre === cat ? T.primary : T.border}`, borderRadius: 99, color: filtre === cat ? '#fff' : T.muted, fontSize: 12, fontWeight: 700, padding: '7px 16px', cursor: 'pointer', whiteSpace: 'nowrap' }}>{cat}</button>
+<button key={cat} onClick={() => setFiltre(cat)} className="pill-btn" style={{
+background: filtre === cat ? T.primary : T.surface,
+border: `1.5px solid ${filtre === cat ? T.primary : T.border}`,
+borderRadius: 99, color: filtre === cat ? '#fff' : T.muted,
+fontSize: 12, fontWeight: 700, padding: '7px 16px',
+cursor: 'pointer', whiteSpace: 'nowrap',
+boxShadow: filtre === cat ? `0 2px 12px ${T.primary}30` : 'none',
+}}>{cat}</button>
 ))}
 </div>
-<div className="card-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-{filtrees.map(o => (
-<button key={o.id} onClick={() => setSelected(o)} className="offer-btn fade-up" style={{ background: T.surface, border: `1px solid ${T.border}`, borderRadius: T.radius, padding: '16px 14px', cursor: 'pointer', textAlign: 'left', position: 'relative', overflow: 'hidden' }}>
-<div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: o.couleur }} />
-<div style={{ width: 44, height: 44, borderRadius: 12, background: o.couleurLight, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22, marginBottom: 10 }}>{o.emoji}</div>
-<div style={{ fontSize: 10, color: T.faint, textTransform: 'uppercase', fontWeight: 600 }}>{o.categorie}</div>
-<div style={{ fontSize: 15, fontWeight: 800, color: T.navy, marginBottom: 6, fontFamily: "'Sora', sans-serif" }}>{o.nom}</div>
-<div style={{ display: 'inline-block', background: o.couleurLight, color: o.couleur, borderRadius: 99, padding: '3px 10px', fontSize: 13, fontWeight: 800 }}>{o.bonus}</div>
-</button>
-))}
-</div>
+
+  <div className="card-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+    {filtrees.map(o => (
+      <button key={o.id} onClick={() => setSelected(o)} className="offer-btn fade-up" style={{
+        background: T.surface, border: `1px solid ${T.border}`,
+        borderRadius: T.radius, padding: '16px 14px', cursor: 'pointer', textAlign: 'left',
+        boxShadow: T.shadow, position: 'relative', overflow: 'hidden',
+      }}>
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: o.couleur, borderRadius: '16px 16px 0 0' }} />
+        <div style={{
+          width: 44, height: 44, borderRadius: 12,
+          background: o.couleurLight, border: `1.5px solid ${o.couleur}40`,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: 22, marginBottom: 10, marginTop: 4,
+        }}>{o.emoji}</div>
+        <div style={{ fontSize: 10, color: T.faint, textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 3, fontWeight: 600 }}>{o.categorie}</div>
+        <div style={{ fontSize: 15, fontWeight: 800, color: T.navy, marginBottom: 6, fontFamily: "'Sora', sans-serif" }}>{o.nom}</div>
+        <div style={{
+          display: 'inline-block', background: o.couleurLight,
+          color: o.couleur, borderRadius: 99, padding: '3px 10px',
+          fontSize: 13, fontWeight: 800,
+        }}>{o.bonus}</div>
+      </button>
+    ))}
+  </div>
 </div>
 );
 }
@@ -387,13 +597,13 @@ return (
 }
 
 const NAV_ITEMS = [
-{ id: 'parrainage', label: 'Flotte', emoji: '🚗' },
-{ id: 'avis',       label: 'Avis',   emoji: '⭐' },
+{ id: 'parrainage', label: 'Parrainages', emoji: '🎁' },
+{ id: 'avis',       label: 'Avis',        emoji: '⭐' },
 ];
 
-// ─── APP ROOT (PRÉSERVÉ) ─────────────────────────────────────
 export default function App() {
 const [onglet, setOnglet] = useState('parrainage');
+
 useEffect(() => {
 const tag = document.createElement('style');
 tag.textContent = GLOBAL_CSS;
@@ -417,14 +627,24 @@ return (
       marginBottom: 8,
     }}>
       <div style={{ width: 6, height: 6, borderRadius: '50%', background: T.primary, animation: 'pulse 2s infinite' }} />
-      <span style={{ fontSize: 10, fontWeight: 700, color: T.primary, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Agence Premium</span>
+      <span style={{ fontSize: 10, fontWeight: 700, color: T.primary, letterSpacing: '0.15em', textTransform: 'uppercase' }}>Hub Financier</span>
     </div>
-    <h1 style={{ fontSize: 24, fontWeight: 800, color: T.navy, fontFamily: "'Sora', sans-serif" }}>4P RENTALS</h1>
-    <p style={{ color: T.muted, fontSize: 12 }}>Location de véhicules d'exception</p>
+    <h1 style={{
+      fontSize: 24, fontWeight: 800, color: T.navy,
+      fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em',
+    }}>
+      Parrain 4P
+    </h1>
+    <p style={{ color: T.muted, fontSize: 12, marginTop: 3, fontWeight: 500 }}>
+      Parrainages · Bons Plans Exclusifs
+    </p>
   </header>
+
   <main>
-    {onglet === 'parrainage' ? <PageParrainage /> : <PageAvis />}
+    {onglet === 'parrainage' && <PageParrainage />}
+    {onglet === 'avis'       && <PageAvis />}
   </main>
+
   <nav style={{
     position: 'fixed', bottom: 0, left: 0, right: 0,
     background: 'rgba(255,255,255,0.95)',
@@ -437,13 +657,24 @@ return (
     {NAV_ITEMS.map(item => {
       const active = onglet === item.id;
       return (
-        <button key={item.id} onClick={() => setOnglet(item.id)} className="nav-btn" style={{
+        <button
+          key={item.id}
+          onClick={() => setOnglet(item.id)}
+          className="nav-btn"
+          style={{
             flex: 1, background: active ? T.primaryLight : 'transparent',
-            border: 'none', borderRadius: 12, padding: '10px 4px 8px',
-            cursor: 'pointer', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
+            border: 'none', borderRadius: 12,
+            padding: '10px 4px 8px',
+            cursor: 'pointer',
+            display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4,
           }}>
           <span style={{ fontSize: 20 }}>{item.emoji}</span>
-          <span style={{ fontSize: 10, fontWeight: 700, color: active ? T.primary : T.muted }}>{item.label}</span>
+          <span style={{
+            fontSize: 10, fontWeight: 700,
+            color: active ? T.primary : T.muted,
+            letterSpacing: '0.04em',
+            textTransform: 'uppercase',
+          }}>{item.label}</span>
         </button>
       );
     })}
@@ -453,4 +684,7 @@ return (
 }
 
 const container = document.getElementById('root');
-if (container) { const root = createRoot(container); root.render(<App />); }
+if (container) {
+const root = createRoot(container);
+root.render(<App />);
+}
