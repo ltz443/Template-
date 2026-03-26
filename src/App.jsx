@@ -363,23 +363,50 @@ const NAV_ITEMS = [
 ];
 
 export default function App() {
-const [onglet, setOnglet] = useState('parrainage');
+  const [onglet, setOnglet] = useState('parrainage');
 
-useEffect(() => {
-const tag = document.createElement('style');
-tag.textContent = GLOBAL_CSS;
-document.head.appendChild(tag);
-return () => document.head.removeChild(tag);
-}, []);
+  return (
+    <>
+      <GlobalStyles />
+      <div style={{ maxWidth: 1100, margin: '18px auto', padding: '0 12px' }}>
+        {/* NAV */}
+        <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 18 }}>
+          <div style={{ display: 'flex', gap: 8, background: T.surface, padding: 8, borderRadius: 99, border: `1px solid ${T.border}` }}>
+            {NAV_ITEMS.map(item => (
+              <button
+                key={item.id}
+                onClick={() => setOnglet(item.id)}
+                className="nav-btn"
+                style={{
+                  background: onglet === item.id ? T.primary : 'transparent',
+                  color: onglet === item.id ? '#fff' : T.navy,
+                  border: 'none',
+                  padding: '8px 14px',
+                  borderRadius: 99,
+                  fontWeight: 700,
+                  cursor: 'pointer'
+                }}
+              >
+                {item.emoji} {item.label}
+              </button>
+            ))}
+          </div>
+        </div>
 
-return (
-  <>
-    <GlobalStyles />
-    <div style={{ maxWidth: 1100, margin: '18px auto', padding: '0 12px' }}>
-      {/* le reste de ton UI */}
-    </div>
-  </>
-);
+        {/* CONTENT */}
+        <div style={{ minHeight: 520 }}>
+          {onglet === 'parrainage' && <PageParrainage />}
+          {onglet === 'avis' && <PageAvis />}
+        </div>
+
+        {/* FOOTER / NOTE */}
+        <div style={{ textAlign: 'center', marginTop: 28, color: T.muted, fontSize: 13 }}>
+          © 4P RENTALS — Design by Parain 4P
+        </div>
+      </div>
+    </>
+  );
+}
 
   {/* ─── HEADER PREMIUM ─────────────────────────────────── */}
   <header style={{
