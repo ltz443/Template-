@@ -4,7 +4,7 @@ export const OFFRES = [
     nom: 'Golf 8R',
     categorie: 'Sportive',
     // Photo détourée (Lien postimg direct)
-    image: "https://i.postimg.cc/CLc6M242/IMG-2841.png",
+    image: "https://i.postimg.cc/tRtMwJZf/IMG-2840.jpg",
     // Photo de nuit (Lien postimg direct)
     imageFond: "https://i.postimg.cc/tRtMwJZf/IMG-2840.jpg",
     couleur: '#111827',
