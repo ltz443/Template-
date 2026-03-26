@@ -96,15 +96,14 @@ const OFFRES = [
     emoji: '🏎️',
     couleur: '#111827',
     couleurLight: '#F3F4F6',
-    bonus: '150€/j',
-    bonusFilleul: '2000€',
-    bonusParrain: '320 CH',
+    prix: '150€/j',
+    puissance: '320 CH',
     description: "La polyvalence par excellence. Un look sobre, une puissance redoutable et quatre roues motrices pour une sécurité totale.",
     conditions: [
       "Âge minimum : 21 ans",
       "Permis de conduire (2 ans min)",
       "Dépôt de garantie par CB",
-      "Justificatif de domicile -3 mois"
+      "Pièce d'identité + Permis"
     ],
     type: 'contact',
     contact: '@parrain_4p',
@@ -119,13 +118,12 @@ const OFFRES = [
     emoji: '🏁',
     couleur: '#7C3AED',
     couleurLight: '#EDE9FE',
-    bonus: '250€/j',
-    bonusFilleul: '3500€',
-    bonusParrain: '421 CH',
+    prix: '250€/j',
+    Puissance: '421 CH',
     description: "Le 4 cylindres le plus puissant du monde. Une expérience sonore et dynamique incomparable pour vos week-ends.",
     conditions: [
-      "Âge minimum : 25 ans",
-      "Permis de conduire (3 ans min)",
+      "Âge minimum : 21 ans",
+      "Permis de conduire (2 ans min)",
       "Dépôt de garantie par CB",
       "Pièce d'identité + Permis"
     ],
@@ -142,15 +140,14 @@ const OFFRES = [
     emoji: '🟢',
     couleur: '#059669',
     couleurLight: '#D1FAE5',
-    bonus: '280€/j',
-    bonusFilleul: '4000€',
-    bonusParrain: '400 CH',
+    prix: '280€/j',
+    puissance: '400 CH',
     description: "Le mythique moteur 5 cylindres Audi. Un son unique et des performances de supercar dans un format compact.",
     conditions: [
-      "Âge minimum : 25 ans",
-      "Permis de conduire (3 ans min)",
+      "Âge minimum : 21 ans",
+      "Permis de conduire (2 ans min)",
       "Dépôt de garantie par CB",
-      "Relevé d'information assurance"
+      "Pièce d'identité + Permis"
     ],
     type: 'contact',
     contact: '@parrain_4p',
@@ -165,15 +162,13 @@ const OFFRES = [
     emoji: '💎',
     couleur: '#D97706',
     couleurLight: '#FEF3C7',
-    bonus: '320€/j',
-    bonusFilleul: '4500€',
-    bonusParrain: '380 CH',
+    prix: '320€/j',
+    puissance: '380 CH',
     description: "Le SUV le plus sportif de sa catégorie. Confort absolu pour la route et prestige de la marque Porsche.",
     conditions: [
-      "Âge minimum : 28 ans",
-      "Permis de conduire (5 ans min)",
+      "Âge minimum : 21 ans",
       "Dépôt de garantie par CB",
-      "Deux justificatifs de domicile"
+      "Pièce d'identité + Permis"
     ],
     type: 'contact',
     contact: '@parrain_4p',
@@ -188,15 +183,13 @@ const OFFRES = [
     emoji: 'Ⓜ️',
     couleur: '#2563EB',
     couleurLight: '#DBEAFE',
-    bonus: '450€/j',
-    bonusFilleul: '6000€',
-    bonusParrain: '510 CH',
+    prix: '450€/j',
+    puissance: '510 CH',
     description: "La bête de circuit homologuée pour la route. Propulsion, carbone et une accélération brutale.",
     conditions: [
-      "Âge minimum : 30 ans",
-      "Permis de conduire (7 ans min)",
+      "Âge minimum : 21 ans",
       "Dépôt de garantie par CB",
-      "Dossier complet obligatoire"
+      "Pièce d'identité + Permis"
     ],
     type: 'contact',
     contact: '@parrain_4p',
@@ -211,13 +204,11 @@ const OFFRES = [
     emoji: '⚡',
     couleur: '#0891B2',
     couleurLight: '#CFFAFE',
-    bonus: '80€/j',
-    bonusFilleul: '800€',
-    bonusParrain: '118 CH',
+    prix: '80€/j',
+    puissance: '118 CH',
     description: "La citadine électrique chic et silencieuse. Parfaite pour se garer partout et circuler en centre-ville sans contrainte.",
     conditions: [
       "Âge minimum : 18 ans",
-      "Permis de conduire (A ou B)",
       "Dépôt de garantie par CB",
       "Badge de recharge inclus"
     ],
