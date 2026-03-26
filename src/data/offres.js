@@ -1,4 +1,3 @@
-
 // src/data/offres.js
 export const OFFRES = [
   {
