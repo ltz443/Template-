@@ -1,12 +1,12 @@
 // ═══════════════════════════════════════════════════════════════
-//  PARRAIN 4P — Redesign "Luxury Fintech Light"
+//  PARRAIN 4P — Redesign “Luxury Fintech Light”
 //  Palette   : Crème #F7F5F0 · Navy #111827 · Violet #7C3AED · Ambre #F59E0B
 //  Typo      : Sora (titres) + Plus Jakarta Sans (corps)
 //  Style     : Cartes blanches, ombres douces, pill-nav flottante
 // ═══════════════════════════════════════════════════════════════
 
-import React, { useState, useEffect } from 'react';
-import { createRoot } from 'react-dom/client';
+import React, { useState, useEffect } from ‘react’;
+import { createRoot } from ‘react-dom/client’;
 
 // ─── INJECT GOOGLE FONTS ──────────────────────────────────────
 const FONT_LINK = `@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');`;
@@ -19,14 +19,14 @@ html { -webkit-tap-highlight-color: transparent; }
 body {
 background: #F7F5F0;
 color: #111827;
-font-family: 'Plus Jakarta Sans', sans-serif;
+font-family: ‘Plus Jakarta Sans’, sans-serif;
 -webkit-font-smoothing: antialiased;
 }
 ::-webkit-scrollbar { width: 4px; height: 4px; }
 ::-webkit-scrollbar-track { background: #F7F5F0; }
 ::-webkit-scrollbar-thumb { background: #D1D5DB; border-radius: 99px; }
-button { font-family: 'Plus Jakarta Sans', sans-serif; }
-input, select { font-family: 'Plus Jakarta Sans', sans-serif; }
+button { font-family: ‘Plus Jakarta Sans’, sans-serif; }
+input, select { font-family: ‘Plus Jakarta Sans’, sans-serif; }
 
 @keyframes fadeUp {
 from { opacity: 0; transform: translateY(16px); }
@@ -74,163 +74,163 @@ to   { opacity: 1; transform: scale(1); }
 
 // ─── DESIGN TOKENS ───────────────────────────────────────────
 const T = {
-bg:           '#F7F5F0',
-surface:      '#FFFFFF',
-border:       '#E5E7EB',
-borderSoft:   '#F3F4F6',
-primary:      '#7C3AED',
-primaryLight: '#EDE9FE',
-primaryDark:  '#5B21B6',
-accent:       '#F59E0B',
-accentLight:  '#FEF3C7',
-navy:         '#111827',
-slate:        '#374151',
-muted:        '#6B7280',
-faint:        '#9CA3AF',
-success:      '#059669',
-successLight: '#D1FAE5',
-warn:         '#D97706',
-shadow:       '0 2px 12px rgba(0,0,0,0.06)',
-radius:       '16px',
-radiusSm:     '10px',
+bg:           ‘#F7F5F0’,
+surface:      ‘#FFFFFF’,
+border:       ‘#E5E7EB’,
+borderSoft:   ‘#F3F4F6’,
+primary:      ‘#7C3AED’,
+primaryLight: ‘#EDE9FE’,
+primaryDark:  ‘#5B21B6’,
+accent:       ‘#F59E0B’,
+accentLight:  ‘#FEF3C7’,
+navy:         ‘#111827’,
+slate:        ‘#374151’,
+muted:        ‘#6B7280’,
+faint:        ‘#9CA3AF’,
+success:      ‘#059669’,
+successLight: ‘#D1FAE5’,
+warn:         ‘#D97706’,
+shadow:       ‘0 2px 12px rgba(0,0,0,0.06)’,
+radius:       ‘16px’,
+radiusSm:     ‘10px’,
 };
 
 // ─── DONNÉES PARRAINAGE ──────────────────────────────────────
 const OFFRES = [
-  {
-    id: 'golf-8r',
-    nom: 'Golf 8R (320ch)',
-    categorie: 'Sportive',
-    emoji: '🏎️',
-    couleur: '#111827',
-    couleurLight: '#F3F4F6',
-    prix: '150€/j',
-    puissance: '320 CH',
-    description: "La polyvalence par excellence. Un look sobre, une puissance redoutable et quatre roues motrices pour une sécurité totale.",
-    conditions: [
-      "Âge minimum : 21 ans",
-      "Permis de conduire (2 ans min)",
-      "Dépôt de garantie par CB",
-      "Pièce d'identité + Permis"
-    ],
-    type: 'contact',
-    contact: '@parrain_4p',
-    note: 'Réservez via Instagram pour une réponse en moins de 2h.',
-    shareText: 'Loue la Golf 8R chez 4P RENTALS !',
-    shareUrl: 'https://4p-rentals.vercel.app'
-  },
-  {
-    id: 'a45s',
-    nom: 'Mercedes A45 S',
-    categorie: 'Luxe',
-    emoji: '🏁',
-    couleur: '#7C3AED',
-    couleurLight: '#EDE9FE',
-    prix: '250€/j',
-    puissance: '421 CH',
-    description: "Le 4 cylindres le plus puissant du monde. Une expérience sonore et dynamique incomparable pour vos week-ends.",
-    conditions: [
-      "Âge minimum : 21 ans",
-      "Permis de conduire (2 ans min)",
-      "Dépôt de garantie par CB",
-      "Pièce d'identité + Permis"
-    ],
-    type: 'contact',
-    contact: '@parrain_4p',
-    note: 'Vérifiez la disponibilité pour le week-end dès le lundi.',
-    shareText: 'Mercedes A45 S AMG disponible chez 4P RENTALS !',
-    shareUrl: 'https://4p-rentals.vercel.app'
-  },
-  {
-    id: 'rs3-sportback',
-    nom: 'Audi RS3',
-    categorie: 'Sportive',
-    emoji: '🟢',
-    couleur: '#059669',
-    couleurLight: '#D1FAE5',
-    prix: '280€/j',
-    puissance: '400 CH',
-    description: "Le mythique moteur 5 cylindres Audi. Un son unique et des performances de supercar dans un format compact.",
-    conditions: [
-      "Âge minimum : 21 ans",
-      "Permis de conduire (2 ans min)",
-      "Dépôt de garantie par CB",
-      "Pièce d'identité + Permis"
-    ],
-    type: 'contact',
-    contact: '@parrain_4p',
-    note: 'Disponible en vert Kyalami pour vos événements.',
-    shareText: 'Audi RS3 disponible chez 4P RENTALS !',
-    shareUrl: 'https://4p-rentals.vercel.app'
-  },
-  {
-    id: 'porsche-macan',
-    nom: 'Porsche Macan S',
-    categorie: 'SUV',
-    emoji: '💎',
-    couleur: '#D97706',
-    couleurLight: '#FEF3C7',
-    prix: '320€/j',
-    puissance: '380 CH',
-    description: "Le SUV le plus sportif de sa catégorie. Confort absolu pour la route et prestige de la marque Porsche.",
-    conditions: [
-      "Âge minimum : 21 ans",
-      "Dépôt de garantie par CB",
-      "Pièce d'identité + Permis"
-    ],
-    type: 'contact',
-    contact: '@parrain_4p',
-    note: 'Idéal pour les longs trajets et les mariages.',
-    shareText: 'Porsche Macan S disponible chez 4P RENTALS !',
-    shareUrl: 'https://4p-rentals.vercel.app'
-  },
-  {
-    id: 'bmw-m4',
-    nom: 'BMW M4 Competition',
-    categorie: 'Luxe',
-    emoji: 'Ⓜ️',
-    couleur: '#2563EB',
-    couleurLight: '#DBEAFE',
-    prix: '450€/j',
-    puissance: '510 CH',
-    description: "La bête de circuit homologuée pour la route. Propulsion, carbone et une accélération brutale.",
-    conditions: [
-      "Âge minimum : 21 ans",
-      "Dépôt de garantie par CB",
-      "Pièce d'identité + Permis"
-    ],
-    type: 'contact',
-    contact: '@parrain_4p',
-    note: 'Véhicule sous haute surveillance, usage circuit interdit.',
-    shareText: 'BMW M4 Competition chez 4P RENTALS !',
-    shareUrl: 'https://4p-rentals.vercel.app'
-  },
-  {
-    id: 'fiat-500e',
-    nom: 'Fiat 500e',
-    categorie: 'Citadine',
-    emoji: '⚡',
-    couleur: '#0891B2',
-    couleurLight: '#CFFAFE',
-    prix: '80€/j',
-    puissance: '118 CH',
-    description: "La citadine électrique chic et silencieuse. Parfaite pour se garer partout et circuler en centre-ville sans contrainte.",
-    conditions: [
-      "Âge minimum : 18 ans",
-      "Dépôt de garantie par CB",
-      "Badge de recharge inclus"
-    ],
-    type: 'contact',
-    contact: '@parrain_4p',
-    note: 'Idéale pour les jeunes conducteurs.',
-    shareText: 'Fiat 500e électrique chez 4P RENTALS !',
-    shareUrl: 'https://4p-rentals.vercel.app'
-  }
+{
+id: ‘golf-8r’,
+nom: ‘Golf 8R (320ch)’,
+categorie: ‘Sportive’,
+emoji: ‘🏎️’,
+couleur: ‘#111827’,
+couleurLight: ‘#F3F4F6’,
+prix: ‘150€/j’,
+puissance: ‘320 CH’,
+description: “La polyvalence par excellence. Un look sobre, une puissance redoutable et quatre roues motrices pour une sécurité totale.”,
+conditions: [
+“Âge minimum : 21 ans”,
+“Permis de conduire (2 ans min)”,
+“Dépôt de garantie par CB”,
+“Pièce d’identité + Permis”
+],
+type: ‘contact’,
+contact: ‘@parrain_4p’,
+note: ‘Réservez via Instagram pour une réponse en moins de 2h.’,
+shareText: ‘Loue la Golf 8R chez 4P RENTALS !’,
+shareUrl: ‘https://4p-rentals.vercel.app’
+},
+{
+id: ‘a45s’,
+nom: ‘Mercedes A45 S’,
+categorie: ‘Luxe’,
+emoji: ‘🏁’,
+couleur: ‘#7C3AED’,
+couleurLight: ‘#EDE9FE’,
+prix: ‘250€/j’,
+puissance: ‘421 CH’,
+description: “Le 4 cylindres le plus puissant du monde. Une expérience sonore et dynamique incomparable pour vos week-ends.”,
+conditions: [
+“Âge minimum : 21 ans”,
+“Permis de conduire (2 ans min)”,
+“Dépôt de garantie par CB”,
+“Pièce d’identité + Permis”
+],
+type: ‘contact’,
+contact: ‘@parrain_4p’,
+note: ‘Vérifiez la disponibilité pour le week-end dès le lundi.’,
+shareText: ‘Mercedes A45 S AMG disponible chez 4P RENTALS !’,
+shareUrl: ‘https://4p-rentals.vercel.app’
+},
+{
+id: ‘rs3-sportback’,
+nom: ‘Audi RS3’,
+categorie: ‘Sportive’,
+emoji: ‘🟢’,
+couleur: ‘#059669’,
+couleurLight: ‘#D1FAE5’,
+prix: ‘280€/j’,
+puissance: ‘400 CH’,
+description: “Le mythique moteur 5 cylindres Audi. Un son unique et des performances de supercar dans un format compact.”,
+conditions: [
+“Âge minimum : 21 ans”,
+“Permis de conduire (2 ans min)”,
+“Dépôt de garantie par CB”,
+“Pièce d’identité + Permis”
+],
+type: ‘contact’,
+contact: ‘@parrain_4p’,
+note: ‘Disponible en vert Kyalami pour vos événements.’,
+shareText: ‘Audi RS3 disponible chez 4P RENTALS !’,
+shareUrl: ‘https://4p-rentals.vercel.app’
+},
+{
+id: ‘porsche-macan’,
+nom: ‘Porsche Macan S’,
+categorie: ‘SUV’,
+emoji: ‘💎’,
+couleur: ‘#D97706’,
+couleurLight: ‘#FEF3C7’,
+prix: ‘320€/j’,
+puissance: ‘380 CH’,
+description: “Le SUV le plus sportif de sa catégorie. Confort absolu pour la route et prestige de la marque Porsche.”,
+conditions: [
+“Âge minimum : 21 ans”,
+“Dépôt de garantie par CB”,
+“Pièce d’identité + Permis”
+],
+type: ‘contact’,
+contact: ‘@parrain_4p’,
+note: ‘Idéal pour les longs trajets et les mariages.’,
+shareText: ‘Porsche Macan S disponible chez 4P RENTALS !’,
+shareUrl: ‘https://4p-rentals.vercel.app’
+},
+{
+id: ‘bmw-m4’,
+nom: ‘BMW M4 Competition’,
+categorie: ‘Luxe’,
+emoji: ‘Ⓜ️’,
+couleur: ‘#2563EB’,
+couleurLight: ‘#DBEAFE’,
+prix: ‘450€/j’,
+puissance: ‘510 CH’,
+description: “La bête de circuit homologuée pour la route. Propulsion, carbone et une accélération brutale.”,
+conditions: [
+“Âge minimum : 21 ans”,
+“Dépôt de garantie par CB”,
+“Pièce d’identité + Permis”
+],
+type: ‘contact’,
+contact: ‘@parrain_4p’,
+note: ‘Véhicule sous haute surveillance, usage circuit interdit.’,
+shareText: ‘BMW M4 Competition chez 4P RENTALS !’,
+shareUrl: ‘https://4p-rentals.vercel.app’
+},
+{
+id: ‘fiat-500e’,
+nom: ‘Fiat 500e’,
+categorie: ‘Citadine’,
+emoji: ‘⚡’,
+couleur: ‘#0891B2’,
+couleurLight: ‘#CFFAFE’,
+prix: ‘80€/j’,
+puissance: ‘118 CH’,
+description: “La citadine électrique chic et silencieuse. Parfaite pour se garer partout et circuler en centre-ville sans contrainte.”,
+conditions: [
+“Âge minimum : 18 ans”,
+“Dépôt de garantie par CB”,
+“Badge de recharge inclus”
+],
+type: ‘contact’,
+contact: ‘@parrain_4p’,
+note: ‘Idéale pour les jeunes conducteurs.’,
+shareText: ‘Fiat 500e électrique chez 4P RENTALS !’,
+shareUrl: ‘https://4p-rentals.vercel.app’
+}
 ];
 
-const CATEGORIES = ['Tout', 'Sportive', 'Luxe', 'SUV', 'Citadine'];
-// ─── UI ATOMS ────────────────────────────────────────────────
+const CATEGORIES = [‘Tout’, ‘Sportive’, ‘Luxe’, ‘SUV’, ‘Citadine’];
 
+// ─── UI ATOMS ────────────────────────────────────────────────
 function Card({ children, style, className }) {
 return (
 <div className={className} style={{
@@ -238,7 +238,7 @@ background: T.surface,
 borderRadius: T.radius,
 border: `1px solid ${T.border}`,
 boxShadow: T.shadow,
-...style,
+…style,
 }}>
 {children}
 </div>
@@ -248,11 +248,11 @@ boxShadow: T.shadow,
 function CategoryBadge({ label, color }) {
 return (
 <span style={{
-display: 'inline-flex', alignItems: 'center', gap: 5,
+display: ‘inline-flex’, alignItems: ‘center’, gap: 5,
 background: T.borderSoft, borderRadius: 99,
-padding: '3px 10px', fontSize: 11, fontWeight: 600, color: T.muted,
+padding: ‘3px 10px’, fontSize: 11, fontWeight: 600, color: T.muted,
 }}>
-<span style={{ width: 6, height: 6, borderRadius: '50%', background: color || T.primary, flexShrink: 0 }} />
+<span style={{ width: 6, height: 6, borderRadius: ‘50%’, background: color || T.primary, flexShrink: 0 }} />
 {label}
 </span>
 );
@@ -260,14 +260,14 @@ padding: '3px 10px', fontSize: 11, fontWeight: 600, color: T.muted,
 
 // ─── CHECKLIST ───────────────────────────────────────────────
 function Checklist({ offreId, conditions }) {
-const storageKey = 'checklist_v2_' + offreId;
+const storageKey = ‘checklist_v2_’ + offreId;
 const [checked, setChecked] = useState(() => {
 try { const s = localStorage.getItem(storageKey); return s ? JSON.parse(s) : {}; }
 catch { return {}; }
 });
 
 const toggle = (i) => {
-const next = { ...checked, [i]: !checked[i] };
+const next = { …checked, [i]: !checked[i] };
 setChecked(next);
 try { localStorage.setItem(storageKey, JSON.stringify(next)); } catch {}
 };
@@ -278,17 +278,18 @@ const pctDone = (done / total) * 100;
 
 return (
 <div style={{ marginBottom: 20 }}>
-<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-<span style={{ fontSize: 12, fontWeight: 700, color: T.slate, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+<div style={{ display: ‘flex’, justifyContent: ‘space-between’, alignItems: ‘center’, marginBottom: 10 }}>
+<span style={{ fontSize: 12, fontWeight: 700, color: T.slate, textTransform: ‘uppercase’, letterSpacing: ‘0.04em’ }}>
 Étapes à compléter
 </span>
 <span style={{
-fontSize: 12, fontWeight: 700, padding: '2px 10px', borderRadius: 99,
+fontSize: 12, fontWeight: 700, padding: ‘2px 10px’, borderRadius: 99,
 background: done === total ? T.successLight : T.borderSoft,
 color: done === total ? T.success : T.muted,
 }}>{done}/{total}</span>
 </div>
 
+```
   <div style={{ background: T.borderSoft, borderRadius: 99, height: 6, marginBottom: 16, overflow: 'hidden' }}>
     <div style={{
       background: `linear-gradient(90deg, ${T.primary}, ${T.accent})`,
@@ -336,6 +337,8 @@ color: done === total ? T.success : T.muted,
     </div>
   )}
 </div>
+```
+
 );
 }
 
@@ -345,7 +348,7 @@ const [shared, setShared] = useState(false);
 
 const handleShare = async () => {
 if (navigator.share) {
-try { await navigator.share({ title: `${offre.nom} - ${offre.bonus}`, text: offre.shareText, url: offre.shareUrl }); }
+try { await navigator.share({ title: `${offre.nom}`, text: offre.shareText, url: offre.shareUrl }); }
 catch {}
 } else {
 try {
@@ -357,30 +360,30 @@ setTimeout(() => setShared(false), 2000);
 };
 
 return (
-<button onClick={handleShare} className="action-btn" style={{
-width: '100%', background: T.borderSoft,
+<button onClick={handleShare} className=“action-btn” style={{
+width: ‘100%’, background: T.borderSoft,
 border: `1.5px solid ${T.border}`, borderRadius: 12,
 color: T.slate, fontSize: 14, fontWeight: 600,
-padding: '13px', cursor: 'pointer',
-display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
+padding: ‘13px’, cursor: ‘pointer’,
+display: ‘flex’, alignItems: ‘center’, justifyContent: ‘center’, gap: 8,
 marginTop: 10,
 }}>
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
 <circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/>
 <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/>
 </svg>
-{shared ? 'Lien copié !' : 'Partager cette offre'}
+{shared ? ‘Lien copié !’ : ‘Partager cette offre’}
 </button>
 );
 }
 
 // ─── PAGE PARRAINAGE ─────────────────────────────────────────
 function PageParrainage() {
-const [filtre, setFiltre]     = useState('Tout');
+const [filtre, setFiltre]     = useState(‘Tout’);
 const [selected, setSelected] = useState(null);
 const [copied, setCopied]     = useState(false);
 
-const filtrees = filtre === 'Tout' ? OFFRES : OFFRES.filter(o => o.categorie === filtre);
+const filtrees = filtre === ‘Tout’ ? OFFRES : OFFRES.filter(o => o.categorie === filtre);
 
 const copier = (texte) => {
 navigator.clipboard.writeText(texte).then(() => {
@@ -392,11 +395,11 @@ setTimeout(() => setCopied(false), 2500);
 if (selected) {
 const o = selected;
 return (
-<div style={{ maxWidth: 480, margin: '0 auto', padding: '16px' }} className="fade-up">
+<div style={{ maxWidth: 480, margin: ‘0 auto’, padding: ‘16px’ }} className=“fade-up”>
 <button onClick={() => setSelected(null)} style={{
-background: 'none', border: 'none', color: T.primary, fontSize: 14,
-fontWeight: 600, cursor: 'pointer', marginBottom: 16,
-display: 'flex', alignItems: 'center', gap: 6, padding: '4px 0',
+background: ‘none’, border: ‘none’, color: T.primary, fontSize: 14,
+fontWeight: 600, cursor: ‘pointer’, marginBottom: 16,
+display: ‘flex’, alignItems: ‘center’, gap: 6, padding: ‘4px 0’,
 }}>
 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
 <path d="M19 12H5M12 5l-7 7 7 7"/>
@@ -404,6 +407,7 @@ display: 'flex', alignItems: 'center', gap: 6, padding: '4px 0',
 Retour aux offres
 </button>
 
+```
     <Card style={{ marginBottom: 16, overflow: 'hidden' }}>
       <div style={{
         background: `linear-gradient(135deg, ${o.couleur}18, ${o.couleur}08)`,
@@ -429,15 +433,15 @@ Retour aux offres
       </div>
       <div style={{ padding: '16px 20px 0' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 20 }}>
-  <div style={{ background: T.primaryLight, borderRadius: 12, padding: '14px', textAlign: 'center' }}>
-    <div style={{ fontSize: 10, color: T.primary, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.08em' }}>Prix</div>
-    <div style={{ fontSize: 20, fontWeight: 800, color: T.primary, fontFamily: "'Sora', sans-serif" }}>{o.prix ?? '—'}</div>
-  </div>
-  <div style={{ background: T.accentLight, borderRadius: 12, padding: '14px', textAlign: 'center' }}>
-    <div style={{ fontSize: 10, color: T.warn, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.08em' }}>Puissance</div>
-    <div style={{ fontSize: 20, fontWeight: 800, color: T.warn, fontFamily: "'Sora', sans-serif" }}>{o.puissance ?? '—'}</div>
-  </div>
-</div>
+          <div style={{ background: T.primaryLight, borderRadius: 12, padding: '14px', textAlign: 'center' }}>
+            <div style={{ fontSize: 10, color: T.primary, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.08em' }}>Prix</div>
+            <div style={{ fontSize: 20, fontWeight: 800, color: T.primary, fontFamily: "'Sora', sans-serif" }}>{o.prix ?? '—'}</div>
+          </div>
+          <div style={{ background: T.accentLight, borderRadius: 12, padding: '14px', textAlign: 'center' }}>
+            <div style={{ fontSize: 10, color: T.warn, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.08em' }}>Puissance</div>
+            <div style={{ fontSize: 20, fontWeight: 800, color: T.warn, fontFamily: "'Sora', sans-serif" }}>{o.puissance ?? '—'}</div>
+          </div>
+        </div>
         <Checklist offreId={o.id} conditions={o.conditions} />
       </div>
 
@@ -497,23 +501,26 @@ Retour aux offres
     </Card>
   </div>
 );
+```
+
 }
 
 return (
-<div style={{ maxWidth: 480, margin: '0 auto', padding: '16px' }}>
-<div style={{ overflowX: 'auto', display: 'flex', gap: 8, paddingBottom: 4, marginBottom: 20, scrollbarWidth: 'none' }}>
+<div style={{ maxWidth: 480, margin: ‘0 auto’, padding: ‘16px’ }}>
+<div style={{ overflowX: ‘auto’, display: ‘flex’, gap: 8, paddingBottom: 4, marginBottom: 20, scrollbarWidth: ‘none’ }}>
 {CATEGORIES.map(cat => (
-<button key={cat} onClick={() => setFiltre(cat)} className="pill-btn" style={{
+<button key={cat} onClick={() => setFiltre(cat)} className=“pill-btn” style={{
 background: filtre === cat ? T.primary : T.surface,
 border: `1.5px solid ${filtre === cat ? T.primary : T.border}`,
-borderRadius: 99, color: filtre === cat ? '#fff' : T.muted,
-fontSize: 12, fontWeight: 700, padding: '7px 16px',
-cursor: 'pointer', whiteSpace: 'nowrap',
-boxShadow: filtre === cat ? `0 2px 12px ${T.primary}30` : 'none',
+borderRadius: 99, color: filtre === cat ? ‘#fff’ : T.muted,
+fontSize: 12, fontWeight: 700, padding: ‘7px 16px’,
+cursor: ‘pointer’, whiteSpace: ‘nowrap’,
+boxShadow: filtre === cat ? `0 2px 12px ${T.primary}30` : ‘none’,
 }}>{cat}</button>
 ))}
 </div>
 
+```
   <div className="card-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
     {filtrees.map(o => (
       <button key={o.id} onClick={() => setSelected(o)} className="offer-btn fade-up" style={{
@@ -539,62 +546,107 @@ boxShadow: filtre === cat ? `0 2px 12px ${T.primary}30` : 'none',
     ))}
   </div>
 </div>
+```
+
 );
 }
 
 function PageAvis() {
 return (
-<div style={{ maxWidth: 480, margin: '0 auto', padding: '16px' }} className="fade-up">
-  <Card style={{ padding: '20px', textAlign: 'center', color: T.muted }}>
-    <span style={{ fontSize: '32px' }}>⭐</span>
-    <p style={{ marginTop: '10px' }}>Les avis arrivent bientôt !</p>
-  </Card>
+<div style={{ maxWidth: 480, margin: ‘0 auto’, padding: ‘16px’ }} className=“fade-up”>
+<Card style={{ padding: ‘20px’, textAlign: ‘center’, color: T.muted }}>
+<span style={{ fontSize: ‘32px’ }}>⭐</span>
+<p style={{ marginTop: ‘10px’ }}>Les avis arrivent bientôt !</p>
+</Card>
 </div>
 );
 }
 
 const NAV_ITEMS = [
-{ id: 'parrainage', label: 'Parrainages', emoji: '🎁' },
-{ id: 'avis',       label: 'Avis',        emoji: '⭐' },
+{ id: ‘parrainage’, label: ‘Parrainages’, emoji: ‘🎁’ },
+{ id: ‘avis’,       label: ‘Avis’,        emoji: ‘⭐’ },
 ];
 
 export default function App() {
-const [onglet, setOnglet] = useState('parrainage');
+const [onglet, setOnglet] = useState(‘parrainage’);
 
 useEffect(() => {
-const tag = document.createElement('style');
+const tag = document.createElement(‘style’);
 tag.textContent = GLOBAL_CSS;
 document.head.appendChild(tag);
 return () => document.head.removeChild(tag);
 }, []);
 
 return (
-<div style={{ minHeight: '100vh', background: T.bg, paddingBottom: 84 }}>
+<div style={{ minHeight: ‘100vh’, background: T.bg, paddingBottom: 84 }}>
+
+```
+  {/* ─── HEADER PREMIUM ─────────────────────────────────── */}
   <header style={{
-    background: T.surface,
     borderBottom: `1px solid ${T.border}`,
-    padding: '10px 16px 8px',
-    textAlign: 'center',
     position: 'sticky', top: 0, zIndex: 50,
-    backdropFilter: 'blur(10px)',
+    overflow: 'hidden',
   }}>
+    {/* Fond dégradé animé */}
     <div style={{
-      display: 'inline-flex', alignItems: 'center', gap: 8,
-      background: T.primaryLight, borderRadius: 99, padding: '4px 14px',
-      marginBottom: 8,
+      position: 'absolute', inset: 0,
+      background: `
+        radial-gradient(ellipse 80% 60% at 20% 120%, ${T.primary}18 0%, transparent 60%),
+        radial-gradient(ellipse 60% 80% at 80% -20%, ${T.accent}14 0%, transparent 60%),
+        ${T.surface}
+      `,
+      zIndex: 0,
+    }} />
+    {/* Grille déco */}
+    <div style={{
+      position: 'absolute', inset: 0, zIndex: 0,
+      backgroundImage: `
+        linear-gradient(${T.border}55 1px, transparent 1px),
+        linear-gradient(90deg, ${T.border}55 1px, transparent 1px)
+      `,
+      backgroundSize: '32px 32px',
+      maskImage: 'radial-gradient(ellipse 100% 100% at 50% 0%, black 30%, transparent 100%)',
+      WebkitMaskImage: 'radial-gradient(ellipse 100% 100% at 50% 0%, black 30%, transparent 100%)',
+      opacity: 0.5,
+    }} />
+    {/* Contenu */}
+    <div style={{
+      position: 'relative', zIndex: 1,
+      padding: '14px 16px 12px',
+      textAlign: 'center',
+      backdropFilter: 'blur(10px)',
     }}>
-      <div style={{ width: 6, height: 6, borderRadius: '50%', background: T.primary, animation: 'pulse 2s infinite' }} />
-      <span style={{ fontSize: 10, fontWeight: 700, color: T.primary, letterSpacing: '0.15em', textTransform: 'uppercase' }}>SÉLECTION EXCLUSIVE</span>
+      <div style={{
+        display: 'inline-flex', alignItems: 'center', gap: 8,
+        background: `linear-gradient(135deg, ${T.primaryLight}, #fff)`,
+        border: `1px solid ${T.primary}30`,
+        borderRadius: 99, padding: '4px 14px',
+        marginBottom: 10,
+        boxShadow: `0 2px 12px ${T.primary}18`,
+      }}>
+        <div style={{ width: 6, height: 6, borderRadius: '50%', background: T.primary, animation: 'pulse 2s infinite' }} />
+        <span style={{ fontSize: 10, fontWeight: 700, color: T.primary, letterSpacing: '0.15em', textTransform: 'uppercase' }}>SÉLECTION EXCLUSIVE</span>
+      </div>
+      <h1 style={{
+        fontSize: 26, fontWeight: 800, color: 'transparent',
+        fontFamily: "'Sora', sans-serif", letterSpacing: '-0.03em',
+        backgroundImage: `linear-gradient(90deg, ${T.navy} 0%, ${T.primary} 40%, ${T.accent} 60%, ${T.navy} 100%)`,
+        backgroundSize: '200% auto',
+        WebkitBackgroundClip: 'text',
+        backgroundClip: 'text',
+        animation: 'shimmer 4s linear infinite',
+        marginBottom: 4,
+      }}>
+        Axis Drive
+      </h1>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10 }}>
+        <div style={{ height: 1, width: 28, background: `linear-gradient(90deg, transparent, ${T.border})` }} />
+        <p style={{ color: T.muted, fontSize: 11, fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase' }}>
+          Location de véhicules de luxe
+        </p>
+        <div style={{ height: 1, width: 28, background: `linear-gradient(90deg, ${T.border}, transparent)` }} />
+      </div>
     </div>
-    <h1 style={{
-      fontSize: 24, fontWeight: 800, color: T.navy,
-      fontFamily: "'Sora', sans-serif", letterSpacing: '-0.02em',
-    }}>
-      Axis Drive
-    </h1>
-    <p style={{ color: T.muted, fontSize: 12, marginTop: 3, fontWeight: 500 }}>
-      location de véhicule de luxe 
-    </p>
   </header>
 
   <main>
@@ -637,5 +689,7 @@ return (
     })}
   </nav>
 </div>
+```
+
 );
 }
