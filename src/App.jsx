@@ -119,7 +119,7 @@ const OFFRES = [
     couleur: '#7C3AED',
     couleurLight: '#EDE9FE',
     prix: '250€/j',
-    Puissance: '421 CH',
+    puissance: '421 CH',
     description: "Le 4 cylindres le plus puissant du monde. Une expérience sonore et dynamique incomparable pour vos week-ends.",
     conditions: [
       "Âge minimum : 21 ans",
