@@ -239,26 +239,29 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
               cursor: 'pointer', 
               boxShadow: T.shadow,
               position: 'relative', 
-              overflow: 'hidden',
+              overflow: 'hidden', // On garde l'overflow hidden pour l'arrondi global
             }}>
-              {/* Barre de couleur supérieure */}
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: o.couleur, zIndex: 3 }} />
+              {/* Barre de couleur supérieure - z-index élevé pour rester visible */}
+              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: o.couleur, zIndex: 10 }} />
               
-              {/* Zone Image sans liseré blanc */}
+              {/* Zone Image */}
               <div style={{
                 height: 110,
                 background: o.couleurLight,
                 overflow: 'hidden',
                 position: 'relative',
-                margin: '-1px -1px 0 -1px',
               }}>
                 {o.image ? (
                   <img 
                     src={o.image} 
                     alt={o.nom} 
                     style={{ 
-                      width: 'calc(100% + 2px)', 
-                      height: '100%', 
+                      // --- CORRECTION RADICALE ICI ---
+                      position: 'absolute',
+                      top: -2, // On remonte l'image de 2 pixels pour écraser la bordure
+                      left: -2, // On décale à gauche
+                      width: 'calc(100% + 4px)', // On élargit pour compenser les décalages
+                      height: 'calc(100% + 4px)', // On agrandit pour compenser
                       objectFit: 'cover',
                       display: 'block' 
                     }} 
