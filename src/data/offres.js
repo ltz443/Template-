@@ -1,140 +1,136 @@
 // src/data/offres.js
 export const OFFRES = [
-  {
-    id: 'golf-8r',
-    nom: 'Golf 8R',
-    categorie: 'Sportive',
-    emoji: '🏎️',
-    couleur: '#111827',
-    couleurLight: '#F3F4F6',
-    prix: '150€/j',
-    puissance: '320 CH',
-    caution: '1 000€',
-    description: "La polyvalence par excellence. Un look sobre, une puissance redoutable et quatre roues motrices pour une sécurité totale.",
-    conditions: [
-      "Âge minimum : 21 ans",
-      "Permis de conduire (2 ans min)",
-      "Dépôt de garantie par CB",
-      "Pièce d’identité + Permis"
-    ],
-    type: 'contact',
-    contact: '@parrain_4p',
-    note: 'Réservez via Instagram pour une réponse en moins de 2h.',
-    shareText: 'Loue la Golf 8R chez 4P RENTALS !',
-    shareUrl: 'https://4p-rentals.vercel.app'
-  },
-  {
-    id: 'a45s',
-    nom: 'Mercedes A45 S',
-    categorie: 'Luxe',
-    emoji: '🏁',
-    couleur: '#7C3AED',
-    couleurLight: '#EDE9FE',
-    prix: '250€/j',
-    puissance: '421 CH',
-    caution: '1 000€',
-    description: "Le 4 cylindres le plus puissant du monde. Une expérience sonore et dynamique incomparable pour vos week-ends.",
-    conditions: [
-      "Âge minimum : 21 ans",
-      "Permis de conduire (2 ans min)",
-      "Dépôt de garantie par CB",
-      "Pièce d’identité + Permis"
-    ],
-    type: 'contact',
-    contact: '@parrain_4p',
-    note: 'Vérifiez la disponibilité pour le week-end dès le lundi.',
-    shareText: 'Mercedes A45 S AMG disponible chez 4P RENTALS !',
-    shareUrl: 'https://4p-rentals.vercel.app'
-  },
-  {
-    id: 'rs3-sportback',
-    nom: 'Audi RS3',
-    categorie: 'Sportive',
-    emoji: '🟢',
-    couleur: '#059669',
-    couleurLight: '#D1FAE5',
-    prix: '280€/j',
-    puissance: '400 CH',
-    caution: '1 000€',
-    description: "Le mythique moteur 5 cylindres Audi. Un son unique et des performances de supercar dans un format compact.",
-    conditions: [
-      "Âge minimum : 21 ans",
-      "Permis de conduire (2 ans min)",
-      "Dépôt de garantie par CB",
-      "Pièce d’identité + Permis"
-    ],
-    type: 'contact',
-    contact: '@parrain_4p',
-    note: 'Disponible en vert Kyalami pour vos événements.',
-    shareText: 'Audi RS3 disponible chez 4P RENTALS !',
-    shareUrl: 'https://4p-rentals.vercel.app'
-  },
-  {
-    id: 'porsche-macan',
-    nom: 'Porsche Macan S',
-    categorie: 'SUV',
-    emoji: '💎',
-    couleur: '#D97706',
-    couleurLight: '#FEF3C7',
-    prix: '320€/j',
-    puissance: '380 CH',
-    caution: '1 000€',
-    description: "Le SUV le plus sportif de sa catégorie. Confort absolu pour la route et prestige de la marque Porsche.",
-    conditions: [
-      "Âge minimum : 21 ans",
-      "Dépôt de garantie par CB",
-      "Pièce d’identité + Permis"
-    ],
-    type: 'contact',
-    contact: '@parrain_4p',
-    note: 'Idéal pour les longs trajets et les mariages.',
-    shareText: 'Porsche Macan S disponible chez 4P RENTALS !',
-    shareUrl: 'https://4p-rentals.vercel.app'
-  },
-  {
-    id: 'bmw-m4',
-    nom: 'BMW M4 Competition',
-    categorie: 'Luxe',
-    emoji: 'Ⓜ️',
-    couleur: '#2563EB',
-    couleurLight: '#DBEAFE',
-    prix: '450€/j',
-    puissance: '510 CH',
-    caution: '1 000€',
-    description: "La bête de circuit homologuée pour la route. Propulsion, carbone et une accélération brutale.",
-    conditions: [
-      "Âge minimum : 21 ans",
-      "Dépôt de garantie par CB",
-      "Pièce d’identité + Permis"
-    ],
-    type: 'contact',
-    contact: '@parrain_4p',
-    note: 'Véhicule sous haute surveillance, usage circuit interdit.',
-    shareText: 'BMW M4 Competition chez 4P RENTALS !',
-    shareUrl: 'https://4p-rentals.vercel.app'
-  },
-  {
-    id: 'fiat-500e',
-    nom: 'Fiat 500e',
-    categorie: 'Citadine',
-    emoji: '⚡',
-    couleur: '#0891B2',
-    couleurLight: '#CFFAFE',
-    prix: '80€/j',
-    puissance: '118 CH',
-    caution: '1 000€',
-    description: "La citadine électrique chic et silencieuse. Parfaite pour se garer partout et circuler en centre-ville sans contrainte.",
-    conditions: [
-      "Âge minimum : 18 ans",
-      "Dépôt de garantie par CB",
-      "Badge de recharge inclus"
-    ],
-    type: 'contact',
-    contact: '@parrain_4p',
-    note: 'Idéale pour les jeunes conducteurs.',
-    shareText: 'Fiat 500e électrique chez 4P RENTALS !',
-    shareUrl: 'https://4p-rentals.vercel.app'
-  }
+{
+id: ‘golf-8r’,
+nom: ‘Golf 8R’,
+categorie: ‘Sportive’,
+emoji: ‘🏎️’,
+couleur: ‘#111827’,
+couleurLight: ‘#F3F4F6’,
+prix: ‘250€/j’,
+puissance: ‘320 CH’,
+caution: ‘5 000€’,
+description: “La polyvalence par excellence. Un look sobre, une puissance redoutable et quatre roues motrices pour une sécurité totale.”,
+conditions: [
+“Permis de conduire (3 ans min)”,
+“Dépôt de caution par CB”,
+“Pièce d’identité + Permis”
+],
+type: ‘contact’,
+contact: ‘@parrain_4p’,
+note: ‘Réservez via Instagram pour une réponse en moins de 2h.’,
+shareText: ‘Loue la Golf 8R chez 4P RENTALS !’,
+shareUrl: ‘https://4p-rentals.vercel.app’
+},
+{
+id: ‘s3-sportback’,
+nom: ‘Audi S3 Sportback’,
+categorie: ‘Sportive’,
+emoji: ‘🏁’,
+couleur: ‘#7C3AED’,
+couleurLight: ‘#EDE9FE’,
+prix: ‘250€/j’,
+puissance: ‘310 CH’,
+caution: ‘5 000€’,
+description: “Compacte premium sportive performante et utilisable tous les jours.”,
+conditions: [
+“Permis de conduire (3 ans min)”,
+“Dépôt de caution par CB”,
+“Pièce d’identité + Permis”
+],
+type: ‘contact’,
+contact: ‘@parrain_4p’,
+note: ‘Vérifiez la disponibilité pour le week-end dès le lundi.’,
+shareText: ‘Audi S3 Sportback disponible chez 4P RENTALS !’,
+shareUrl: ‘https://4p-rentals.vercel.app’
+},
+{
+id: ‘s3-berline’,
+nom: ‘Audi S3 Berline’,
+categorie: ‘Luxe’,
+emoji: ‘🟢’,
+couleur: ‘#059669’,
+couleurLight: ‘#D1FAE5’,
+prix: ‘250€/j’,
+puissance: ‘310 CH’,
+caution: ‘5 000€’,
+description: “Berline compacte premium, look sportif, quattro et vraies performances.”,
+conditions: [
+“KM supplémentaire : 1€”,
+“Permis de conduire (3 ans min)”,
+“Dépôt de caution par CB”,
+“Pièce d’identité + Permis”
+],
+type: ‘contact’,
+contact: ‘@parrain_4p’,
+note: ‘Disponible pour vos événements.’,
+shareText: ‘Audi S3 Berline disponible chez 4P RENTALS !’,
+shareUrl: ‘https://4p-rentals.vercel.app’
+},
+{
+id: ‘golf-8-gti’,
+nom: ‘Golf 8 GTI Club Sport’,
+categorie: ‘Sportive’,
+emoji: ‘💎’,
+couleur: ‘#D97706’,
+couleurLight: ‘#FEF3C7’,
+prix: ‘250€/j’,
+puissance: ‘300 CH’,
+caution: ‘4 000€’,
+description: “Compacte radicale, ultra-performante, clairement pensée pour la conduite sportive.”,
+conditions: [
+“Tarifs 24h applicables du lundi au vendredi”,
+“Dépôt de caution par CB”,
+“Pièce d’identité + Permis”
+],
+type: ‘contact’,
+contact: ‘@parrain_4p’,
+note: ‘Idéal pour les longs trajets et les week-ends.’,
+shareText: ‘Golf 8 GTI Club Sport disponible chez 4P RENTALS !’,
+shareUrl: ‘https://4p-rentals.vercel.app’
+},
+{
+id: ‘bmw-m128ti’,
+nom: ‘BMW M128ti’,
+categorie: ‘Sportive’,
+emoji: ‘Ⓜ️’,
+couleur: ‘#2563EB’,
+couleurLight: ‘#DBEAFE’,
+prix: ‘190€/j’,
+puissance: ‘265 CH’,
+caution: ‘3 500€’,
+description: “Compacte sportive premium nerveuse, précise et pensée pour une conduite dynamique au quotidien.”,
+conditions: [
+“Dépôt de caution par CB”,
+“Pièce d’identité + Permis”
+],
+type: ‘contact’,
+contact: ‘@parrain_4p’,
+note: ‘Véhicule sous haute surveillance, usage circuit interdit.’,
+shareText: ‘BMW M128ti chez 4P RENTALS !’,
+shareUrl: ‘https://4p-rentals.vercel.app’
+},
+{
+id: ‘clio-v-intens’,
+nom: ‘Renault Clio V Intens’,
+categorie: ‘Citadine’,
+emoji: ‘⚡’,
+couleur: ‘#0891B2’,
+couleurLight: ‘#CFFAFE’,
+prix: ‘90€/j’,
+puissance: ‘100 CH’,
+caution: ‘1 500€’,
+description: “La citadine chic et silencieuse. Parfaite pour se garer partout et circuler en centre-ville sans contrainte.”,
+conditions: [
+“Âge minimum : 18 ans”,
+“Dépôt de caution par CB”
+],
+type: ‘contact’,
+contact: ‘@parrain_4p’,
+note: ‘Idéale pour les jeunes conducteurs.’,
+shareText: ‘Renault Clio V Intens chez 4P RENTALS !’,
+shareUrl: ‘https://4p-rentals.vercel.app’
+}
 ];
 
-export const CATEGORIES = ['Tout', 'Sportive', 'Luxe', 'SUV', 'Citadine'];
+export const CATEGORIES = [‘Tout’, ‘Sportive’, ‘Luxe’, ‘Citadine’];
