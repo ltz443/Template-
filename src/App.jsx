@@ -11,7 +11,6 @@ export default function App() {
   return (
     <div style={{
       minHeight: '100vh',
-      // Fond “Cosmic Night” fixé — les cartes défilent par-dessus
       background: T.bg,
       backgroundAttachment: 'fixed',
       backgroundSize: 'cover',
@@ -19,7 +18,7 @@ export default function App() {
     }}>
       <GlobalStyles />
 
-      {/* HEADER — verre sombre */}
+      {/* HEADER */}
       <header style={{
         background: 'rgba(15, 5, 29, 0.75)',
         backdropFilter: 'blur(20px)',
@@ -70,69 +69,69 @@ export default function App() {
           </div>
         )}
       </main>
+
+      {/* NAVIGATION FLOTTANTE */}
+      <nav style={{
+        position: 'fixed',
+        bottom: 20,
+        left: '50%',
+        transform: 'translateX(-50%)',
+        width: '90%',
+        maxWidth: 400,
+        background: 'rgba(15, 5, 29, 0.80)',
+        border: `1px solid ${T.border}`,
+        backdropFilter: 'blur(20px)',
+        WebkitBackdropFilter: 'blur(20px)',
+        borderRadius: 24,
+        display: 'flex',
+        padding: '8px',
+        gap: 8,
+        boxShadow: '0 8px 32px rgba(80, 10, 180, 0.45)',
+      }}>
+        <button
+          onClick={() => { setOnglet('parrainage'); setSelected(null); }}
+          style={{
+            flex: 1,
+            background: onglet === 'parrainage'
+              ? `linear-gradient(135deg, ${T.primary}, ${T.primaryDark})`
+              : 'transparent',
+            color: onglet === 'parrainage' ? '#fff' : T.muted,
+            border: 'none',
+            borderRadius: 18,
+            padding: '12px',
+            fontWeight: 700,
+            cursor: 'pointer',
+            fontFamily: "'Plus Jakarta Sans', sans-serif",
+            fontSize: 14,
+            boxShadow: onglet === 'parrainage' ? `0 4px 16px ${T.primary}60` : 'none',
+            transition: 'all 0.2s',
+          }}
+        >
+          🚗 Véhicules
+        </button>
+
+        <button
+          onClick={() => { setOnglet('avis'); setSelected(null); }}
+          style={{
+            flex: 1,
+            background: onglet === 'avis'
+              ? `linear-gradient(135deg, ${T.primary}, ${T.primaryDark})`
+              : 'transparent',
+            color: onglet === 'avis' ? '#fff' : T.muted,
+            border: 'none',
+            borderRadius: 18,
+            padding: '12px',
+            fontWeight: 700,
+            cursor: 'pointer',
+            fontFamily: "'Plus Jakarta Sans', sans-serif",
+            fontSize: 14,
+            boxShadow: onglet === 'avis' ? `0 4px 16px ${T.primary}60` : 'none',
+            transition: 'all 0.2s',
+          }}
+        >
+          ⭐ Avis
+        </button>
+      </nav>
     </div>
   );
 }
-
-  {/* NAVIGATION FLOTTANTE — verre sombre */}
-<nav style={{
-  position: 'fixed',
-  bottom: 20,
-  left: '50%',
-  transform: 'translateX(-50%)',
-  width: '90%',
-  maxWidth: 400,
-  background: 'rgba(15, 5, 29, 0.80)',
-  border: `1px solid ${T.border}`,
-  backdropFilter: 'blur(20px)',
-  WebkitBackdropFilter: 'blur(20px)',
-  borderRadius: 24,
-  display: 'flex',
-  padding: '8px',
-  gap: 8,
-  boxShadow: '0 8px 32px rgba(80, 10, 180, 0.45)',
-}}>
-  <button
-    onClick={() => { setOnglet('parrainage'); setSelected(null); }}
-    style={{
-      flex: 1,
-      background: onglet === 'parrainage'
-        ? `linear-gradient(135deg, ${T.primary}, ${T.primaryDark})`
-        : 'transparent',
-      color: onglet === 'parrainage' ? '#fff' : T.muted,
-      border: 'none',
-      borderRadius: 18,
-      padding: '12px',
-      fontWeight: 700,
-      cursor: 'pointer',
-      fontFamily: "'Plus Jakarta Sans', sans-serif",
-      fontSize: 14,
-      boxShadow: onglet === 'parrainage' ? `0 4px 16px ${T.primary}60` : 'none',
-      transition: 'all 0.2s',
-    }}
-  >
-    🚗 Véhicules
-  </button>
-
-  <button
-    onClick={() => { setOnglet('avis'); setSelected(null); }}
-    style={{
-      flex: 1,
-      background: onglet === 'avis'
-        ? `linear-gradient(135deg, ${T.primary}, ${T.primaryDark})`
-        : 'transparent',
-      color: onglet === 'avis' ? '#fff' : T.muted,
-      border: 'none',
-      borderRadius: 18,
-      padding: '12px',
-      fontWeight: 700,
-      cursor: 'pointer',
-      fontFamily: "'Plus Jakarta Sans', sans-serif",
-      fontSize: 14,
-      boxShadow: onglet === 'avis' ? `0 4px 16px ${T.primary}60` : 'none',
-      transition: 'all 0.2s',
-    }}
-  >
-    ⭐ Avis
-  </button>
-</nav>
