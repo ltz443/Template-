@@ -238,153 +238,154 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
   }
 
   // ── Vue liste ──
-return (
-  <div style={{ maxWidth: 480, margin: '0 auto' }}>
-    <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 15, scrollbarWidth: 'none' }}>
-      {CATEGORIES.map(cat => (
-        <button key={cat} onClick={() => setFiltre(cat)} style={{
-          background: filtre === cat ? T.primary : 'rgba(255,255,255,0.08)',
-          color: filtre === cat ? '#fff' : T.muted,
-          border: `1px solid ${filtre === cat ? T.primary : T.border}`,
-          borderRadius: 99,
-          padding: '7px 16px',
-          fontWeight: 700,
-          cursor: 'pointer',
-          whiteSpace: 'nowrap',
-          boxShadow: filtre === cat ? `0 2px 16px ${T.primary}60` : 'none',
-          backdropFilter: 'blur(8px)',
-          transition: 'all 0.2s',
-        }}>{cat}</button>
-      ))}
-    </div>
-
-    {isCategoryEmpty ? (
-      <div className="fade-up">
-        <div style={{ textAlign: 'center', padding: '20px 16px 24px' }}>
-          <div style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 8,
-            background: T.primaryLight,
+  return (
+    <div style={{ maxWidth: 480, margin: '0 auto' }}>
+      <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 15, scrollbarWidth: 'none' }}>
+        {CATEGORIES.map(cat => (
+          <button key={cat} onClick={() => setFiltre(cat)} style={{
+            background: filtre === cat ? T.primary : 'rgba(255,255,255,0.08)',
+            color: filtre === cat ? '#fff' : T.muted,
+            border: `1px solid ${filtre === cat ? T.primary : T.border}`,
             borderRadius: 99,
-            padding: '6px 16px',
-            marginBottom: 10,
-          }}>
-            <span style={{ width: 7, height: 7, borderRadius: '50%', background: T.primary }} />
-            <span style={{ fontSize: 12, fontWeight: 700, color: T.primary }}>Nouveautés en préparation</span>
-          </div>
-          <p style={{ fontSize: 13, color: T.muted, lineHeight: 1.5 }}>
-            Des véhicules arrivent bientôt<br />dans cette catégorie.
-          </p>
-        </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          <ComingSoonCard />
-          <ComingSoonCard />
-        </div>
-      </div>
-    ) : (
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-        {filtrees.map(o => (
-          <button
-            key={o.id}
-            onClick={() => setSelected(o)}
-            className="offer-btn fade-up"
-            style={{
-              background: 'rgba(255,255,255,0.04)',
-              border: `1px solid ${T.border}`,
-              borderRadius: 18,
-              padding: 0,
-              textAlign: 'left',
-              cursor: 'pointer',
-              boxShadow: '0 0 24px rgba(139, 92, 246, 0.15)',
-              backdropFilter: 'blur(16px)',
-              WebkitBackdropFilter: 'blur(16px)',
-              position: 'relative',
-              overflow: 'hidden',
-              transition: 'transform 0.25s ease, box-shadow 0.25s ease',
-            }}
-          >
-            <div style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              right: 0,
-              height: 3,
-              background: o.couleur,
-              zIndex: 10,
-            }} />
-
-            <div style={{
-              height: 110,
-              overflow: 'hidden',
-              lineHeight: 0,
-              fontSize: 0,
-            }}>
-              {o.image ? (
-                <img
-                  src={o.image}
-                  alt={o.nom}
-                  style={{
-                    display: 'block',
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    margin: 0,
-                    padding: 0,
-                    border: 'none',
-                    filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.35))',
-                  }}
-                />
-              ) : (
-                <div style={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  height: '100%',
-                  fontSize: 36,
-                  background: `${o.couleur}22`,
-                }}>
-                  {o.emoji}
-                </div>
-              )}
-            </div>
-
-            <div style={{ padding: '12px 14px 14px' }}>
-              <div style={{
-                fontSize: 10,
-                color: T.faint,
-                fontWeight: 700,
-                textTransform: 'uppercase',
-                letterSpacing: '0.06em',
-                marginBottom: 3,
-              }}>{o.categorie}</div>
-
-              <div style={{
-                fontSize: 15,
-                fontWeight: 800,
-                color: T.navy,
-                marginBottom: 8,
-                fontFamily: "'Sora', sans-serif",
-                lineHeight: 1.2,
-              }}>{o.nom}</div>
-
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <span style={{
-                  display: 'inline-block',
-                  background: `${o.couleur}28`,
-                  color: o.couleur === '#111827' ? T.primary : o.couleur,
-                  borderRadius: 99,
-                  padding: '3px 10px',
-                  fontSize: 13,
-                  fontWeight: 800,
-                  border: `1px solid ${o.couleur}44`,
-                }}>{o.prix}</span>
-                <span style={{ fontSize: 11, color: T.muted, fontWeight: 600 }}>{o.puissance}</span>
-              </div>
-            </div>
-          </button>
+            padding: '7px 16px',
+            fontWeight: 700,
+            cursor: 'pointer',
+            whiteSpace: 'nowrap',
+            boxShadow: filtre === cat ? `0 2px 16px ${T.primary}60` : 'none',
+            backdropFilter: 'blur(8px)',
+            transition: 'all 0.2s',
+          }}>{cat}</button>
         ))}
       </div>
-    )}
-  </div>
-);
+
+      {isCategoryEmpty ? (
+        <div className="fade-up">
+          <div style={{ textAlign: 'center', padding: '20px 16px 24px' }}>
+            <div style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              background: T.primaryLight,
+              borderRadius: 99,
+              padding: '6px 16px',
+              marginBottom: 10,
+            }}>
+              <span style={{ width: 7, height: 7, borderRadius: '50%', background: T.primary }} />
+              <span style={{ fontSize: 12, fontWeight: 700, color: T.primary }}>Nouveautés en préparation</span>
+            </div>
+            <p style={{ fontSize: 13, color: T.muted, lineHeight: 1.5 }}>
+              Des véhicules arrivent bientôt<br />dans cette catégorie.
+            </p>
+          </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+            <ComingSoonCard />
+            <ComingSoonCard />
+          </div>
+        </div>
+      ) : (
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          {filtrees.map(o => (
+            <button
+              key={o.id}
+              onClick={() => setSelected(o)}
+              className="offer-btn fade-up"
+              style={{
+                background: 'rgba(255,255,255,0.04)',
+                border: `1px solid ${T.border}`,
+                borderRadius: 18,
+                padding: 0,
+                textAlign: 'left',
+                cursor: 'pointer',
+                boxShadow: '0 0 24px rgba(139, 92, 246, 0.15)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                position: 'relative',
+                overflow: 'hidden',
+                transition: 'transform 0.25s ease, box-shadow 0.25s ease',
+              }}
+            >
+              <div style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                height: 3,
+                background: o.couleur,
+                zIndex: 10,
+              }} />
+
+              <div style={{
+                height: 110,
+                overflow: 'hidden',
+                lineHeight: 0,
+                fontSize: 0,
+              }}>
+                {o.image ? (
+                  <img
+                    src={o.image}
+                    alt={o.nom}
+                    style={{
+                      display: 'block',
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      margin: 0,
+                      padding: 0,
+                      border: 'none',
+                      filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.35))',
+                    }}
+                  />
+                ) : (
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: '100%',
+                    fontSize: 36,
+                    background: `${o.couleur}22`,
+                  }}>
+                    {o.emoji}
+                  </div>
+                )}
+              </div>
+
+              <div style={{ padding: '12px 14px 14px' }}>
+                <div style={{
+                  fontSize: 10,
+                  color: T.faint,
+                  fontWeight: 700,
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.06em',
+                  marginBottom: 3,
+                }}>{o.categorie}</div>
+
+                <div style={{
+                  fontSize: 15,
+                  fontWeight: 800,
+                  color: T.navy,
+                  marginBottom: 8,
+                  fontFamily: "'Sora', sans-serif",
+                  lineHeight: 1.2,
+                }}>{o.nom}</div>
+
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                  <span style={{
+                    display: 'inline-block',
+                    background: `${o.couleur}28`,
+                    color: o.couleur === '#111827' ? T.primary : o.couleur,
+                    borderRadius: 99,
+                    padding: '3px 10px',
+                    fontSize: 13,
+                    fontWeight: 800,
+                    border: `1px solid ${o.couleur}44`,
+                  }}>{o.prix}</span>
+                  <span style={{ fontSize: 11, color: T.muted, fontWeight: 600 }}>{o.puissance}</span>
+                </div>
+              </div>
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
