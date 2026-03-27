@@ -89,7 +89,6 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
         </button>
 
         <Card style={{ overflow: 'hidden' }}>
-          {/* Header avec Image de Fond ou dégradé */}
           <div style={{
             height: o.imageFond ? 220 : 'auto',
             backgroundImage: o.imageFond ? `url(${o.imageFond})` : `linear-gradient(135deg, ${o.couleur}18, ${o.couleur}08)`,
@@ -102,7 +101,6 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
             justifyContent: 'flex-end',
             padding: '20px',
           }}>
-            {/* Overlay sombre si image de fond pour la lisibilité */}
             {o.imageFond && <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(0deg, rgba(0,0,0,0.7) 0%, transparent 60%)' }} />}
             
             <div style={{ position: 'relative', zIndex: 1, display: 'flex', gap: 14, alignItems: 'center' }}>
@@ -131,7 +129,6 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
           <div style={{ padding: '16px 20px 20px' }}>
             <p style={{ fontSize: 14, color: T.slate, lineHeight: 1.6, marginBottom: 20 }}>{o.description}</p>
             
-            {/* 3 tuiles : Prix · Puissance · Caution */}
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, marginBottom: 20 }}>
               <div style={{ background: T.primaryLight, borderRadius: 12, padding: '12px 8px', textAlign: 'center' }}>
                 <div style={{ fontSize: 9, color: T.primary, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.06em' }}>Prix / jour</div>
@@ -147,7 +144,6 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
               </div>
             </div>
 
-            {/* Conditions texte simple */}
             {o.conditions && o.conditions.length > 0 && (
               <div style={{ marginBottom: 20 }}>
                 {o.conditions.map((c, i) => (
@@ -163,7 +159,6 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
               </div>
             )}
 
-            {/* CTA Instagram */}
             {o.type === 'contact' && (
               <div style={{ background: T.borderSoft, borderRadius: 14, padding: '16px', border: `1px solid ${T.border}`, textAlign: 'center' }}>
                 <p style={{ fontSize: 13, color: T.slate, marginBottom: 14, lineHeight: 1.5 }}>{o.note}</p>
@@ -191,7 +186,6 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
   // ── Vue liste ──
   return (
     <div style={{ maxWidth: 480, margin: '0 auto' }}>
-      {/* Filtres catégories */}
       <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 15, scrollbarWidth: 'none' }}>
         {CATEGORIES.map(cat => (
           <button key={cat} onClick={() => setFiltre(cat)} style={{
@@ -206,7 +200,6 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
         ))}
       </div>
 
-      {/* Catégorie vide ou Grille normale */}
       {isCategoryEmpty ? (
         <div className="fade-up">
           <div style={{ textAlign: 'center', padding: '20px 16px 24px' }}>
@@ -239,35 +232,31 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
               cursor: 'pointer', 
               boxShadow: T.shadow,
               position: 'relative', 
-              overflow: 'hidden', // On garde l'overflow hidden pour l'arrondi global
+              overflow: 'hidden',
             }}>
-              {/* Barre de couleur supérieure - z-index élevé pour rester visible */}
+              {/* Barre de couleur supérieure */}
               <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: o.couleur, zIndex: 10 }} />
               
-              {/* Zone Image */}
+              {/* Zone Image sans background pour éviter le liseré blanc */}
               <div style={{
                 height: 110,
-                background: o.couleurLight,
                 overflow: 'hidden',
                 position: 'relative',
+                // Pas de background ici
               }}>
                 {o.image ? (
                   <img 
                     src={o.image} 
                     alt={o.nom} 
                     style={{ 
-                      // --- CORRECTION RADICALE ICI ---
-                      position: 'absolute',
-                      top: -2, // On remonte l'image de 2 pixels pour écraser la bordure
-                      left: -2, // On décale à gauche
-                      width: 'calc(100% + 4px)', // On élargit pour compenser les décalages
-                      height: 'calc(100% + 4px)', // On agrandit pour compenser
+                      width: '100%', 
+                      height: '100%', 
                       objectFit: 'cover',
                       display: 'block' 
                     }} 
                   />
                 ) : (
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', fontSize: 32 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', fontSize: 32, background: o.couleurLight }}>
                     {o.emoji}
                   </div>
                 )}
