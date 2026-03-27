@@ -18,36 +18,53 @@ export default function App() {
     }}>
       <GlobalStyles />
 
-      {/* HEADER */}
-      <header style={{
-        background: 'rgba(15, 5, 29, 0.75)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
-        borderBottom: `1px solid ${T.border}`,
-        padding: '20px',
-        textAlign: 'center',
-        position: 'sticky',
-        top: 0,
-        zIndex: 50,
-      }}>
-        <h1 style={{
-          fontSize: 24, fontWeight: 800,
-          color: '#fff',
-          margin: 0,
-          fontFamily: "'Sora', sans-serif",
-          letterSpacing: '-0.02em',
-        }}>
+      {/* HEADER PREMIUM */}
+      <header
+        style={{
+          position: 'sticky',
+          top: 0,
+          zIndex: 50,
+          padding: '22px 20px 18px',
+          textAlign: 'center',
+
+          /* Effet verre premium */
+          background: 'rgba(12, 4, 28, 0.55)',
+          backdropFilter: 'blur(22px) saturate(180%)',
+          WebkitBackdropFilter: 'blur(22px) saturate(180%)',
+
+          /* Bordure subtile façon iOS */
+          borderBottom: '1px solid rgba(255, 255, 255, 0.08)',
+
+          /* Glow très léger */
+          boxShadow: '0 4px 22px rgba(0,0,0,0.25)',
+        }}
+      >
+        <h1
+          style={{
+            fontSize: 26,
+            fontWeight: 800,
+            color: '#FFFFFF',
+            margin: 0,
+            fontFamily: "'Sora', sans-serif",
+            letterSpacing: '-0.02em',
+            textShadow: '0 2px 8px rgba(0,0,0,0.35)',
+          }}
+        >
           Axis Drive
         </h1>
 
-        <p style={{
-          color: T.muted,
-          fontSize: 11, fontWeight: 600,
-          textTransform: 'uppercase',
-          letterSpacing: '0.15em',
-          margin: '4px 0 0',
-        }}>
-          Location & Parrainage
+        <p
+          style={{
+            margin: '6px 0 0',
+            fontSize: 11,
+            fontWeight: 600,
+            textTransform: 'uppercase',
+            letterSpacing: '0.18em',
+            color: T.slate,
+            opacity: 0.9,
+          }}
+        >
+          Location de véhicules de luxe
         </p>
       </header>
 
