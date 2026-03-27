@@ -28,6 +28,10 @@ export const OFFRES = [
     id: 's3-sportback',
     nom: 'Audi S3 Sportback',
     categorie: 'Sportive',
+    // Photo détourée (Lien postimg direct)
+    image: "https://imgur.com/a/rZ8swzI",
+    // Photo de nuit (Lien postimg direct)
+    imageFond: "https://imgur.com/a/rZ8swzI",
     emoji: '🏁',
     couleur: '#7C3AED',
     couleurLight: '#EDE9FE',
@@ -50,6 +54,10 @@ export const OFFRES = [
     id: 's3-berline',
     nom: 'Audi S3 Berline',
     categorie: 'Luxe',
+    // Photo détourée (Lien postimg direct)
+    image: "https://imgur.com/a/vagFLpO",
+    // Photo de nuit (Lien postimg direct)
+    imageFond: "https://imgur.com/a/vagFLpO",
     emoji: '🟢',
     couleur: '#059669',
     couleurLight: '#D1FAE5',
@@ -73,6 +81,10 @@ export const OFFRES = [
     id: 'golf-8-gti',
     nom: 'Golf 8 GTI Club Sport',
     categorie: 'Sportive',
+    // Photo détourée (Lien postimg direct)
+    image: "https://imgur.com/a/AfwEiuF",
+    // Photo de nuit (Lien postimg direct)
+    imageFond: "https://imgur.com/a/AfwEiuF",
     emoji: '💎',
     couleur: '#D97706',
     couleurLight: '#FEF3C7',
@@ -95,6 +107,10 @@ export const OFFRES = [
     id: 'bmw-m128ti',
     nom: 'BMW M128ti',
     categorie: 'Sportive',
+    // Photo détourée (Lien postimg direct)
+    image: "https://imgur.com/a/gZ2wCEs",
+    // Photo de nuit (Lien postimg direct)
+    imageFond: "https://imgur.com/a/gZ2wCEs",
     emoji: 'Ⓜ️',
     couleur: '#2563EB',
     couleurLight: '#DBEAFE',
@@ -116,6 +132,10 @@ export const OFFRES = [
     id: 'clio-v-intens',
     nom: 'Renault Clio V Intens',
     categorie: 'Citadine',
+    // Photo détourée (Lien postimg direct)
+    image: "https://imgur.com/a/RSmY3fi",
+    // Photo de nuit (Lien postimg direct)
+    imageFond: "https://imgur.com/a/RSmY3fi",
     emoji: '⚡',
     couleur: '#0891B2',
     couleurLight: '#CFFAFE',
