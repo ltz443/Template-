@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import GlobalStyles from ‘./components/GlobalStyles’;
-import PageParrainage from ‘./components/PageParrainage’;
-import { T } from ‘./utils/tokens’;
+import GlobalStyles from './components/GlobalStyles';
+import PageParrainage from './components/PageParrainage';
+import { T } from './utils/tokens';
 
 export default function App() {
 const [onglet, setOnglet] = useState(‘parrainage’);
