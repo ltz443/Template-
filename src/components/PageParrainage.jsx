@@ -237,7 +237,7 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
     );
   }
 
-  // ── Vue liste ──
+  // ── VUE LISTE (VERSION PREMIUM) ──
   return (
     <div style={{ maxWidth: 480, margin: '0 auto' }}>
       <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 15, scrollbarWidth: 'none' }}>
@@ -290,18 +290,33 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
               onClick={() => setSelected(o)}
               className="offer-btn fade-up"
               style={{
-                background: 'rgba(255,255,255,0.04)',
+                background: 'rgba(255,255,255,0.06)',
                 border: `1px solid ${T.border}`,
-                borderRadius: 18,
+                borderRadius: 20,
                 padding: 0,
                 textAlign: 'left',
                 cursor: 'pointer',
-                boxShadow: '0 0 24px rgba(139, 92, 246, 0.15)',
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)',
+
+                // ⭐ Glow subtil premium
+                boxShadow: '0 0 24px rgba(139, 92, 246, 0.18)',
+
+                // ⭐ Effet verre glossy
+                backdropFilter: 'blur(18px)',
+                WebkitBackdropFilter: 'blur(18px)',
+
                 position: 'relative',
                 overflow: 'hidden',
+
+                // ⭐ Hover premium
                 transition: 'transform 0.25s ease, box-shadow 0.25s ease',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-3px)';
+                e.currentTarget.style.boxShadow = '0 8px 32px rgba(139, 92, 246, 0.28)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0px)';
+                e.currentTarget.style.boxShadow = '0 0 24px rgba(139, 92, 246, 0.18)';
               }}
             >
               <div style={{
@@ -332,6 +347,8 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
                       margin: 0,
                       padding: 0,
                       border: 'none',
+
+                      // ⭐ Ombre directionnelle studio
                       filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.35))',
                     }}
                   />
@@ -384,8 +401,3 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
               </div>
             </button>
           ))}
-        </div>
-      )}
-    </div>
-  );
-}
