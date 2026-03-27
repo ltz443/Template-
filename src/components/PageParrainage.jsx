@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { OFFRES, CATEGORIES } from '../data/offres';
 import { T } from '../utils/tokens';
 
 // — SOUS-COMPOSANTS INTERNES —
-
 function Card({ children, style }) {
   return (
     <div style={{
