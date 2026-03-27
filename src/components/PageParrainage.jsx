@@ -245,9 +245,11 @@ return (
         <button key={cat} onClick={() => setFiltre(cat)} style={{
           background: filtre === cat ? T.primary : 'rgba(255,255,255,0.08)',
           color: filtre === cat ? '#fff' : T.muted,
+          // Correction : Backticks pour l'injection de variable
           border: `1px solid ${filtre === cat ? T.primary : T.border}`,
           borderRadius: 99, padding: '7px 16px',
           fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap',
+          // Correction : Ajout de guillemets autour de la valeur shadow
           boxShadow: filtre === cat ? `0 2px 16px ${T.primary}60` : 'none',
           backdropFilter: 'blur(8px)',
           transition: 'all 0.2s',
@@ -283,7 +285,7 @@ return (
             onClick={() => setSelected(o)}
             className="offer-btn fade-up"
             style={{
-              background: 'rgba(255,255,255,0.04)',
+              background: 'rgba(255, 255, 255, 0.04)',
               border: `1px solid ${T.border}`,
               borderRadius: 18,
               padding: 0,
@@ -320,8 +322,6 @@ return (
                     margin: 0,
                     padding: 0,
                     border: 'none',
-
-                    // ⭐ OMBRE DIRECTIONNELLE STUDIO (point 6)
                     filter: 'drop-shadow(0 8px 16px rgba(0,0,0,0.35))',
                   }}
                 />
@@ -332,7 +332,7 @@ return (
                   justifyContent: 'center',
                   height: '100%',
                   fontSize: 36,
-                  background: o.couleur + '22',
+                  background: `${o.couleur}22`, // Correction syntaxe concaténation
                 }}>
                   {o.emoji}
                 </div>
@@ -354,7 +354,7 @@ return (
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <span style={{
                   display: 'inline-block',
-                  background: o.couleur + '28',
+                  background: `${o.couleur}28`, // Correction syntaxe concaténation
                   color: o.couleur === '#111827' ? T.primary : o.couleur,
                   borderRadius: 99, padding: '3px 10px',
                   fontSize: 13, fontWeight: 800,
