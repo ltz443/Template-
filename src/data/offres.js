@@ -108,9 +108,9 @@ export const OFFRES = [
     nom: 'BMW M128ti',
     categorie: 'Sportive',
     // Photo détourée (Lien postimg direct)
-    image: "https://imgur.com/a/gZ2wCEs",
+    image: "https://i.postimg.cc/XYs2TkSn/IMG-2925.jpg",
     // Photo de nuit (Lien postimg direct)
-    imageFond: "https://imgur.com/a/gZ2wCEs",
+    imageFond: "https://i.postimg.cc/XYs2TkSn/IMG-2925.jpg",
     emoji: 'Ⓜ️',
     couleur: '#2563EB',
     couleurLight: '#DBEAFE',
