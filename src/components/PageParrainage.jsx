@@ -32,7 +32,6 @@ function CategoryBadge({ label, color }) {
   );
 }
 
-// — CARTE “BIENTÔT DISPONIBLE” —
 function ComingSoonCard() {
   return (
     <div style={{
@@ -41,11 +40,6 @@ function ComingSoonCard() {
       borderRadius: T.radius,
       padding: 16,
       textAlign: 'left',
-      boxShadow: 'none',
-      backdropFilter: 'blur(16px)',
-      WebkitBackdropFilter: 'blur(16px)',
-      position: 'relative',
-      overflow: 'hidden',
       opacity: 0.6,
     }}>
       <div style={{
@@ -69,14 +63,11 @@ function ComingSoonCard() {
   );
 }
 
-// — COMPOSANT PRINCIPAL —
 export default function PageParrainage({ selected, setSelected, filtre, setFiltre }) {
   const filtrees = filtre === 'Tout' ? OFFRES : OFFRES.filter(o => o.categorie === filtre);
   const isCategoryEmpty = filtre !== 'Tout' && filtrees.length === 0;
 
-  // ── Vue détail ──
   if (selected) {
-    // ... (La vue détail reste inchangée, je la garde pour que le code soit complet)
     const o = selected;
     return (
       <div className="fade-up" style={{ maxWidth: 480, margin: '0 auto' }}>
@@ -96,11 +87,7 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
         </button>
 
         <Card style={{ overflow: 'hidden' }}>
-          <div style={{
-            height: o.imageFond ? 220 : 'auto',
-            position: 'relative',
-            borderBottom: `1px solid ${T.border}`,
-          }}>
+          <div style={{ position: 'relative', borderBottom: `1px solid ${T.border}` }}>
             {o.imageFond ? (
               <>
                 <img
@@ -112,9 +99,6 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
                     height: '220px',
                     objectFit: 'cover',
                     objectPosition: 'center 60%',
-                    margin: 0,
-                    padding: 0,
-                    border: 'none',
                     filter: 'drop-shadow(0 10px 18px rgba(0,0,0,0.38))'
                   }}
                 />
@@ -152,7 +136,6 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
                     fontSize: 22, fontWeight: 800,
                     color: '#fff',
                     marginTop: 6, fontFamily: "'Sora', sans-serif",
-                    textShadow: '0 2px 8px rgba(0,0,0,0.4)',
                   }}>{o.nom}</h2>
                 </div>
               </div>
@@ -161,171 +144,4 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
 
           <div style={{ padding: '16px 20px 20px' }}>
             <p style={{ fontSize: 14, color: T.slate, lineHeight: 1.6, marginBottom: 20 }}>{o.description}</p>
-
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, marginBottom: 20 }}>
-              <div style={{ background: T.primaryLight, borderRadius: 12, padding: '12px 8px', textAlign: 'center', border: `1px solid ${T.primary}33` }}>
-                <div style={{ fontSize: 9, color: T.primary, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.06em' }}>Prix / jour</div>
-                <div style={{ fontSize: 16, fontWeight: 800, color: T.primary, fontFamily: "'Sora', sans-serif" }}>{o.prix}</div>
-              </div>
-              <div style={{ background: T.accentLight, borderRadius: 12, padding: '12px 8px', textAlign: 'center', border: `1px solid ${T.accent}33` }}>
-                <div style={{ fontSize: 9, color: T.warn, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.06em' }}>Puissance</div>
-                <div style={{ fontSize: 16, fontWeight: 800, color: T.warn, fontFamily: "'Sora', sans-serif" }}>{o.puissance}</div>
-              </div>
-              <div style={{ background: T.dangerLight, borderRadius: 12, padding: '12px 8px', textAlign: 'center', border: `1px solid ${T.danger}33` }}>
-                <div style={{ fontSize: 9, color: T.danger, textTransform: 'uppercase', fontWeight: 700, marginBottom: 4, letterSpacing: '0.06em' }}>Caution</div>
-                <div style={{ fontSize: 16, fontWeight: 800, color: T.danger, fontFamily: "'Sora', sans-serif" }}>{o.caution}</div>
-              </div>
-            </div>
-
-            {o.conditions && o.conditions.length > 0 && (
-              <div style={{ marginBottom: 20 }}>
-                {o.conditions.map((c, i) => (
-                  <div key={i} style={{
-                    display: 'flex', alignItems: 'flex-start', gap: 10,
-                    padding: '8px 0',
-                    borderBottom: i < o.conditions.length - 1 ? `1px solid ${T.borderSoft}` : 'none',
-                  }}>
-                    <span style={{ color: T.primary, fontSize: 14, flexShrink: 0, marginTop: 1 }}>✓</span>
-                    <span style={{ fontSize: 14, color: T.slate, lineHeight: 1.5 }}>{c}</span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </Card>
-      </div>
-    );
-  }
-
-  // ── Vue liste ──
-  return (
-    <div style={{ maxWidth: 480, margin: '0 auto' }}>
-      <div style={{
-        display: 'flex',
-        gap: 8,
-        overflowX: 'auto',
-        paddingBottom: 15,
-        scrollbarWidth: 'none'
-      }}>
-        {CATEGORIES.map(cat => (
-          <button
-            key={cat}
-            onClick={() => setFiltre(cat)}
-            style={{
-              background: filtre === cat ? T.primary : 'rgba(255,255,255,0.08)',
-              color: filtre === cat ? '#fff' : T.muted,
-              border: `1px solid ${filtre === cat ? T.primary : T.border}`,
-              borderRadius: 99,
-              padding: '7px 16px',
-              fontWeight: 700,
-              cursor: 'pointer',
-              whiteSpace: 'nowrap',
-              boxShadow: filtre === cat ? `0 2px 16px ${T.primary}60` : 'none',
-              backdropFilter: 'blur(10px)',
-              transition: 'all 0.25s ease'
-            }}
-          >
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      {isCategoryEmpty ? (
-        <div className="fade-up">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-            <ComingSoonCard />
-            <ComingSoonCard />
-          </div>
-        </div>
-      ) : (
-        {/* ✅ AJOUT ICI : alignItems: 'start' empêche les cartes de s'étirer verticalement */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, alignItems: 'start' }}>
-          {filtrees.map(o => (
-            <button
-              key={o.id}
-              onClick={() => setSelected(o)}
-              className="offer-btn fade-up"
-              style={{
-                background: 'rgba(255,255,255,0.06)',
-                border: `1px solid ${T.border}`,
-                borderRadius: 20,
-                padding: 0,
-                textAlign: 'left',
-                cursor: 'pointer',
-                boxShadow: '0 0 28px rgba(139, 92, 246, 0.22)',
-                backdropFilter: 'blur(18px)',
-                WebkitBackdropFilter: 'blur(18px)',
-                position: 'relative',
-                overflow: 'hidden',
-                transition: 'transform 0.25s ease, box-shadow 0.25s ease'
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.transform = 'translateY(-4px)';
-                e.currentTarget.style.boxShadow = '0 10px 34px rgba(139, 92, 246, 0.32)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.transform = 'translateY(0px)';
-                e.currentTarget.style.boxShadow = '0 0 28px rgba(139, 92, 246, 0.22)';
-              }}
-            >
-
-              {/* ✅ MODIFICATION ICI : On enlève height: 110 */}
-              <div style={{ overflow: 'hidden', lineHeight: 0, fontSize: 0 }}>
-                {o.image ? (
-                  <img
-                    src={o.image}
-                    alt={o.nom}
-                    style={{
-                      display: 'block',
-                      width: '100%',
-                      height: 'auto', // ✅ L'image dicte sa hauteur naturellement
-                      margin: 0, padding: 0, border: 'none',
-                      filter: 'drop-shadow(0 10px 18px rgba(0,0,0,0.38))'
-                    }}
-                  />
-                ) : (
-                  <div style={{
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    padding: '40px 0', fontSize: 36, background: `${o.couleur}22`
-                  }}>
-                    {o.emoji}
-                  </div>
-                )}
-              </div>
-
-              <div style={{ padding: '12px 14px 14px' }}>
-                <div style={{
-                  fontSize: 10, color: T.faint, fontWeight: 700,
-                  textTransform: 'uppercase', letterSpacing: '0.06em', marginBottom: 3
-                }}>
-                  {o.categorie}
-                </div>
-                <div style={{
-                  fontSize: 15, fontWeight: 800, color: T.navy,
-                  marginBottom: 8, fontFamily: "'Sora', sans-serif", lineHeight: 1.2
-                }}>
-                  {o.nom}
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                  <span style={{
-                    display: 'inline-block',
-                    background: `${o.couleur}28`,
-                    color: o.couleur === '#111827' ? T.primary : o.couleur,
-                    borderRadius: 99, padding: '3px 10px',
-                    fontSize: 13, fontWeight: 800,
-                    border: `1px solid ${o.couleur}44`
-                  }}>
-                    {o.prix}
-                  </span>
-                  <span style={{ fontSize: 11, color: T.muted, fontWeight: 600 }}>
-                    {o.puissance}
-                  </span>
-                </div>
-              </div>
-            </button>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 1
