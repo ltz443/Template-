@@ -108,19 +108,20 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
             {o.imageFond ? (
               <>
                 <img
-                  src={o.imageFond}
-                  alt={o.nom}
-                  style={{
-                    display: 'block',
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    margin: 0,
-                    padding: 0,
-                    border: 'none',
-                    outline: 'none',
-                  }}
-                />
+  src={o.image}
+  alt={o.nom}
+  style={{
+    display: 'block',
+    width: '100%',
+    height: '110px',      /* Force la hauteur pour remplir le cadre */
+    objectFit: 'cover',   /* COUPE les bords proprement au lieu d'écraser */
+    objectPosition: 'center', /* Centre la voiture */
+    margin: 0,
+    padding: 0,
+    border: 'none',
+    filter: 'drop-shadow(0 10px 18px rgba(0,0,0,0.38))'
+  }}
+/>
                 <div style={{
                   position: 'absolute', inset: 0,
                   background: 'linear-gradient(0deg, rgba(10,2,30,0.85) 0%, transparent 60%)',
