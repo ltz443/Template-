@@ -88,60 +88,113 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
 
         <Card style={{ overflow: 'hidden' }}>
           <div style={{ position: 'relative', borderBottom: `1px solid ${T.border}` }}>
-            {o.imageFond ? (
-              <>
-                <img
-                  src={o.image}
-                  alt={o.nom}
-                  style={{
-                    display: 'block',
-                    width: '100%',
-                    height: '220px',
-                    objectFit: 'cover',
-                    objectPosition: 'center 60%',
-                    filter: 'drop-shadow(0 10px 18px rgba(0,0,0,0.38))'
-                  }}
-                />
-                <div style={{
-                  position: 'absolute', inset: 0,
-                  background: 'linear-gradient(0deg, rgba(10,2,30,0.85) 0%, transparent 60%)',
-                }} />
-              </>
-            ) : (
-              <div style={{
-                background: `linear-gradient(135deg, ${o.couleur}33, ${o.couleur}11)`,
-                padding: '24px 20px 20px',
-              }} />
-            )}
-
+            <img
+              src={o.image}
+              alt={o.nom}
+              style={{
+                display: 'block',
+                width: '100%',
+                height: 'auto', // La vue détail s'adapte aussi
+                maxHeight: '300px',
+                objectFit: 'cover',
+                filter: 'drop-shadow(0 10px 18px rgba(0,0,0,0.38))'
+              }}
+            />
             <div style={{
-              position: o.imageFond ? 'absolute' : 'relative',
-              bottom: 0, left: 0, right: 0,
-              padding: '20px',
-              zIndex: 2,
+              position: 'absolute', inset: 0,
+              background: 'linear-gradient(0deg, rgba(10,2,30,0.85) 0%, transparent 60%)',
+            }} />
+            <div style={{
+              position: 'absolute', bottom: 0, left: 0, right: 0,
+              padding: '20px', zIndex: 2,
             }}>
-              <div style={{ display: 'flex', gap: 14, alignItems: 'center' }}>
-                {!o.imageFond && (
-                  <div style={{
-                    width: 56, height: 56, borderRadius: 16,
-                    background: o.couleurLight + '22',
-                    border: `2px solid ${o.couleur}44`,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    fontSize: 26, flexShrink: 0,
-                  }}>{o.emoji}</div>
-                )}
-                <div>
-                  <CategoryBadge label={o.categorie} color={o.couleur} />
-                  <h2 style={{
-                    fontSize: 22, fontWeight: 800,
-                    color: '#fff',
-                    marginTop: 6, fontFamily: "'Sora', sans-serif",
-                  }}>{o.nom}</h2>
-                </div>
-              </div>
+              <CategoryBadge label={o.categorie} color={o.couleur} />
+              <h2 style={{ fontSize: 22, fontWeight: 800, color: '#fff', marginTop: 6, fontFamily: "'Sora', sans-serif" }}>{o.nom}</h2>
             </div>
           </div>
 
           <div style={{ padding: '16px 20px 20px' }}>
             <p style={{ fontSize: 14, color: T.slate, lineHeight: 1.6, marginBottom: 20 }}>{o.description}</p>
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 1
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, marginBottom: 20 }}>
+              <div style={{ background: T.primaryLight, borderRadius: 12, padding: '12px 8px', textAlign: 'center' }}>
+                <div style={{ fontSize: 9, color: T.primary, fontWeight: 700, textTransform: 'uppercase' }}>Prix/j</div>
+                <div style={{ fontSize: 14, fontWeight: 800, color: T.primary }}>{o.prix}</div>
+              </div>
+              <div style={{ background: T.accentLight, borderRadius: 12, padding: '12px 8px', textAlign: 'center' }}>
+                <div style={{ fontSize: 9, color: T.warn, fontWeight: 700, textTransform: 'uppercase' }}>Power</div>
+                <div style={{ fontSize: 14, fontWeight: 800, color: T.warn }}>{o.puissance}</div>
+              </div>
+              <div style={{ background: T.dangerLight, borderRadius: 12, padding: '12px 8px', textAlign: 'center' }}>
+                <div style={{ fontSize: 9, color: T.danger, fontWeight: 700, textTransform: 'uppercase' }}>Caution</div>
+                <div style={{ fontSize: 14, fontWeight: 800, color: T.danger }}>{o.caution}</div>
+              </div>
+            </div>
+            {o.type === 'contact' && (
+              <a href={`https://instagram.com/${o.contact.replace('@', '')}`} target="_blank" rel="noreferrer" style={{ display: 'block', background: 'linear-gradient(135deg, #833AB4, #FD1D1D)', borderRadius: 12, color: '#fff', fontSize: 14, fontWeight: 700, padding: '14px', textDecoration: 'none', textAlign: 'center' }}>
+                Réserver via Instagram
+              </a>
+            )}
+          </div>
+        </Card>
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ maxWidth: 480, margin: '0 auto' }}>
+      <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 15, scrollbarWidth: 'none' }}>
+        {CATEGORIES.map(cat => (
+          <button key={cat} onClick={() => setFiltre(cat)} style={{ background: filtre === cat ? T.primary : 'rgba(255,255,255,0.08)', color: filtre === cat ? '#fff' : T.muted, border: `1px solid ${filtre === cat ? T.primary : T.border}`, borderRadius: 99, padding: '7px 16px', fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, alignItems: 'start' }}>
+        {isCategoryEmpty ? (
+          <>
+            <ComingSoonCard />
+            <ComingSoonCard />
+          </>
+        ) : (
+          filtrees.map(o => (
+            <button
+              key={o.id}
+              onClick={() => setSelected(o)}
+              style={{
+                background: 'rgba(255,255,255,0.06)',
+                border: `1px solid ${T.border}`,
+                borderRadius: 20,
+                padding: 0,
+                textAlign: 'left',
+                cursor: 'pointer',
+                overflow: 'hidden',
+                backdropFilter: 'blur(18px)',
+              }}
+            >
+              {/* L'image ici est en height auto, donc la carte s'adapte à la photo */}
+              <img
+                src={o.image}
+                alt={o.nom}
+                style={{
+                  display: 'block',
+                  width: '100%',
+                  height: 'auto', 
+                  border: 'none',
+                }}
+              />
+              <div style={{ padding: '12px 14px 14px' }}>
+                <div style={{ fontSize: 9, color: T.faint, fontWeight: 700, textTransform: 'uppercase' }}>{o.categorie}</div>
+                <div style={{ fontSize: 14, fontWeight: 800, color: '#fff', marginBottom: 8 }}>{o.nom}</div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <span style={{ background: `${o.couleur}44`, color: '#fff', padding: '2px 8px', borderRadius: 8, fontSize: 12, fontWeight: 800 }}>{o.prix}</span>
+                  <span style={{ fontSize: 10, color: T.muted }}>{o.puissance}</span>
+                </div>
+              </div>
+            </button>
+          ))
+        )}
+      </div>
+    </div>
+  );
+}
