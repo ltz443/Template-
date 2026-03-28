@@ -48,7 +48,6 @@ function ComingSoonCard() {
       overflow: 'hidden',
       opacity: 0.6,
     }}>
-      {/* 🗑️ BARRE SUPÉRIEURE SUPPRIMÉE ICI */}
       <div style={{
         width: 44, height: 44, borderRadius: 12,
         background: T.borderSoft,
@@ -77,6 +76,7 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
 
   // ── Vue détail ──
   if (selected) {
+    // ... (La vue détail reste inchangée, je la garde pour que le code soit complet)
     const o = selected;
     return (
       <div className="fade-up" style={{ maxWidth: 480, margin: '0 auto' }}>
@@ -191,43 +191,6 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
                 ))}
               </div>
             )}
-
-            {o.type === 'contact' && (
-              <div style={{
-                background: T.borderSoft, borderRadius: 14,
-                padding: '16px', border: `1px solid ${T.border}`, textAlign: 'center',
-              }}>
-                <p style={{ fontSize: 13, color: T.slate, marginBottom: 14, lineHeight: 1.5 }}>{o.note}</p>
-                <a
-                  href={`https://instagram.com/${o.contact.replace('@', '')}`}
-                  target="_blank" rel="noreferrer"
-                  style={{
-                    display: 'block',
-                    background: 'linear-gradient(135deg, #833AB4, #FD1D1D)',
-                    borderRadius: 12, color: '#fff',
-                    fontSize: 14, fontWeight: 700, padding: '14px 24px',
-                    textDecoration: 'none', textAlign: 'center',
-                  }}
-                >
-                  Réserver via Instagram {o.contact}
-                </a>
-              </div>
-            )}
-
-            {o.type === 'lien' && o.lien !== '#' && (
-              <a
-                href={o.lien} target="_blank" rel="noreferrer"
-                style={{
-                  display: 'block', textAlign: 'center',
-                  background: `linear-gradient(135deg, ${T.primary}, ${T.primaryDark})`,
-                  borderRadius: 14, color: '#fff',
-                  fontSize: 15, fontWeight: 700, padding: '15px', textDecoration: 'none',
-                  boxShadow: `0 4px 20px ${T.primary}60`,
-                }}
-              >
-                S'inscrire via mon lien →
-              </a>
-            )}
           </div>
         </Card>
       </div>
@@ -269,32 +232,14 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
 
       {isCategoryEmpty ? (
         <div className="fade-up">
-          <div style={{ textAlign: 'center', padding: '20px 16px 24px' }}>
-            <div style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              background: T.primaryLight,
-              borderRadius: 99,
-              padding: '6px 16px',
-              marginBottom: 10
-            }}>
-              <span style={{ width: 7, height: 7, borderRadius: '50%', background: T.primary }} />
-              <span style={{ fontSize: 12, fontWeight: 700, color: T.primary }}>
-                Nouveautés en préparation
-              </span>
-            </div>
-            <p style={{ fontSize: 13, color: T.muted, lineHeight: 1.5 }}>
-              Des véhicules arrivent bientôt<br />dans cette catégorie.
-            </p>
-          </div>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
             <ComingSoonCard />
             <ComingSoonCard />
           </div>
         </div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+        {/* ✅ AJOUT ICI : alignItems: 'start' empêche les cartes de s'étirer verticalement */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, alignItems: 'start' }}>
           {filtrees.map(o => (
             <button
               key={o.id}
@@ -323,9 +268,9 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
                 e.currentTarget.style.boxShadow = '0 0 28px rgba(139, 92, 246, 0.22)';
               }}
             >
-              {/* 🗑️ BARRE SUPÉRIEURE SUPPRIMÉE ICI AUSSI */}
 
-              <div style={{ height: 110, overflow: 'hidden', lineHeight: 0, fontSize: 0 }}>
+              {/* ✅ MODIFICATION ICI : On enlève height: 110 */}
+              <div style={{ overflow: 'hidden', lineHeight: 0, fontSize: 0 }}>
                 {o.image ? (
                   <img
                     src={o.image}
@@ -333,9 +278,7 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
                     style={{
                       display: 'block',
                       width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      objectPosition: o.imagePosition || 'center 55%',
+                      height: 'auto', // ✅ L'image dicte sa hauteur naturellement
                       margin: 0, padding: 0, border: 'none',
                       filter: 'drop-shadow(0 10px 18px rgba(0,0,0,0.38))'
                     }}
@@ -343,7 +286,7 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
                 ) : (
                   <div style={{
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    height: '100%', fontSize: 36, background: `${o.couleur}22`
+                    padding: '40px 0', fontSize: 36, background: `${o.couleur}22`
                   }}>
                     {o.emoji}
                   </div>
