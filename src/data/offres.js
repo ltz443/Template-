@@ -133,9 +133,9 @@ export const OFFRES = [
     nom: 'Renault Clio V Intens',
     categorie: 'Citadine',
     // Photo détourée (Lien postimg direct)
-    image: "https://imgur.com/a/RSmY3fi",
+    image: "https://i.postimg.cc/4xGkJ5Sy/IMG-2926.jpg",
     // Photo de nuit (Lien postimg direct)
-    imageFond: "https://imgur.com/a/RSmY3fi",
+    imageFond: "https://i.postimg.cc/4xGkJ5Sy/IMG-2926.jpg",
     emoji: '⚡',
     couleur: '#0891B2',
     couleurLight: '#CFFAFE',
