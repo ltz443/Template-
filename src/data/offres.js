@@ -55,9 +55,9 @@ export const OFFRES = [
     nom: 'Audi S3 Berline',
     categorie: 'Luxe',
     // Photo détourée (Lien postimg direct)
-    image: "https://imgur.com/a/vagFLpO",
+    image: "https://i.postimg.cc/MGjyd7zG/IMG-2920.webp",
     // Photo de nuit (Lien postimg direct)
-    imageFond: "https://imgur.com/a/vagFLpO",
+    imageFond: "https://i.postimg.cc/MGjyd7zG/IMG-2920.webp",
     emoji: '🟢',
     couleur: '#059669',
     couleurLight: '#D1FAE5',
