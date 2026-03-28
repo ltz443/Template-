@@ -71,7 +71,6 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
   const filtrees = filtre === 'Tout' ? OFFRES : OFFRES.filter(o => o.categorie === filtre);
   const isCategoryEmpty = filtre !== 'Tout' && filtrees.length === 0;
 
-  // --- VUE DÉTAIL (QUAND ON CLIQUE SUR UNE VOITURE) ---
   if (selected) {
     const o = selected;
     return (
@@ -101,117 +100,113 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
                 width: '100%',
                 height: 'auto',
                 maxHeight: '320px',
-                objectFit: 'cover',
-                filter: 'drop-shadow(0 10px 18px rgba(0,0,0,0.38))'
+                objectFit: 'cover'
               }}
             />
-            <div style={{
-              position: 'absolute', inset: 0,
-              background: 'linear-gradient(0deg, rgba(10,2,30,0.85) 0%, transparent 60%)',
-            }} />
-            <div style={{
-              position: 'absolute', bottom: 0, left: 0, right: 0,
-              padding: '20px', zIndex: 2,
-            }}>
-              <CategoryBadge label={o.categorie} color={o.couleur} />
-              <h2 style={{ fontSize: 22, fontWeight: 800, color: '#fff', marginTop: 6, fontFamily: "'Sora', sans-serif" }}>{o.nom}</h2>
-            </div>
           </div>
 
           <div style={{ padding: '16px 20px 20px' }}>
             <p style={{ fontSize: 14, color: T.slate, lineHeight: 1.6, marginBottom: 20 }}>{o.description}</p>
+
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 10, marginBottom: 20 }}>
               <div style={{ background: T.primaryLight, borderRadius: 12, padding: '12px 8px', textAlign: 'center' }}>
-                <div style={{ fontSize: 9, color: T.primary, fontWeight: 700, textTransform: 'uppercase' }}>Prix/j</div>
+                <div style={{ fontSize: 9, color: T.primary, fontWeight: 700 }}>Prix/j</div>
                 <div style={{ fontSize: 14, fontWeight: 800, color: T.primary }}>{o.prix}</div>
               </div>
+
               <div style={{ background: T.accentLight, borderRadius: 12, padding: '12px 8px', textAlign: 'center' }}>
-                <div style={{ fontSize: 9, color: T.warn, fontWeight: 700, textTransform: 'uppercase' }}>Power</div>
+                <div style={{ fontSize: 9, color: T.warn, fontWeight: 700 }}>Power</div>
                 <div style={{ fontSize: 14, fontWeight: 800, color: T.warn }}>{o.puissance}</div>
               </div>
+
               <div style={{ background: T.dangerLight, borderRadius: 12, padding: '12px 8px', textAlign: 'center' }}>
-                <div style={{ fontSize: 9, color: T.danger, fontWeight: 700, textTransform: 'uppercase' }}>Caution</div>
+                <div style={{ fontSize: 9, color: T.danger, fontWeight: 700 }}>Caution</div>
                 <div style={{ fontSize: 14, fontWeight: 800, color: T.danger }}>{o.caution}</div>
               </div>
             </div>
-            
-            {o.conditions && (
-              <div style={{ marginBottom: 20 }}>
-                {o.conditions.map((c, i) => (
-                  <div key={i} style={{ fontSize: 13, color: T.slate, marginBottom: 6 }}>• {c}</div>
-                ))}
-              </div>
-            )}
 
-            {o.type === 'contact' && (
-              <a href={`https://instagram.com/${o.contact.replace('@', '')}`} target="_blank" rel="noreferrer" style={{ display: 'block', background: 'linear-gradient(135deg, #833AB4, #FD1D1D)', borderRadius: 12, color: '#fff', fontSize: 14, fontWeight: 700, padding: '14px', textDecoration: 'none', textAlign: 'center' }}>
-                Réserver via Instagram
-              </a>
-            )}
+            <a
+              href={`https://instagram.com/${o.contact.replace('@', '')}`}
+              target="_blank"
+              rel="noreferrer"
+              style={{
+                display: 'block',
+                background: 'linear-gradient(135deg, #833AB4, #FD1D1D)',
+                borderRadius: 12,
+                color: '#fff',
+                fontSize: 14,
+                fontWeight: 700,
+                padding: '14px',
+                textDecoration: 'none',
+                textAlign: 'center'
+              }}
+            >
+              Réserver via Instagram
+            </a>
           </div>
         </Card>
       </div>
     );
   }
 
-  // --- VUE LISTE (LA GRILLE) ---
   return (
     <div style={{ maxWidth: 480, margin: '0 auto' }}>
-      <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 15, scrollbarWidth: 'none' }}>
-        {CATEGORIES.map(cat => (
-          <button key={cat} onClick={() => setFiltre(cat)} style={{ background: filtre === cat ? T.primary : 'rgba(255,255,255,0.08)', color: filtre === cat ? '#fff' : T.muted, border: `1px solid ${filtre === cat ? T.primary : T.border}`, borderRadius: 99, padding: '7px 16px', fontWeight: 700, cursor: 'pointer', whiteSpace: 'nowrap' }}>
-            {cat}
-          </button>
-        ))}
-      </div>
-
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, alignItems: 'stretch' }}>
-        {isCategoryEmpty ? (
-          <>
-            <ComingSoonCard />
-            <ComingSoonCard />
-          </>
-        ) : (
-          filtrees.map(o => (
-            <button
-              key={o.id}
-              onClick={() => setSelected(o)}
-              style={{
-                background: 'rgba(255,255,255,0.06)',
-                border: `1px solid ${T.border}`,
-                borderRadius: 20,
-                padding: 0,
-                textAlign: 'left',
-                cursor: 'pointer',
-                overflow: 'hidden',
-                backdropFilter: 'blur(18px)',
-                display: 'flex',
-                flexDirection: 'column'
-              }}
-            >
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+        {filtrees.map(o => (
+          <button
+            key={o.id}
+            onClick={() => setSelected(o)}
+            style={{
+              background: 'rgba(255,255,255,0.06)',
+              border: `1px solid ${T.border}`,
+              borderRadius: 20,
+              padding: 0,
+              textAlign: 'left',
+              cursor: 'pointer',
+              overflow: 'hidden',
+              display: 'flex',
+              flexDirection: 'column',
+              height: '100%'
+            }}
+          >
+            {/* IMAGE FIXE = cartes parfaitement proportionnelles */}
+            <div style={{ width: '100%', aspectRatio: '16 / 11', overflow: 'hidden' }}>
               <img
                 src={o.image}
                 alt={o.nom}
                 style={{
-                  display: 'block',
                   width: '100%',
-                  height: 'auto', 
-                  border: 'none',
+                  height: '100%',
+                  objectFit: 'cover',
+                  display: 'block'
                 }}
               />
-              <div style={{ padding: '12px 14px 14px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                <div>
-                  <div style={{ fontSize: 9, color: T.faint, fontWeight: 700, textTransform: 'uppercase' }}>{o.categorie}</div>
-                  <div style={{ fontSize: 14, fontWeight: 800, color: '#fff', marginBottom: 8 }}>{o.nom}</div>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
-                  <span style={{ background: `${o.couleur}44`, color: '#fff', padding: '2px 8px', borderRadius: 8, fontSize: 12, fontWeight: 800 }}>{o.prix}</span>
-                  <span style={{ fontSize: 10, color: T.muted }}>{o.puissance}</span>
-                </div>
+            </div>
+
+            {/* CONTENU */}
+            <div style={{ padding: '12px 14px 14px', flex: 1, display: 'flex', flexDirection: 'column' }}>
+              <div style={{ fontSize: 9, color: T.faint, fontWeight: 700, textTransform: 'uppercase' }}>
+                {o.categorie}
               </div>
-            </button>
-          ))
-        )}
+
+              <div style={{ fontSize: 14, fontWeight: 800, color: '#fff', marginBottom: 8 }}>
+                {o.nom}
+              </div>
+
+              <div style={{ flex: 1 }} />
+
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <span style={{ background: `${o.couleur}44`, color: '#fff', padding: '2px 8px', borderRadius: 8, fontSize: 12, fontWeight: 800 }}>
+                  {o.prix}
+                </span>
+
+                <span style={{ fontSize: 10, color: T.muted }}>
+                  {o.puissance}
+                </span>
+              </div>
+            </div>
+          </button>
+        ))}
       </div>
     </div>
   );
