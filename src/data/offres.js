@@ -82,9 +82,9 @@ export const OFFRES = [
     nom: 'Golf 8 GTI Club Sport',
     categorie: 'Sportive',
     // Photo détourée (Lien postimg direct)
-    image: "https://imgur.com/a/AfwEiuF",
+    image: "https://i.postimg.cc/PJnKm6Zk/IMG-2924.jpg",
     // Photo de nuit (Lien postimg direct)
-    imageFond: "https://imgur.com/a/AfwEiuF",
+    imageFond: "https://i.postimg.cc/PJnKm6Zk/IMG-2924.jpg",
     emoji: '💎',
     couleur: '#D97706',
     couleurLight: '#FEF3C7',
