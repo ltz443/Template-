@@ -3,10 +3,9 @@ export const OFFRES = [
     id: 'golf-8r',
     nom: 'Golf 8R',
     categorie: 'Sportive',
-    // Photo détourée (Lien postimg direct)
     image: "https://i.postimg.cc/tRtMwJZf/IMG-2840.jpg",
-    // Photo de nuit (Lien postimg direct)
     imageFond: "https://i.postimg.cc/tRtMwJZf/IMG-2840.jpg",
+    imagePosition: 'center 50%',
     couleur: '#111827',
     couleurLight: '#F3F4F6',
     description: 'La puissance allemande au service de vos sensations.',
@@ -19,7 +18,7 @@ export const OFFRES = [
     conditions: [
       "Permis de conduire (3 ans min)",
       "Dépôt de caution par CB",
-      "Pièce d'identité + Permis"
+      "Pièce d’identité + Permis"
     ],
     shareText: 'Loue la Golf 8R chez 4P RENTALS !',
     shareUrl: 'https://4p-rentals.vercel.app'
@@ -28,10 +27,9 @@ export const OFFRES = [
     id: 's3-sportback',
     nom: 'Audi S3 Sportback',
     categorie: 'Sportive',
-    // Photo détourée (Lien postimg direct)
     image: "https://i.postimg.cc/9f4Bs3Yq/IMG-2919.jpg",
-    // Photo de nuit (Lien postimg direct)
     imageFond: "https://i.postimg.cc/9f4Bs3Yq/IMG-2919.jpg",
+    imagePosition: 'center 40%',
     emoji: '🏁',
     couleur: '#7C3AED',
     couleurLight: '#EDE9FE',
@@ -42,7 +40,7 @@ export const OFFRES = [
     conditions: [
       "Permis de conduire (3 ans min)",
       "Dépôt de caution par CB",
-      "Pièce d'identité + Permis"
+      "Pièce d’identité + Permis"
     ],
     type: 'contact',
     contact: '@parrain_4p',
@@ -54,10 +52,9 @@ export const OFFRES = [
     id: 's3-berline',
     nom: 'Audi S3 Berline',
     categorie: 'Luxe',
-    // Photo détourée (Lien postimg direct)
     image: "https://i.postimg.cc/MGjyd7zG/IMG-2920.webp",
-    // Photo de nuit (Lien postimg direct)
     imageFond: "https://i.postimg.cc/MGjyd7zG/IMG-2920.webp",
+    imagePosition: 'center 55%',
     emoji: '🟢',
     couleur: '#059669',
     couleurLight: '#D1FAE5',
@@ -69,7 +66,7 @@ export const OFFRES = [
       "KM supplémentaire : 1€",
       "Permis de conduire (3 ans min)",
       "Dépôt de caution par CB",
-      "Pièce d'identité + Permis"
+      "Pièce d’identité + Permis"
     ],
     type: 'contact',
     contact: '@parrain_4p',
@@ -81,10 +78,9 @@ export const OFFRES = [
     id: 'golf-8-gti',
     nom: 'Golf 8 GTI Club Sport',
     categorie: 'Sportive',
-    // Photo détourée (Lien postimg direct)
     image: "https://i.postimg.cc/PJnKm6Zk/IMG-2924.jpg",
-    // Photo de nuit (Lien postimg direct)
     imageFond: "https://i.postimg.cc/PJnKm6Zk/IMG-2924.jpg",
+    imagePosition: 'center 45%',
     emoji: '💎',
     couleur: '#D97706',
     couleurLight: '#FEF3C7',
@@ -95,7 +91,7 @@ export const OFFRES = [
     conditions: [
       "Tarifs 24h applicables du lundi au vendredi",
       "Dépôt de caution par CB",
-      "Pièce d'identité + Permis"
+      "Pièce d’identité + Permis"
     ],
     type: 'contact',
     contact: '@parrain_4p',
@@ -107,10 +103,9 @@ export const OFFRES = [
     id: 'bmw-m128ti',
     nom: 'BMW M128ti',
     categorie: 'Sportive',
-    // Photo détourée (Lien postimg direct)
     image: "https://i.postimg.cc/XYs2TkSn/IMG-2925.jpg",
-    // Photo de nuit (Lien postimg direct)
     imageFond: "https://i.postimg.cc/XYs2TkSn/IMG-2925.jpg",
+    imagePosition: 'center 50%',
     emoji: 'Ⓜ️',
     couleur: '#2563EB',
     couleurLight: '#DBEAFE',
@@ -120,7 +115,7 @@ export const OFFRES = [
     description: "Compacte sportive premium nerveuse, précise et pensée pour une conduite dynamique au quotidien.",
     conditions: [
       "Dépôt de caution par CB",
-      "Pièce d'identité + Permis"
+      "Pièce d’identité + Permis"
     ],
     type: 'contact',
     contact: '@parrain_4p',
@@ -132,10 +127,9 @@ export const OFFRES = [
     id: 'clio-v-intens',
     nom: 'Renault Clio V Intens',
     categorie: 'Citadine',
-    // Photo détourée (Lien postimg direct)
     image: "https://i.postimg.cc/4xGkJ5Sy/IMG-2926.jpg",
-    // Photo de nuit (Lien postimg direct)
     imageFond: "https://i.postimg.cc/4xGkJ5Sy/IMG-2926.jpg",
+    imagePosition: 'center 50%',
     emoji: '⚡',
     couleur: '#0891B2',
     couleurLight: '#CFFAFE',
