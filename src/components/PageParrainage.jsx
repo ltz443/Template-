@@ -48,11 +48,7 @@ function ComingSoonCard() {
       overflow: 'hidden',
       opacity: 0.6,
     }}>
-      <div style={{
-        position: 'absolute', top: 0, left: 0, right: 0, height: 3,
-        background: `linear-gradient(90deg, ${T.primary}66, ${T.accent}66)`,
-        borderRadius: `${T.radius} ${T.radius} 0 0`,
-      }} />
+      {/* 🗑️ BARRE SUPÉRIEURE SUPPRIMÉE ICI */}
       <div style={{
         width: 44, height: 44, borderRadius: 12,
         background: T.borderSoft,
@@ -327,10 +323,7 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
                 e.currentTarget.style.boxShadow = '0 0 28px rgba(139, 92, 246, 0.22)';
               }}
             >
-              <div style={{
-                position: 'absolute', top: 0, left: 0, right: 0,
-                height: 3, background: o.couleur, zIndex: 10
-              }} />
+              {/* 🗑️ BARRE SUPÉRIEURE SUPPRIMÉE ICI AUSSI */}
 
               <div style={{ height: 110, overflow: 'hidden', lineHeight: 0, fontSize: 0 }}>
                 {o.image ? (
@@ -393,4 +386,3 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
     </div>
   );
 }
- 
