@@ -41,6 +41,9 @@ function ComingSoonCard() {
       padding: 16,
       textAlign: 'left',
       opacity: 0.6,
+      display: 'flex',
+      flexDirection: 'column',
+      height: '100%'
     }}>
       <div style={{
         width: 44, height: 44, borderRadius: 12,
@@ -63,10 +66,12 @@ function ComingSoonCard() {
   );
 }
 
+// — COMPOSANT PRINCIPAL —
 export default function PageParrainage({ selected, setSelected, filtre, setFiltre }) {
   const filtrees = filtre === 'Tout' ? OFFRES : OFFRES.filter(o => o.categorie === filtre);
   const isCategoryEmpty = filtre !== 'Tout' && filtrees.length === 0;
 
+  // --- VUE DÉTAIL (QUAND ON CLIQUE SUR UNE VOITURE) ---
   if (selected) {
     const o = selected;
     return (
@@ -94,8 +99,8 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
               style={{
                 display: 'block',
                 width: '100%',
-                height: 'auto', // La vue détail s'adapte aussi
-                maxHeight: '300px',
+                height: 'auto',
+                maxHeight: '320px',
                 objectFit: 'cover',
                 filter: 'drop-shadow(0 10px 18px rgba(0,0,0,0.38))'
               }}
@@ -129,6 +134,15 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
                 <div style={{ fontSize: 14, fontWeight: 800, color: T.danger }}>{o.caution}</div>
               </div>
             </div>
+            
+            {o.conditions && (
+              <div style={{ marginBottom: 20 }}>
+                {o.conditions.map((c, i) => (
+                  <div key={i} style={{ fontSize: 13, color: T.slate, marginBottom: 6 }}>• {c}</div>
+                ))}
+              </div>
+            )}
+
             {o.type === 'contact' && (
               <a href={`https://instagram.com/${o.contact.replace('@', '')}`} target="_blank" rel="noreferrer" style={{ display: 'block', background: 'linear-gradient(135deg, #833AB4, #FD1D1D)', borderRadius: 12, color: '#fff', fontSize: 14, fontWeight: 700, padding: '14px', textDecoration: 'none', textAlign: 'center' }}>
                 Réserver via Instagram
@@ -140,6 +154,7 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
     );
   }
 
+  // --- VUE LISTE (LA GRILLE) ---
   return (
     <div style={{ maxWidth: 480, margin: '0 auto' }}>
       <div style={{ display: 'flex', gap: 8, overflowX: 'auto', paddingBottom: 15, scrollbarWidth: 'none' }}>
@@ -150,7 +165,7 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
         ))}
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, alignItems: 'start' }}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, alignItems: 'stretch' }}>
         {isCategoryEmpty ? (
           <>
             <ComingSoonCard />
@@ -170,9 +185,10 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
                 cursor: 'pointer',
                 overflow: 'hidden',
                 backdropFilter: 'blur(18px)',
+                display: 'flex',
+                flexDirection: 'column'
               }}
             >
-              {/* L'image ici est en height auto, donc la carte s'adapte à la photo */}
               <img
                 src={o.image}
                 alt={o.nom}
@@ -183,10 +199,12 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
                   border: 'none',
                 }}
               />
-              <div style={{ padding: '12px 14px 14px' }}>
-                <div style={{ fontSize: 9, color: T.faint, fontWeight: 700, textTransform: 'uppercase' }}>{o.categorie}</div>
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#fff', marginBottom: 8 }}>{o.nom}</div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div style={{ padding: '12px 14px 14px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+                <div>
+                  <div style={{ fontSize: 9, color: T.faint, fontWeight: 700, textTransform: 'uppercase' }}>{o.categorie}</div>
+                  <div style={{ fontSize: 14, fontWeight: 800, color: '#fff', marginBottom: 8 }}>{o.nom}</div>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
                   <span style={{ background: `${o.couleur}44`, color: '#fff', padding: '2px 8px', borderRadius: 8, fontSize: 12, fontWeight: 800 }}>{o.prix}</span>
                   <span style={{ fontSize: 10, color: T.muted }}>{o.puissance}</span>
                 </div>
