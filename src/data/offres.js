@@ -29,9 +29,9 @@ export const OFFRES = [
     nom: 'Audi S3 Sportback',
     categorie: 'Sportive',
     // Photo détourée (Lien postimg direct)
-    image: "https://imgur.com/a/rZ8swzI",
+    image: "https://i.postimg.cc/9f4Bs3Yq/IMG-2919.jpg",
     // Photo de nuit (Lien postimg direct)
-    imageFond: "https://imgur.com/a/rZ8swzI",
+    imageFond: "https://i.postimg.cc/9f4Bs3Yq/IMG-2919.jpg",
     emoji: '🏁',
     couleur: '#7C3AED',
     couleurLight: '#EDE9FE',
