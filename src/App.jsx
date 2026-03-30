@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
-import GlobalStyles from './components/GlobalStyles';
-import PageParrainage from './components/PageParrainage';
-import { T } from './utils/tokens';
+// ... (imports restent identiques)
 
 export default function App() {
   const [onglet, setOnglet] = useState('parrainage');
@@ -80,23 +77,24 @@ export default function App() {
         )}
       </main>
 
-      {/* NAVIGATION FLOTTANTE */}
+      {/* NAVIGATION FLOTTANTE - MODIFIÉE ICI */}
       <nav style={{
         position: 'fixed',
-        bottom: 20,
+        bottom: 24,
         left: '50%',
         transform: 'translateX(-50%)',
-        width: '90%',
-        maxWidth: 400,
-        background: 'rgba(15, 5, 29, 0.80)',
+        width: '75%',           // Réduit de 90% à 75%
+        maxWidth: 320,          // Réduit de 400 à 320
+        background: 'rgba(15, 5, 29, 0.85)',
         border: `1px solid ${T.border}`,
         backdropFilter: 'blur(20px)',
         WebkitBackdropFilter: 'blur(20px)',
-        borderRadius: 24,
+        borderRadius: 32,       // Plus arrondi (effet pillule)
         display: 'flex',
-        padding: '8px',
-        gap: 8,
-        boxShadow: '0 8px 32px rgba(80, 10, 180, 0.45)',
+        padding: '6px',         // Espace interne réduit
+        gap: 4,
+        boxShadow: '0 12px 32px rgba(0, 0, 0, 0.5)',
+        zIndex: 100,
       }}>
         <button
           onClick={() => { setOnglet('parrainage'); setSelected(null); }}
@@ -107,14 +105,17 @@ export default function App() {
               : 'transparent',
             color: onglet === 'parrainage' ? '#fff' : T.muted,
             border: 'none',
-            borderRadius: 18,
-            padding: '12px',
+            borderRadius: 26,    // Coins plus ronds
+            padding: '10px 4px', // Hauteur réduite
             fontWeight: 700,
             cursor: 'pointer',
             fontFamily: "'Plus Jakarta Sans', sans-serif",
-            fontSize: 14,
-            boxShadow: onglet === 'parrainage' ? `0 4px 16px ${T.primary}60` : 'none',
-            transition: 'all 0.2s',
+            fontSize: 13,        // Texte un poil plus petit
+            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 6,
           }}
         >
           🚗 Véhicules
@@ -129,14 +130,17 @@ export default function App() {
               : 'transparent',
             color: onglet === 'avis' ? '#fff' : T.muted,
             border: 'none',
-            borderRadius: 18,
-            padding: '12px',
+            borderRadius: 26,
+            padding: '10px 4px',
             fontWeight: 700,
             cursor: 'pointer',
             fontFamily: "'Plus Jakarta Sans', sans-serif",
-            fontSize: 14,
-            boxShadow: onglet === 'avis' ? `0 4px 16px ${T.primary}60` : 'none',
-            transition: 'all 0.2s',
+            fontSize: 13,
+            transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 6,
           }}
         >
           ⭐ Avis
