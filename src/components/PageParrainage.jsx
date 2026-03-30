@@ -1,4 +1,4 @@
-import React from 'react';
+Import React from 'react';
 import { OFFRES, CATEGORIES } from '../data/offres';
 import { T } from '../utils/tokens';
 
