@@ -91,6 +91,7 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
         </button>
 
         <Card style={{ overflow: 'hidden' }}>
+          {/* ── IMAGE + NOM + BADGE EN OVERLAY ── */}
           <div style={{ position: 'relative', borderBottom: `1px solid ${T.border}` }}>
             <img
               src={o.image}
@@ -100,9 +101,24 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
                 width: '100%',
                 height: 'auto',
                 maxHeight: '320px',
-                objectFit: 'cover'
+                objectFit: 'cover',
               }}
             />
+            <div style={{
+              position: 'absolute', bottom: 0, left: 0, right: 0,
+              background: 'linear-gradient(0deg, rgba(10,2,30,0.90) 0%, transparent 100%)',
+              padding: '32px 20px 16px',
+            }}>
+              <CategoryBadge label={o.categorie} color={o.couleur} />
+              <h2 style={{
+                fontSize: 22, fontWeight: 800,
+                color: '#fff', margin: '6px 0 0',
+                fontFamily: "'Sora', sans-serif",
+                textShadow: '0 2px 8px rgba(0,0,0,0.4)',
+              }}>
+                {o.nom}
+              </h2>
+            </div>
           </div>
 
           <div style={{ padding: '16px 20px 20px' }}>
@@ -155,7 +171,7 @@ export default function PageParrainage({ selected, setSelected, filtre, setFiltr
                 fontWeight: 700,
                 padding: '14px',
                 textDecoration: 'none',
-                textAlign: 'center'
+                textAlign: 'center',
               }}
             >
               Réserver via Instagram
