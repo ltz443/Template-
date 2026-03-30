@@ -14,7 +14,7 @@ export default function App() {
       background: T.bg,
       backgroundAttachment: 'fixed',
       backgroundSize: 'cover',
-      paddingBottom: 140,
+      paddingBottom: 110,
     }}>
       <GlobalStyles />
 
